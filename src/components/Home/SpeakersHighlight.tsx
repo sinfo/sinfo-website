@@ -75,6 +75,7 @@ export default function SpeakersHighlight({
                     style={{
                       transform: isHovered ? "scale(1.5)" : "scale(1.1)",
                     }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
                   {/* Gradient Overlay */}
@@ -135,6 +136,7 @@ export default function SpeakersHighlight({
                   alt={`Company logo ${index + 1}`}
                   fill
                   className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             ))}

@@ -19,6 +19,7 @@ export default function Footer() {
                   height={128}
                   className="object-contain w-full h-auto"
                   quality={100}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </Link>
               <p className="mt-3 text-sm text-white/80 text-center w-full">

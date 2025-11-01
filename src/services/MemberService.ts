@@ -1,5 +1,5 @@
 export const MemberService = (() => {
-  const memberEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/members";
+  const memberEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/members?event=33";
 
   const getMembers = async (): Promise<SINFOMember[] | null> => {
     try {
@@ -16,8 +16,9 @@ export const MemberService = (() => {
   };
 
   const getFilteredMembers = async (): Promise<SINFOMember[] | null> => {
-    const memberEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/members";
+    const memberEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/members?event=33";
     const filterTeam = "BOTS";
+    console.log("Filtering out team:", filterTeam, "from endpoint:", memberEndpoint);
 
     try {
       const resp = await fetch(`${memberEndpoint}`, {
@@ -27,6 +28,7 @@ export const MemberService = (() => {
       });
       if (resp.ok) {
         const allMembers = (await resp.json()) as SINFOMember[];
+        console.log("Total members fetched:", allMembers.length);
         return allMembers.filter((member) => member.team !== filterTeam);
       }
     } catch (e) {

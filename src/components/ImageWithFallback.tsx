@@ -11,6 +11,7 @@ export default function ImageWithFallback({
   src,
   alt,
   fallbackSrc = "/images/placeholder.png",
+  sizes,
   ...props
 }: ImageWithFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src);
@@ -23,5 +24,13 @@ export default function ImageWithFallback({
     }
   };
 
-  return <Image {...props} src={imgSrc} alt={alt} onError={handleError} />;
+  return (
+    <Image
+      {...props}
+      src={imgSrc}
+      alt={alt}
+      onError={handleError}
+      sizes={sizes}
+    />
+  );
 }

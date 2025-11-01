@@ -34,6 +34,7 @@ export default function NotFound() {
               priority
               // keep origin-bottom so any transforms (if later added) pivot from feet
               className="origin-bottom w-48 sm:w-56"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         </div>

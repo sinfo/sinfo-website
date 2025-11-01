@@ -6,6 +6,7 @@ import {
   getEventDay,
   getEventMonth,
 } from "@/utils/utils";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 type Props = {
   params: {
@@ -80,11 +81,11 @@ export default async function Page({ params }: Props) {
             <div className="relative flex items-start justify-center md:justify-end">
               {/* yellow pod with portrait */}
               <div className="relative w-56 h-56 md:w-64 md:h-64 bg-sinfo-quinary rounded-[56px] rounded-tl-[120px] overflow-hidden shadow-lg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <ImageWithFallback
                   src={speaker.img}
                   alt={speaker.name}
                   className="absolute inset-0 w-full h-full object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </div>

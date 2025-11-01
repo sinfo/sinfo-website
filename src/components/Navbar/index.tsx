@@ -55,6 +55,8 @@ export default function Toolbar() {
                   src={sinfoLogo}
                   alt="SINFO logo"
                   quality={100}
+                  width={160}
+                  height={40}
                 />
               </Link>
               <div className="hidden md:block h-6 w-px bg-white/30" />
