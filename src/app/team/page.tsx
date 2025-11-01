@@ -1,10 +1,39 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { MemberService } from "@/services/MemberService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
+import { useEvent } from "@/context/EventContext";
 
-export default async function TeamPage() {
-  const members = await MemberService.getFilteredMembers();
+export default function TeamPage() {
+  const { event } = useEvent();
+
+  const [members, setMembers] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    setMembers(null); // indicate loading
+    if (event?.id) {
+      MemberService.getFilteredMembers(event.id)
+        .then((m) => {
+          if (!mounted) return;
+          setMembers(m ?? []);
+        })
+        .catch(() => {
+          if (mounted) setMembers([]);
+        });
+    } else {
+      setMembers([]);
+    }
+    return () => {
+      mounted = false;
+    };
+  }, [event?.id]);
+
+  if (members === null) {
+    return <BlankPageMessage message="Loading team members..." />;
+  }
 
   if (!members || members.length === 0) {
     return (
