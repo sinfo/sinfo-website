@@ -1,5 +1,3 @@
-"use client";
-
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { hackyPeeking } from "@/assets/images";
 import CallToAction from "@/components/CallToAction";

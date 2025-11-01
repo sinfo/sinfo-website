@@ -1,40 +1,11 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
 import { MemberService } from "@/services/MemberService";
+import { EventService } from "@/services/EventService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
-import { useEvent } from "@/context/EventContext";
-import Spinner from "@/components/Spinner";
 
-export default function TeamPage() {
-  const { event } = useEvent();
-
-  const [members, setMembers] = useState<any[] | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-    setMembers(null); // indicate loading
-    if (event?.id) {
-      MemberService.getFilteredMembers(event.id)
-        .then((m) => {
-          if (!mounted) return;
-          setMembers(m ?? []);
-        })
-        .catch(() => {
-          if (mounted) setMembers([]);
-        });
-    } else {
-      setMembers([]);
-    }
-    return () => {
-      mounted = false;
-    };
-  }, [event?.id]);
-
-  if (members === null) {
-    return <Spinner />;
-  }
+export default async function TeamPage() {
+  const event = await EventService.getLatest();
+  const members = event ? await MemberService.getFilteredMembers(event.id) : [];
 
   if (!members || members.length === 0) {
     return (

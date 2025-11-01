@@ -79,3 +79,30 @@ export function getSessionColor(sessionKind: string) {
       return "#000";
   }
 }
+
+export function formatEventDateRange(
+  begin: Date | string | undefined,
+  end: Date | string | undefined,
+  options: { format?: "short" | "long" } = {},
+): string {
+  const { format = "long" } = options;
+
+  if (!begin || !end) {
+    return format === "short" ? "20-24 APRIL 2026" : "April 20-24 2026";
+  }
+
+  const beginDate = new Date(begin);
+  const endDate = new Date(end);
+
+  const day1 = beginDate.getDate();
+  const day2 = endDate.getDate();
+  const month = beginDate.toLocaleDateString("en-US", { month: "long" });
+  const monthShort = month.toUpperCase();
+  const year = beginDate.getFullYear();
+
+  if (format === "short") {
+    return `${day1}-${day2} ${monthShort} ${year}`;
+  }
+
+  return `${month} ${day1}-${day2} ${year}`;
+}

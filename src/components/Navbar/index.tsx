@@ -7,10 +7,13 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { TIC_LOCATION } from "@/constants";
+import { useEvent } from "@/context/EventContext";
+import { formatEventDateRange } from "@/utils/utils";
 
 export default function Toolbar() {
   const router = useRouter();
   const currPath = usePathname();
+  const { event } = useEvent();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -61,9 +64,11 @@ export default function Toolbar() {
               </Link>
               <div className="hidden md:block h-6 w-px bg-white/30" />
               <div className="hidden md:block text-white/90 text-xs lg:text-sm font-medium tracking-wide">
-                <a href={TIC_LOCATION} target="_blank">Técnico Innovation Center</a>
+                <a href={TIC_LOCATION} target="_blank">
+                  Técnico Innovation Center
+                </a>
                 <br></br>
-                April 20-24 2026
+                {formatEventDateRange(event?.begin, event?.end)}
               </div>
             </div>
 

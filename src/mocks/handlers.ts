@@ -11,54 +11,48 @@ import {
 } from "./data";
 import MOCK_MEMBERS from "./data/member";
 
-const BACKEND_URL = process.env.CANNON_URL;
+const CANNON_URL = process.env.CANNON_URL;
+const DECK_URL = process.env.DECK_URL;
 
 export const handlers = [
   // get latest sinfo event
-  http.get(`${BACKEND_URL}/event/latest`, () => {
+  http.get(`${DECK_URL}/events/latest`, () => {
     return HttpResponse.json(MOCK_EVENT);
   }),
-  // get cannon_token for the user
-  http.post(`${BACKEND_URL}/auth/*`, () => {
-    return HttpResponse.json({
-      token: "some_cannon_token",
-    });
-  }),
   // get a specific company
-  http.get(`${BACKEND_URL}/company/*`, () => {
+  http.get(`${DECK_URL}/companies/*`, () => {
     return HttpResponse.json(MOCK_COMPANY);
   }),
   // get all companies for the edition
-  http.get(`${BACKEND_URL}/company`, () => {
+  http.get(`${DECK_URL}/companies`, () => {
     return HttpResponse.json(MOCK_COMPANIES);
   }),
   // get a specific speaker
-  http.get(`${BACKEND_URL}/speaker/*`, () => {
+  http.get(`${CANNON_URL}/speaker/*`, () => {
     return HttpResponse.json(MOCK_SPEAKER);
   }),
   // get all speakers for the edition
-  http.get(`${BACKEND_URL}/speaker`, () => {
+  http.get(`${CANNON_URL}/speaker`, () => {
     return HttpResponse.json({
       eventId: MOCK_EVENT,
       speakers: MOCK_SPEAKERS,
       previousEdition: false,
     });
   }),
-  // session check-in
-  http.post(`${BACKEND_URL}/session/*/check-in`, () => {
-    return HttpResponse.json(MOCK_SESSION_STATUS);
+  // get all members for the edition
+  http.get(`${DECK_URL}/members`, () => {
+    return HttpResponse.json(MOCK_MEMBERS);
   }),
   // get a specific session
-  http.get(`${BACKEND_URL}/session/*`, () => {
+  http.get(`${CANNON_URL}/session/*`, () => {
     return HttpResponse.json(MOCK_SESSION);
   }),
-  // get all sessions for the edition
-  http.get(`${BACKEND_URL}/session`, () => {
+  // get all sessions
+  http.get(`${CANNON_URL}/session`, () => {
     return HttpResponse.json(MOCK_SESSIONS);
   }),
-
-  // get all members for the edition
-  http.get(`${BACKEND_URL}/member`, () => {
-    return HttpResponse.json(MOCK_MEMBERS);
+  // get all prizes
+  http.get(`${CANNON_URL}/prizes`, () => {
+    return HttpResponse.json([]);
   }),
 ];

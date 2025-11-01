@@ -5,8 +5,12 @@ import CallToAction from "@/components/CallToAction";
 import StatCard from "@/components/StatCard";
 import { ArrowRight, MessageCircleQuestionIcon } from "lucide-react";
 import { TIC_LOCATION } from "@/constants";
+import { useEvent } from "@/context/EventContext";
+import { formatEventDateRange } from "@/utils/utils";
 
 export default function HeroSection() {
+  const { event } = useEvent();
+
   const stats = [
     { label: "ATTENDEES", value: "5,000+" },
     { label: "SPEAKERS", value: "30+" },
@@ -45,7 +49,10 @@ export default function HeroSection() {
           {/* Date Badge */}
           <div className="mb-6 sm:mb-8 md:mb-10 flex justify-start">
             <CallToAction href={TIC_LOCATION} variant="secondary">
-              20-24 APRIL 2026 • LISBON
+              {formatEventDateRange(event?.begin, event?.end, {
+                format: "short",
+              })}{" "}
+              • LISBON
             </CallToAction>
           </div>
 

@@ -8,18 +8,17 @@ type Company = {
 };
 
 type CompanyParticipation = {
-    event: number;
-    partner: boolean;
-    package: CompanyPackage;
-    standDetails?: StandDetails;
-    stands?: Stand[];
+  event: number;
+  partner: boolean;
+  package: CompanyPackage;
+  standDetails?: StandDetails;
+  stands?: Stand[];
 };
-
 
 type CompanyPackage = {
   name: string;
   items: null; // TODO: Define items type
-}
+};
 
 type Stand = {
   standId: string;

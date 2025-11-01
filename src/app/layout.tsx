@@ -4,6 +4,7 @@ import BottomNavbar from "@/components/BottomNavbar";
 import { Montserrat } from "next/font/google";
 import "@/styles/globals.css";
 import { EventProvider } from "@/context/EventContext";
+import { EventService } from "@/services/EventService";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -25,10 +26,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const event = await EventService.getLatest();
+
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <EventProvider>
+        <EventProvider initialEvent={event}>
           <div className="min-h-dvh text-white flex flex-col">
             <Toolbar />
             <div className="flex-1 bg-gray-100 text-black">{children}</div>

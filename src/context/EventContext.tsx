@@ -16,11 +16,21 @@ interface EventContextType {
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
 
-export const EventProvider = ({ children }: { children: ReactNode }) => {
-  const [event, setEvent] = useState<SINFOEvent | null>(null);
-  const [loading, setLoading] = useState(true);
+export const EventProvider = ({
+  children,
+  initialEvent,
+}: {
+  children: ReactNode;
+  // optional server-provided initial event for SSR
+  initialEvent?: SINFOEvent | null;
+}) => {
+  const [event, setEvent] = useState<SINFOEvent | null>(initialEvent ?? null);
+  const [loading, setLoading] = useState(initialEvent ? false : true);
 
   useEffect(() => {
+    // if an initial event was provided from server, skip client fetch
+    if (initialEvent) return;
+
     const fetchEvent = async () => {
       try {
         const eventData = await EventService.getLatest();
@@ -33,7 +43,7 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
     };
 
     fetchEvent();
-  }, []);
+  }, [initialEvent]);
 
   return (
     <EventContext.Provider value={{ event, loading }}>

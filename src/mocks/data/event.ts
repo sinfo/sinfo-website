@@ -1,8 +1,8 @@
 export const MOCK_EVENT: SINFOEvent = {
   id: 33,
   name: "SINFO 33",
-  begin: new Date("2026-04-20T00:00:00Z"),
-  end: new Date("2026-04-24T00:00:00Z"),
+  begin: new Date("2004-09-15T00:00:00Z"),
+  end: new Date("2004-09-19T00:00:00Z"),
   themes: [],
   packages: [],
   items: [],
