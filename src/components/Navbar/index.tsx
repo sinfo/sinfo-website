@@ -61,7 +61,7 @@ export default function Toolbar() {
               </Link>
               <div className="hidden md:block h-6 w-px bg-white/30" />
               <div className="hidden md:block text-white/90 text-xs lg:text-sm font-medium tracking-wide">
-                <a href={TIC_LOCATION}>Técnico Innovation Center</a>
+                <a href={TIC_LOCATION} target="_blank">Técnico Innovation Center</a>
                 <br></br>
                 April 20-24 2026
               </div>
