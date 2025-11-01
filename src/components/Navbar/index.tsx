@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { TIC_LOCATION } from "@/constants";
 
 export default function Toolbar() {
   const router = useRouter();
@@ -58,7 +59,7 @@ export default function Toolbar() {
               </Link>
               <div className="hidden md:block h-6 w-px bg-white/30" />
               <div className="hidden md:block text-white/90 text-xs lg:text-sm font-medium tracking-wide">
-                Técnico Innovation Center<br></br>
+                <a href={TIC_LOCATION}>Técnico Innovation Center</a><br></br>
                 April 20-24 2026
               </div>
             </div>
