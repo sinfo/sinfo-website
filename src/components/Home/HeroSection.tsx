@@ -15,7 +15,7 @@ export default function HeroSection() {
     { label: "ATTENDEES", value: "5,000+" },
     { label: "SPEAKERS", value: "30+" },
     { label: "COMPANIES", value: "100+" },
-    { label: "YEARS OF COMMUNITY", value: "32" },
+    { label: "YEARS OF COMMUNITY", value: event?.id.toString() || "32" },
   ];
 
   const handleScrollToFAQ = (event: React.MouseEvent<HTMLAnchorElement>) => {
