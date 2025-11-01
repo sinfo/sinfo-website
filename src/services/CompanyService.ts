@@ -1,5 +1,5 @@
 export const CompanyService = (() => {
-  const companiesEndpoint = process.env.NEXT_PUBLIC_CANNON_URL + "/company";
+  const companiesEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/companies";
 
   const getCompany = async (id: string): Promise<Company | null> => {
     const resp = await fetch(`${companiesEndpoint}/${id}`, {
@@ -11,8 +11,8 @@ export const CompanyService = (() => {
     return null;
   };
 
-  const getCompanies = async (): Promise<Company[] | null> => {
-    const resp = await fetch(companiesEndpoint, {
+  const getCompanies = async (eventId: string): Promise<Company[] | null> => {
+    const resp = await fetch(`${companiesEndpoint}?event=${eventId}`, {
       next: {
         revalidate: 0, // 1 day
       },

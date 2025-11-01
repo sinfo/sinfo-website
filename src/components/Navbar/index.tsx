@@ -20,7 +20,7 @@ export default function Toolbar() {
   // Navigation links
   const navLinks = [
     { href: "/speakers", label: "SPEAKERS" },
-    { href: "/sponsors", label: "SPONSORS" },
+    { href: "/companies", label: "COMPANIES" },
     { href: "/schedule", label: "SCHEDULE" },
     { href: "/team", label: "TEAM" },
   ];

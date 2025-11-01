@@ -14,7 +14,7 @@ export default function GridList({
   return (
     <List {...props}>
       <div
-        className={`flex flex-row gap-2 ${scrollable ? "justify-start overflow-x-auto pb-4" : "justify-around flex-wrap"} ${className}`}
+        className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 ${scrollable ? "overflow-x-auto pb-4" : ""} ${className}`}
       >
         {children}
       </div>

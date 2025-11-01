@@ -1,14 +1,25 @@
 type Company = {
   id: string;
   name: string;
+  description: string;
   img: string;
   site?: string;
-  advertisementLvl?: string; // TODO: This might not be a string
-  sessions?: SINFOSession[];
-  members?: User[];
-  stands?: Stand[];
-  standDetails?: StandDetails;
+  participation: CompanyParticipation[];
 };
+
+type CompanyParticipation = {
+    event: number;
+    partner: boolean;
+    package: CompanyPackage;
+    standDetails?: StandDetails;
+    stands?: Stand[];
+};
+
+
+type CompanyPackage = {
+  name: string;
+  items: null; // TODO: Define items type
+}
 
 type Stand = {
   standId: string;
