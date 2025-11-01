@@ -1,12 +1,25 @@
+"use client";
+
 import React from "react";
 import ImageWithFallback from "../ImageWithFallback";
 import Link from "next/link";
+import { useEvent } from "@/context/EventContext";
+import { getDayWithOrdinal, getEventMonth } from "@/utils/utils";
 
 interface AboutUsProps {
   backgroundClass: string;
 }
 
 export default function AboutUs({ backgroundClass }: AboutUsProps) {
+  const { event } = useEvent();
+
+  const startDate = event ? getDayWithOrdinal(String(event.begin)) : "";
+  const endDate = event
+    ? `${getDayWithOrdinal(String(event.end))} of ${getEventMonth(
+        String(event.end),
+      )} ${new Date(event.end).getFullYear()}`
+    : "";
+
   return (
     <section
       id="about-us"
@@ -36,8 +49,8 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
               Last year, we achieved record-breaking attendance, and we are
-              excited to build on that success during SINFO 33, happening from
-              the 20th to the 24th of April 2026.
+              excited to build on that success during {event?.name}, happening
+              from the {startDate} to the {endDate}.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">

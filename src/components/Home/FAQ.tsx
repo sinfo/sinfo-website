@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { TIC_LOCATION } from "@/constants";
+import { useEvent } from "@/context/EventContext";
+import { getDayWithOrdinal, getEventMonth } from "@/utils/utils";
 
 interface FAQItem {
   question: string;
@@ -16,16 +18,23 @@ interface FAQProps {
 
 export default function FAQ({ backgroundClass }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(1);
+  const { event } = useEvent();
 
-  const faqItems = useMemo<FAQItem[]>(
-    () => [
+  const faqItems = useMemo<FAQItem[]>(() => {
+    const startDate = event ? getDayWithOrdinal(String(event.begin)) : "";
+    const endDate = event
+      ? `${getDayWithOrdinal(String(event.end))} of ${getEventMonth(
+          String(event.end),
+        )} ${new Date(event.end).getFullYear()}`
+      : "";
+    return [
       {
         question: "Is SINFO really free?",
         answer:
           "Yes! SINFO is — and always will be — completely free to attend. We believe in making technology and knowledge accessible to everyone.",
       },
       {
-        question: "Where is SINFO 33 taking place?",
+        question: `Where is ${event?.name} taking place?`,
         answer: (
           <>
             Visit us at{" "}
@@ -36,7 +45,7 @@ export default function FAQ({ backgroundClass }: FAQProps) {
             >
               Técnico Innovation Center
             </Link>
-            , in Lisbon, from the 20th to the 24th of April, 2026!
+            , in Lisbon, from the {startDate} to the {endDate}!
           </>
         ),
       },
@@ -92,9 +101,8 @@ export default function FAQ({ backgroundClass }: FAQProps) {
           </>
         ),
       },
-    ],
-    [],
-  );
+    ];
+  }, [event]);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

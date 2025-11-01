@@ -75,20 +75,32 @@ type Prize = {
   cv?: boolean;
 };
 
-type SINFOEvent = {
-  id: string;
-  name: string;
-  kind: string;
-  date: string;
-  updated?: string;
-  duration?: string;
-  begin?: string;
-  end?: string;
-  isOcurring?: boolean;
-  calendarUrl: string;
-};
-
-type SinfoMember = {
+type SINFOMember = {
   name: string;
   img: string;
+  socials: Socials;
+  sinfo_email: string;
+  team: string;
+};
+
+type Socials = {
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+  facebook?: string;
+  skype?: string;
+};
+
+type SINFOEvent = {
+  id: number;
+  name: string;
+  begin: Date;
+  end: Date;
+  themes: unknown[];
+  calendarUrl: string;
+  packages: unknown[];
+  items: unknown[];
+  meetings: unknown[];
+  sessions: unknown[];
+  teams: string[]; // Array of team IDs
 };

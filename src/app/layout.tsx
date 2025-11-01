@@ -3,6 +3,7 @@ import Toolbar from "@/components/Navbar";
 import BottomNavbar from "@/components/BottomNavbar";
 import { Montserrat } from "next/font/google";
 import "@/styles/globals.css";
+import { EventProvider } from "@/context/EventContext";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -27,11 +28,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <div className="min-h-dvh text-white flex flex-col">
-          <Toolbar />
-          <div className="flex-1 bg-gray-100 text-black">{children}</div>
-          <BottomNavbar />
-        </div>
+        <EventProvider>
+          <div className="min-h-dvh text-white flex flex-col">
+            <Toolbar />
+            <div className="flex-1 bg-gray-100 text-black">{children}</div>
+            <BottomNavbar />
+          </div>
+        </EventProvider>
       </body>
     </html>
   );
