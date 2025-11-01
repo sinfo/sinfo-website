@@ -5,6 +5,7 @@ import { MemberService } from "@/services/MemberService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import { useEvent } from "@/context/EventContext";
+import Spinner from "@/components/Spinner";
 
 export default function TeamPage() {
   const { event } = useEvent();
@@ -32,7 +33,7 @@ export default function TeamPage() {
   }, [event?.id]);
 
   if (members === null) {
-    return <BlankPageMessage message="Loading team members..." />;
+    return <Spinner />;
   }
 
   if (!members || members.length === 0) {
