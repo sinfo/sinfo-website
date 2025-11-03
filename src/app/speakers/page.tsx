@@ -12,21 +12,22 @@ export default async function SpeakersPage() {
     );
   }
 
-  // const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  // const [hoveredRow, setHoveredRow] = useState<number | null>(null);
-
   // Split speakers into 3 rows
   const speakersPerRow = Math.ceil(speakers.length / 3);
   const rows = Array.from({ length: 3 }, (_, rowIndex) => {
     const startIndex = rowIndex * speakersPerRow;
     const endIndex = Math.min(startIndex + speakersPerRow, speakers.length);
     const rowSpeakers = speakers.slice(startIndex, endIndex);
-    
-    return rowSpeakers.map((speaker, index) => ({
-      ...speaker,
-      uniqueId: `${rowIndex}-${index}`,
-      imageIndex: (startIndex + (index % rowSpeakers.length)) % 5,
-    }));
+
+
+    const copies = 10; // enough
+    return Array.from({ length: copies }).flatMap((_, copyIdx) =>
+      rowSpeakers.map((speaker, index) => ({
+        ...speaker,
+        uniqueId: `${rowIndex}-${copyIdx}-${index}`,
+        imageIndex: (startIndex + index) % 5,
+      }))
+    );
   });
 
   return (
