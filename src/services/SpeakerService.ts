@@ -11,8 +11,8 @@ export const SpeakerService = (() => {
     return null;
   };
 
-  const getSpeakers = async (): Promise<Speaker[] | null> => {
-    const resp = await fetch(speakersEndpoint, {
+  const getSpeakers = async ({ event }: { event: number }): Promise<Speaker[] | null> => {
+    const resp = await fetch(`${speakersEndpoint}?event=${event}`, {
       next: {
         revalidate: 0, // 1 day
       },
