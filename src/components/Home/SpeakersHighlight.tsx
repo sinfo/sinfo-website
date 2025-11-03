@@ -52,6 +52,102 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
     return () => clearTimeout(timer);
   }, []);
 
+	// Drag-to-scroll state (pointer events)
+	const isDraggingRef = useRef(false);
+	const startXRef = useRef(0);
+	const scrollLeftRef = useRef(0);
+	const [isDragging, setIsDragging] = useState(false);
+
+	// velocity / momentum
+	const lastXRef = useRef(0);
+	const lastTimeRef = useRef(0);
+	const prevXRef = useRef(0);
+	const prevTimeRef = useRef(0);
+	const velocityRef = useRef(0); // px per ms
+	const momentumRafRef = useRef<number | null>(null);
+
+	const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+		// Ignore touch pointers so mobile uses native scrolling/animations
+		if (e.pointerType === 'touch') return;
+		const el = scrollContainerRef.current;
+		if (!el) return;
+		isDraggingRef.current = true;
+		setIsDragging(true);
+		// capture pointer so we continue receiving events outside the element
+		try {
+			el.setPointerCapture(e.pointerId);
+		} catch {}
+		startXRef.current = e.clientX;
+		scrollLeftRef.current = el.scrollLeft;
+	};
+
+	const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+		if (!isDraggingRef.current || !scrollContainerRef.current) return;
+		const el = scrollContainerRef.current;
+		const dx = e.clientX - startXRef.current;
+		// invert dx so dragging left moves the content left
+		el.scrollLeft = scrollLeftRef.current - dx;
+
+		// velocity tracking (keep last two points)
+		const now = performance.now();
+		prevXRef.current = lastXRef.current;
+		prevTimeRef.current = lastTimeRef.current;
+		lastXRef.current = e.clientX;
+		lastTimeRef.current = now;
+		if (prevTimeRef.current && now !== prevTimeRef.current) {
+			velocityRef.current = (lastXRef.current - prevXRef.current) / (now - prevTimeRef.current);
+		}
+	};
+
+	const endDrag = (e?: React.PointerEvent<HTMLDivElement>) => {
+		if (!isDraggingRef.current) return;
+		isDraggingRef.current = false;
+		setIsDragging(false);
+		const el = scrollContainerRef.current;
+		if (!el) return;
+		try {
+			if (e) el.releasePointerCapture(e.pointerId);
+		} catch {}
+
+		// start momentum if velocity exists
+		const startMomentum = () => {
+			if (!scrollContainerRef.current) return;
+			let v = velocityRef.current; // px per ms
+			const step = () => {
+				if (!scrollContainerRef.current) return;
+				// convert to px per frame (approx 16ms)
+				const delta = v * 16;
+				scrollContainerRef.current.scrollLeft -= delta;
+				// apply friction
+				v *= 0.95;
+				// stop when very slow
+				if (Math.abs(v) > 0.02) {
+					momentumRafRef.current = requestAnimationFrame(step);
+				} else {
+					momentumRafRef.current = null;
+				}
+			};
+			// kick off
+			if (Math.abs(v) > 0.02) {
+				momentumRafRef.current = requestAnimationFrame(step);
+			}
+		};
+
+		// cancel any previous momentum and start new one
+		if (momentumRafRef.current) {
+			cancelAnimationFrame(momentumRafRef.current);
+			momentumRafRef.current = null;
+		}
+		startMomentum();
+	};
+
+	// cancel momentum if user interacts again
+	useEffect(() => {
+		return () => {
+			if (momentumRafRef.current) cancelAnimationFrame(momentumRafRef.current);
+		};
+	}, []);
+
   return (
     <section
 			id="event"
@@ -70,9 +166,14 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 
 			{/* Horizontal Scrollable Cards */}
 			<div className="relative overflow-hidden">
-				<div 
+				<div
 					ref={scrollContainerRef}
-					className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+					onPointerDown={onPointerDown}
+					onPointerMove={onPointerMove}
+					onPointerUp={endDrag}
+					onPointerCancel={endDrag}
+					onPointerLeave={endDrag}
+					className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 ${isDragging ? 'dragging no-snap cursor-grabbing select-none' : 'cursor-grab'}`}
 					style={{ paddingLeft: '50vw', paddingRight: '50vw' }}
 				>
 					{speakers.map((speaker, index) => {
@@ -165,6 +266,17 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 					height: 100%;
 					border: 0;
 					display: block;
+				}
+
+				/* Visual feedback while dragging (desktop) */
+				.dragging [data-card] {
+					transform: translateY(-6px) scale(1.01);
+					transition: transform 150ms ease;
+				}
+
+				/* disable scroll snap while dragging for smoother feel */
+				.no-snap {
+					scroll-snap-type: none !important;
 				}
 			`}</style>
 		</section>
