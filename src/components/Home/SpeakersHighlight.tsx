@@ -99,7 +99,7 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 									{/* Use an aspect-ratio-driven video container so the height is determined by the 16:9 video; the image will stretch to match that height. On small screens it stacks vertically. */}
 									<div className="flex flex-col md:flex-row items-stretch bg-black">
 										{/* Speaker Image - Left Side */}
-										<div className="md:w-1/3 w-full relative overflow-hidden h-full">
+										<div className="w-full md:w-1/3 relative overflow-hidden aspect-[16/9] md:aspect-auto">
 											<Image
 												src={speakerImages[index % speakerImages.length]}
 												alt={speaker.name}
@@ -109,7 +109,7 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 										</div>
 
 										{/* YouTube Video - Right Side */}
-										<div className="md:w-2/3 w-full relative overflow-hidden">
+                                        <div className="hidden md:block md:w-2/3 w-full relative overflow-hidden">
 											<div className="iframe-container">
 						<iframe
 						  src={`https://www.youtube.com/embed/${videoIds[index % videoIds.length]}?autoplay=${hoveredSpeaker === speaker.id ? '1' : '0'}&mute=1&controls=1`}
