@@ -5,6 +5,15 @@ import MovingGrid from '@/components/MovingGrid';
 
 export default async function SpeakersPage() {
   const speakers = await SpeakerService.getSpeakers({ event: 32 });
+  /**
+   * TODO: Fetch speakers from multiple past editions
+   *  const eventIds = [32, 30, 31];
+   *  const speakerLists = await Promise.all(
+   *    eventIds.map((id) => SpeakerService.getSpeakers({ event: id }))
+   *  );
+   *
+   *  const speakers = speakerLists.flat();
+   */
 
   if (!speakers || speakers.length === 0) {
     return (

@@ -86,6 +86,8 @@ export default async function Page({ params }: Props) {
                   alt={speaker.name}
                   className="absolute inset-0 w-full h-full object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  width={250}
+                  height={250}
                 />
               </div>
             </div>

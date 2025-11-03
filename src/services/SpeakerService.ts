@@ -24,69 +24,55 @@ export const SpeakerService = (() => {
     return null;
   };
 
-  const getPreviousEditionSpeakersHighlight = async () => [
-  {
-    id: "luis-pollo",
-    name: "Luis Pollo",
-    description:
-      "30 years’ experience in the interactive industry as a writer and director of award-winning AAA narrative game experiences, most notably Sony Computer Entertainment’s acclaimed, billion-dollar Uncharted franchise.\n\nSpecialties: Creative Direction, Worldbuilding and Narrative Design, Story and Screenwriting, Game Design, Performance Capture Direction and Virtual Production, Casting, VO Direction",
-    title: "Creative Director and Writer",
-    img: "https://cdn.mos.cms.futurecdn.net/vx2SDJK7S3SLNiq8RUJ2LA-1200-80.png",
-    img_sinfo: "speaker1.jpg",
-    company: {
-      name: "Bliss",
-      img: "https://sinfo.ams3.cdn.digitaloceanspaces.com/static/24-sinfo/companies/bliss.png",
-    },
-  },
-  {
-    id: "speaker_2",
-    name: "Ben Vandenberghe",
-    description:
-      "CEO at Skyline Communications. Specialties: Open end-to-end multi-vendor network management solutions for the IPTV, HFC broadband, satellite and broadcast industry.",
-    title: "CEO, Skyline Communications",
-    img: "https://pbs.twimg.com/profile_images/1030128786438729728/LI44Gg77_400x400.jpg",
-    img_sinfo: "speaker2.jpg",
-  },
-  {
-    id: "speaker_3",
-    name: "Bill Gates",
-    description:
-      "Philanthropist, entrepreneur, and co-founder of Microsoft. Known for his significant contributions to technology and global health initiatives through the Bill & Melinda Gates Foundation.",
-    title: "Co-Founder, Microsoft",
-    img: "https://ep01.epimg.net/estaticos/arc/2021/02/entrevista/img/bill.jpg",
-    company: {
-      name: "Microsoft",
-      img: "https://sinfo.ams3.cdn.digitaloceanspaces.com/static/25-sinfo/companies/microsoft.png",
-    },
-    img_sinfo: "speaker3.jpg",
-  },
-  {
-    id: "speaker_4",
-    name: "David Miotke",
-    description:
-      "Dave Miotke is an experienced Producer who lives, breathes, and dreams Video Games; especially simulation! Working closely with multi-disciplinary, cross-functional teams to create something magical is where he always wants to be. For the last 15 years, he has been working as a developer at Maxis and on The Sims. Early in a project, he helps to pitch and refine ideas and concepts. If a pitch is green-lit, he helps to further clarify and prioritize features for the pack as well as communicate the intent and ongoing progress team-wide. Later in the project, he helps to evaluate the software and plan for iteration and/or additions to maintain a high-quality bar for the players.",
-    title: "Producer, Maxis (The Sims)",
-    img: "https://media.contentapi.ea.com/content/dam/www-thesims/2017/02/DaveMiotke_SGNinja.jpg.adapt.crop16x9.575p.jpg",
-    company: {
-      name: "Cloudflare",
-      img: "https://static.sinfo.org/static%2F30-sinfo%2FcompanyLogos%2FCloudFlare-01.webp",
-    },
-    img_sinfo: "speaker4.jpg",
-  },
-  {
-    id: "speaker_5",
-    name: "Manuel Sousa",
-    description:
-      "Experienced Information Security Engineer specializing in protecting data and systems for large-scale organizations. Skilled in cybersecurity strategy, threat analysis, and implementing secure protocols.",
-    title: "Information Security Engineer @ Google",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQH5kR-KsoQnYA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710492770943?e=1763596800&v=beta&t=qwQ8vT5qrWGQC6BFE5YjItRb_EK7kx6IHpv-jJEBxQM",
-    company: {
-      name: "Google",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-    },
-    img_sinfo: "speaker5.jpg",
-  },
-]
+  // TODO: Replace with real API call with all information when available
+  const getPreviousEditionSpeakersHighlight = async (): Promise<Speaker[]> => {
+    const ids = [
+      // "6480a212a4e6c9a68843d549", // Aleksa Gordić
+        "64a73a3f5e2cfce18d990c8d", // Shivani Poddar
+        "64beae835e2cfce18d9912cc", // Nemanja Rakicevic
+      "66dc4093aa43584e5fa98d1e", // Naman Govil
+      // "6537e3631410063dac6daa96", // Rohit Patel
+        "65a06f4d7562d858c0c9b2b3", // João Gante
+        "64a898125e2cfce18d990d19", // Abby LeMaster
+        "64a5b6e25e2cfce18d990b38", // Isaque Sanches
+        "668583d18d9f35b1d1ca109e", // Ere Santos
+        "656752c352c359b9a5ed7c86", // Cody Lyon
+        "6480a212a4e6c9a68843c9b1", // Roger Dingledine
+        "64c769065e2cfce18d9917ed", // Joseph Katsioloudes
+    ];
+    // Presentation metadata: explicit mapping of speaker id -> YouTube video id
+    // This avoids confusion from index-based lists and makes assignment explicit.
+    const videoMap: Record<string, string> = {
+      "6480a212a4e6c9a68843d549": "vVXQa0ie4BM", // Aleksa Gordić
+      "64a73a3f5e2cfce18d990c8d": "8LhlLrrYG7Y", // Shivani Poddar
+      "64beae835e2cfce18d9912cc": "XwRzfSJ4040", // Nemanja Rakicevic
+      "66dc4093aa43584e5fa98d1e": "n1uqD2h2vy0", // Naman Govil
+      "6537e3631410063dac6daa96": "", // Rohit Patel
+      "65a06f4d7562d858c0c9b2b3": "xA3c3dUt_X4", // João Gante
+      "64a898125e2cfce18d990d19": "qG9_o7KHRMU", // Abby LeMaster
+      "64a5b6e25e2cfce18d990b38": "cbC_AhtS0-I", // Isaque Sanches
+      "668583d18d9f35b1d1ca109e": "Jpgw8ssJXFQ", // Ere Santos
+      "656752c352c359b9a5ed7c86": "R4Uho3ZUQzY", // Cody Lyon
+      "6480a212a4e6c9a68843c9b1": "evh9dfGd3eY", // Roger Dingledine
+      "64c769065e2cfce18d9917ed": "6dRaWG7ANrk", // Joseph Katsioloudes
+    };
+    const speakers = await Promise.all(
+      ids.map(async (id, idx) => {
+        try {
+          const s = await getSpeaker(id);
+          if (!s) return null;
+
+          const imageName = "/images/speakers/" + s.id + ".jpg";
+          const videoId = videoMap[id] ?? "";
+          return { ...s, imageName, videoId } as Speaker;
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    return speakers.filter((s): s is Speaker => s != null);
+  };
 
   return { getSpeaker, getSpeakers, getPreviousEditionSpeakersHighlight };
 })();

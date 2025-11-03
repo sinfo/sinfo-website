@@ -7,13 +7,8 @@ interface SpeakersHighlightProps {
   backgroundClass: string;
 }
 
-import Speaker1 from "@/assets/images/speakers/speaker1.jpg";
-import Speaker2 from "@/assets/images/speakers/speaker2.jpg";
-import Speaker3 from "@/assets/images/speakers/speaker3.jpg";
-import Speaker4 from "@/assets/images/speakers/speaker4.jpg";
-import Speaker5 from "@/assets/images/speakers/speaker5.jpg";
 import { SpeakerService } from "@/services/SpeakerService";
-const speakerImages = [Speaker1, Speaker2, Speaker3, Speaker4, Speaker5];
+import ImageWithFallback from "../ImageWithFallback";
 
 export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlightProps) {
   const [hoveredSpeaker, setHoveredSpeaker] = useState<string | null>(null);
@@ -21,11 +16,13 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 
   const [isLoading, setIsLoading] = useState(true);
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
-  useEffect(() => {
-    (async () => {
-      setSpeakers(await SpeakerService.getPreviousEditionSpeakersHighlight().finally(() => setIsLoading(false)));
-    })();
-  }, []);
+	useEffect(() => {
+		(async () => {
+			setSpeakers(
+				await SpeakerService.getPreviousEditionSpeakersHighlight().finally(() => setIsLoading(false))
+			);
+		})();
+	}, []);
 
   // Center the first card on mount
   useEffect(() => {
@@ -176,33 +173,25 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 					className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 ${isDragging ? 'dragging no-snap cursor-grabbing select-none' : 'cursor-grab'}`}
 					style={{ paddingLeft: '50vw', paddingRight: '50vw' }}
 				>
-					{speakers.map((speaker, index) => {
-						// Random YouTube video IDs for demo
-						const videoIds = [
-							"6EoG-sPScl4",
-							"n1uqD2h2vy0",
-							"Jpgw8ssJXFQ",
-							"03m8UZt0Bjs",
-							"tgbNymZ7vqY",
-							"L_jWHffIx5E",
-						];
-
-						return (
-							<div
-								key={speaker.id}
-								data-card
-								className="flex-shrink-0 w-[85vw] md:w-[800px] snap-center"
-								onMouseEnter={() => setHoveredSpeaker(speaker.id)}
-								onMouseLeave={() => setHoveredSpeaker(null)}
-							>
-								<div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] transform-gpu h-full flex flex-col">
+								{speakers.map((speaker, index) => {
+									return (
+										<div
+											key={speaker.id}
+											data-card
+											className="flex-shrink-0 w-[85vw] md:w-[800px] snap-center"
+											onMouseEnter={() => setHoveredSpeaker(speaker.id)}
+											onMouseLeave={() => setHoveredSpeaker(null)}
+										>
+											<div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] transform-gpu h-full flex flex-col">
 									{/* Top Section: Image and Video */}
 									{/* Use an aspect-ratio-driven video container so the height is determined by the 16:9 video; the image will stretch to match that height. On small screens it stacks vertically. */}
 									<div className="flex flex-col md:flex-row items-stretch bg-black">
 										{/* Speaker Image - Left Side */}
 										<div className="w-full md:w-1/3 relative overflow-hidden aspect-[16/9] md:aspect-auto">
-											<Image
-												src={speakerImages[index % speakerImages.length]}
+											<ImageWithFallback
+												src={
+												  speaker.imageName || speaker.img
+												}
 												alt={speaker.name}
 												fill
 												className="object-cover"
@@ -210,16 +199,16 @@ export default function SpeakersHighlight({ backgroundClass }: SpeakersHighlight
 										</div>
 
 										{/* YouTube Video - Right Side */}
-                                        <div className="hidden md:block md:w-2/3 w-full relative overflow-hidden">
-											<div className="iframe-container">
-						<iframe
-						  src={`https://www.youtube.com/embed/${videoIds[index % videoIds.length]}?autoplay=${hoveredSpeaker === speaker.id ? '1' : '0'}&mute=1&controls=1`}
-						  title={`${speaker.name} Talk`}
-						  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						  allowFullScreen
-						/>
-					  </div>
-										</div>
+																				<div className="hidden md:block md:w-2/3 w-full relative overflow-hidden">
+																						<div className="iframe-container">
+												<iframe
+													src={`https://www.youtube.com/embed/${speaker.videoId ?? ''}?autoplay=${hoveredSpeaker === speaker.id ? '1' : '0'}&mute=1&controls=1`}
+													title={`${speaker.name} Talk`}
+													allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+													allowFullScreen
+												/>
+											</div>
+																				</div>
 									</div>
 
 									{/* Bottom Section: Speaker Info */}

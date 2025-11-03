@@ -14,7 +14,7 @@ export default function CompanyCard({ company }: CompanyCardProps) {
       className="group block"
     >
       <div className="h-full flex flex-col bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-        <div className="flex-grow flex items-center justify-center p-4 bg-gray-50">
+        <div className="flex-grow flex items-center justify-center p-4 bg-white">
           <ImageWithFallback
             src={company.img}
             alt={`${company.name} logo`}
@@ -23,7 +23,7 @@ export default function CompanyCard({ company }: CompanyCardProps) {
             className="object-contain h-36 w-full transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <div className="p-4 text-center border-t bg-white">
+        <div className="p-4 text-center border-t bg-gray-50">
           <h3 className="text-md font-semibold text-gray-800 group-hover:text-sinfo-primary truncate">
             {company.name}
           </h3>
