@@ -4,7 +4,10 @@ import React from "react";
 import ImageWithFallback from "../ImageWithFallback";
 import Link from "next/link";
 import { useEvent } from "@/context/EventContext";
-import { getDayWithOrdinal, getEventMonth } from "@/utils/utils";
+import {
+  getDayWithOrdinal,
+  getEventEndDateString,
+} from "@/utils/utils";
 
 interface AboutUsProps {
   backgroundClass: string;
@@ -13,12 +16,8 @@ interface AboutUsProps {
 export default function AboutUs({ backgroundClass }: AboutUsProps) {
   const { event } = useEvent();
 
-  const startDate = event ? getDayWithOrdinal(String(event.begin)) : "";
-  const endDate = event
-    ? `${getDayWithOrdinal(String(event.end))} of ${getEventMonth(
-        String(event.end),
-      )} ${new Date(event.end).getFullYear()}`
-    : "";
+  const startDate = event ? getDayWithOrdinal(String(event.date)) : "";
+  const endDate = event ? getEventEndDateString(event.date) : "";
 
   return (
     <section

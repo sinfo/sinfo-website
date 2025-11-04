@@ -1,5 +1,5 @@
 export const EventService = (() => {
-  const eventEndpoint = process.env.NEXT_PUBLIC_DECK_URL + "/events";
+  const eventEndpoint = process.env.NEXT_PUBLIC_CANNON_URL + "/event";
 
   const getLatest = async (): Promise<SINFOEvent | null> => {
     try {

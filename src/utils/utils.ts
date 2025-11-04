@@ -67,6 +67,23 @@ export function getDayWithOrdinal(date: string): string {
   }
 }
 
+export function addDays(date: string | Date, days: number): Date {
+  const d = new Date(date);
+  const res = new Date(d);
+  res.setDate(d.getDate() + days);
+  return res;
+}
+
+export function getEventEndDateString(
+  begin: string | Date,
+  days: number = 4,
+): string {
+  const end = addDays(begin, days);
+  return `${getDayWithOrdinal(String(end))} of ${getEventMonth(
+    String(end),
+  )} ${end.getFullYear()}`;
+}
+
 export function getSessionColor(sessionKind: string) {
   switch (sessionKind) {
     case "Presentation":

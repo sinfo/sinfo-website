@@ -108,13 +108,7 @@ type Socials = {
 type SINFOEvent = {
   id: number;
   name: string;
-  begin: Date;
-  end: Date;
-  themes: unknown[];
+  date: Date;
+  duration: Date;
   calendarUrl: string;
-  packages: unknown[];
-  items: unknown[];
-  meetings: unknown[];
-  sessions: unknown[];
-  teams: string[]; // Array of team IDs
 };

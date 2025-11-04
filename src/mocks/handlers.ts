@@ -16,7 +16,7 @@ const DECK_URL = process.env.DECK_URL;
 
 export const handlers = [
   // get latest sinfo event
-  http.get(`${DECK_URL}/events/latest`, () => {
+  http.get(`${CANNON_URL}/event/latest`, () => {
     return HttpResponse.json(MOCK_EVENT);
   }),
   // get a specific company
