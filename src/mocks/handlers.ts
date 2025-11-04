@@ -40,7 +40,7 @@ export const handlers = [
     });
   }),
   // get all members for the edition
-  http.get(`${DECK_URL}/members`, () => {
+  http.get(`${CANNON_URL}/member`, () => {
     return HttpResponse.json(MOCK_MEMBERS);
   }),
   // get a specific session
