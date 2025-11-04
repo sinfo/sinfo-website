@@ -26,7 +26,7 @@ export default function NotFound() {
 
         {/* Static Hacky placed just above the CTA so it looks like he&apos;s holding the button */}
         <div className="relative mx-auto mt-2 -mb-12 flex items-end justify-center">
-          <Link href="/" className="select-none transition-transform hover:scale-105">
+          <Link href="/" className="select-none">
             <ImageWithFallback
               src={hackyPeeking}
               alt="Hacky peeking"
