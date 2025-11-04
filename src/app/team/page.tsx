@@ -3,6 +3,8 @@ import { EventService } from "@/services/EventService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
 
+export const dynamic = "force-dynamic";
+
 export default async function TeamPage() {
   const event = await EventService.getLatest();
   const members = event ? await MemberService.getFilteredMembers(event.id) : [];

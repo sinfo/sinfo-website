@@ -3,9 +3,7 @@ export const CompanyService = (() => {
 
   const getCompany = async (id: string): Promise<Company | null> => {
     const resp = await fetch(`${companiesEndpoint}/${id}`, {
-      next: {
-        revalidate: 0, // 1 day
-      },
+      cache: 'no-store',
     });
     if (resp.ok) return (await resp.json()) as Company;
     return null;
@@ -13,9 +11,7 @@ export const CompanyService = (() => {
 
   const getCompanies = async (eventId: string): Promise<Company[] | null> => {
     const resp = await fetch(`${companiesEndpoint}?event=${eventId}`, {
-      next: {
-        revalidate: 0, // 1 day
-      },
+      cache: 'no-store',
     });
     if (resp.ok) return (await resp.json()) as Company[];
     return null;

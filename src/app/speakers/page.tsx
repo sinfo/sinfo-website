@@ -3,6 +3,8 @@ import BlankPageMessage from "@/components/BlankPageMessage";
 import { SpeakerService } from "@/services/SpeakerService";
 import MovingGrid from '@/components/MovingGrid';
 
+export const dynamic = "force-dynamic";
+
 export default async function SpeakersPage() {
   const speakers = await SpeakerService.getSpeakers({ event: 32 });
   /**

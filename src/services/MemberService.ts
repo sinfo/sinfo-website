@@ -3,9 +3,7 @@ export const MemberService = (() => {
     const memberEndpoint = `${process.env.NEXT_PUBLIC_DECK_URL}/members?event=${eventId}`;
     try {
       const resp = await fetch(`${memberEndpoint}`, {
-        next: {
-          revalidate: 0, // 1 day
-        },
+        cache: 'no-store',
       });
       if (resp.ok) return (await resp.json()) as SINFOMember[];
     } catch (e) {
@@ -17,7 +15,6 @@ export const MemberService = (() => {
   const getFilteredMembers = async (
     eventId: number,
   ): Promise<SINFOMember[] | null> => {
-    const memberEndpoint = `${process.env.NEXT_PUBLIC_DECK_URL}/members?event=${eventId}`;
     const filterTeam = "BOTS";
 
     try {

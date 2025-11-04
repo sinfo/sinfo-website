@@ -3,9 +3,7 @@ export const SpeakerService = (() => {
 
   const getSpeaker = async (id: string): Promise<Speaker | null> => {
     const resp = await fetch(`${speakersEndpoint}/${id}`, {
-      next: {
-        revalidate: 0, // 1 day
-      },
+      cache: 'no-store',
     });
     if (resp.ok) return (await resp.json()) as Speaker;
     return null;
@@ -13,9 +11,7 @@ export const SpeakerService = (() => {
 
   const getSpeakers = async ({ event }: { event: number }): Promise<Speaker[] | null> => {
     const resp = await fetch(`${speakersEndpoint}?event=${event}`, {
-      next: {
-        revalidate: 0, // 1 day
-      },
+      cache: 'no-store',
     });
     if (resp.ok) {
       const { speakers }: { speakers: Speaker[] } = await resp.json();

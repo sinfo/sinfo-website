@@ -8,6 +8,8 @@ import {
 } from "@/utils/utils";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: {
     id: string;

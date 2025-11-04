@@ -3,9 +3,9 @@ import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import CompaniesTabs from "@/components/CompaniesTabs";
 
+export const dynamic = "force-dynamic";
+
 export default async function CompaniesPage() {
-  // Server-side: fetch the event here. React hooks (useEvent) cannot be used
-  // inside async Server Components.
   const event = await EventService.getLatest();
   const edition = event ? event.id - 1 : 33;
 
