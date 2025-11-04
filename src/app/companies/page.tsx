@@ -13,17 +13,14 @@ export default async function CompaniesPage() {
     ? await CompanyService.getCompanies(edition.toString())
     : [];
 
+  console.log("Companies:", companies);
+
   if (!event || !companies) {
     return <BlankPageMessage message="Could not fetch companies data." />;
   }
 
   const filterCompanies = (partner: boolean) => {
-    return companies.filter(
-      (company) =>
-        company.participation.filter(
-          (c) => c.event === edition && c.partner === partner,
-        ).length > 0,
-    );
+    return companies.filter((company) => company.partner === partner);
   };
 
   const partners = filterCompanies(true);

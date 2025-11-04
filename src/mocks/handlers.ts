@@ -11,7 +11,6 @@ import {
 import MOCK_MEMBERS from "./data/member";
 
 const CANNON_URL = process.env.CANNON_URL;
-const DECK_URL = process.env.DECK_URL;
 
 export const handlers = [
   // get latest sinfo event
@@ -19,11 +18,11 @@ export const handlers = [
     return HttpResponse.json(MOCK_EVENT);
   }),
   // get a specific company
-  http.get(`${DECK_URL}/companies/*`, () => {
+  http.get(`${CANNON_URL}/company/*`, () => {
     return HttpResponse.json(MOCK_COMPANY);
   }),
   // get all companies for the edition
-  http.get(`${DECK_URL}/companies`, () => {
+  http.get(`${CANNON_URL}/company`, () => {
     return HttpResponse.json(MOCK_COMPANIES);
   }),
   // get a specific speaker

@@ -1,10 +1,12 @@
 type Company = {
   id: string;
   name: string;
-  description: string;
+  site: string;
+  advertisementLvl: string;
+  partner: boolean;
   img: string;
-  site?: string;
-  participation: CompanyParticipation[];
+  standDetails?: StandDetails;
+  stands?: Stand[];
 };
 
 type CompanyParticipation = {
