@@ -21,15 +21,9 @@ export const MemberService = (() => {
     const filterTeam = "BOTS";
 
     try {
-      const resp = await fetch(`${memberEndpoint}`, {
-        next: {
-          revalidate: 0, // 1 day
-        },
-      });
-      if (resp.ok) {
-        const allMembers = (await resp.json()) as SINFOMember[];
-        return allMembers.filter((member) => member.team !== filterTeam);
-      }
+      const allMembers = await getMembers(eventId);
+      if (!allMembers) return null;
+      return allMembers.filter((member) => member.team !== filterTeam);
     } catch (e) {
       console.error(e);
     }
