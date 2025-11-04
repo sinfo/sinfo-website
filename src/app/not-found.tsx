@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { hackyPeeking } from "@/assets/images";
 import CallToAction from "@/components/CallToAction";
@@ -25,7 +26,7 @@ export default function NotFound() {
 
         {/* Static Hacky placed just above the CTA so it looks like he&apos;s holding the button */}
         <div className="relative mx-auto mt-2 -mb-12 flex items-end justify-center">
-          <div className="pointer-events-none select-none">
+          <Link href="/" className="select-none transition-transform hover:scale-105">
             <ImageWithFallback
               src={hackyPeeking}
               alt="Hacky peeking"
@@ -34,7 +35,7 @@ export default function NotFound() {
               className="origin-bottom w-48 sm:w-56"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </div>
+          </Link>
         </div>
 
         <div className="mt-1 flex items-center justify-center gap-3">
