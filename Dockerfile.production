@@ -13,7 +13,6 @@ RUN yarn --frozen-lockfile
 FROM base AS builder
 
 ENV NEXT_PUBLIC_CANNON_URL="https://cannon.sinfo.org"
-ENV NEXT_PUBLIC_DECK_URL="https://deck.sinfo.org"
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules

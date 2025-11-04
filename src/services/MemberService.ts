@@ -1,6 +1,6 @@
 export const MemberService = (() => {
   const getMembers = async (eventId: number): Promise<SINFOMember[] | null> => {
-    const memberEndpoint = `${process.env.NEXT_PUBLIC_DECK_URL}/members?event=${eventId}`;
+    const memberEndpoint = `${process.env.NEXT_PUBLIC_CANNON_URL}/member`;
     try {
       const resp = await fetch(`${memberEndpoint}`, {
         cache: 'no-store',
@@ -15,7 +15,7 @@ export const MemberService = (() => {
   const getFilteredMembers = async (
     eventId: number,
   ): Promise<SINFOMember[] | null> => {
-    const filterNames = ["zzzzPartnernerships", "ToolBot!"];
+    const filterNames = ["zzPartnernerships", "ToolBot!"];
 
     try {
       const allMembers = await getMembers(eventId);

@@ -7,7 +7,6 @@ import {
   MOCK_SPEAKERS,
   MOCK_SESSION,
   MOCK_SPEAKER,
-  MOCK_SESSION_STATUS,
 } from "./data";
 import MOCK_MEMBERS from "./data/member";
 
