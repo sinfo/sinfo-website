@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import "@/styles/MovingGrid.css";
 
@@ -14,9 +14,12 @@ interface Props {
 export default function MovingGrid({ rows }: Props) {
   const router = useRouter();
 
-  const navigateToSpeaker = useCallback((id: string | number) => {
-    router.push(`/speakers/${id}`);
-  }, [router]);
+  const navigateToSpeaker = useCallback(
+    (id: string | number) => {
+      router.push(`/speakers/${id}`);
+    },
+    [router],
+  );
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -49,7 +52,8 @@ export default function MovingGrid({ rows }: Props) {
                   tabIndex={0}
                   onClick={() => navigateToSpeaker(speaker.id)}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') navigateToSpeaker(speaker.id);
+                    if (e.key === "Enter" || e.key === " ")
+                      navigateToSpeaker(speaker.id);
                   }}
                   onMouseEnter={() => setHoveredCard(speaker.uniqueId)}
                   onMouseLeave={() => setHoveredCard(null)}
@@ -61,13 +65,22 @@ export default function MovingGrid({ rows }: Props) {
                 >
                   {/* Speaker Image */}
                   <div className="relative h-[260px]">
-                    <ImageWithFallback src={speaker.img} alt={speaker.name} fill className="object-cover" />
+                    <ImageWithFallback
+                      src={speaker.img}
+                      alt={speaker.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* Speaker Info */}
                   <div className="p-3 bg-white">
-                    <h3 className="text-base font-bold text-gray-900 mb-1">{speaker.name}</h3>
-                    <p className="text-xs text-gray-600 font-medium">{speaker.title}</p>
+                    <h3 className="text-base font-bold text-gray-900 mb-1">
+                      {speaker.name}
+                    </h3>
+                    <p className="text-xs text-gray-600 font-medium">
+                      {speaker.title}
+                    </p>
                   </div>
                 </div>
               </div>

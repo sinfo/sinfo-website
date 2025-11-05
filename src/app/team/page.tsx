@@ -15,9 +15,11 @@ export default async function TeamPage() {
     );
   }
 
-  const sortedMembers = members.slice().sort((a, b) =>
-    a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-  );
+  const sortedMembers = members
+    .slice()
+    .sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
+    );
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -42,7 +44,7 @@ export default async function TeamPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Stats */}
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
-                <div className="inline-block bg-white rounded-full px-6 sm:px-8 py-3 sm:py-4 shadow-lg">
+            <div className="inline-block bg-white rounded-full px-6 sm:px-8 py-3 sm:py-4 shadow-lg">
               <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-sinfo-primary">
                 {sortedMembers.length}
               </p>

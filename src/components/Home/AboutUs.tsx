@@ -4,10 +4,7 @@ import React from "react";
 import ImageWithFallback from "../ImageWithFallback";
 import Link from "next/link";
 import { useEvent } from "@/context/EventContext";
-import {
-  getDayWithOrdinal,
-  getEventEndDateString,
-} from "@/utils/utils";
+import { getDayWithOrdinal, getEventEndDateString } from "@/utils/utils";
 
 interface AboutUsProps {
   backgroundClass: string;

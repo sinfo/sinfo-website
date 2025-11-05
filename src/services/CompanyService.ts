@@ -3,16 +3,15 @@ export const CompanyService = (() => {
 
   const getCompany = async (id: string): Promise<Company | null> => {
     const resp = await fetch(`${companiesEndpoint}/${id}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (resp.ok) return (await resp.json()) as Company;
     return null;
   };
 
   const getCompanies = async (eventId: string): Promise<Company[] | null> => {
-    console.log("Fetching companies for event ID:", `${companiesEndpoint}?edition=${eventId}`);
     const resp = await fetch(`${companiesEndpoint}?edition=${eventId}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (resp.ok) return (await resp.json()) as Company[];
     return null;

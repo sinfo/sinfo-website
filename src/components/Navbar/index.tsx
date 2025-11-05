@@ -40,12 +40,13 @@ export default function Toolbar() {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHomePage && !scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isHomePage && !scrolled
             ? "bg-transparent"
             : scrolled
               ? "bg-sinfo-primary shadow-lg"
               : "bg-sinfo-primary backdrop-blur-sm"
-          }`}
+        }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
@@ -69,7 +70,7 @@ export default function Toolbar() {
                 <br></br>
                 {formatEventDateRange(
                   event?.date,
-                  event?.date ? addDays(event.date, 4) : undefined
+                  event?.date ? addDays(event.date, 4) : undefined,
                 )}
               </div>
             </div>
@@ -80,10 +81,11 @@ export default function Toolbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm xl:text-base font-semibold tracking-wide transition-colors duration-200 ${currPath === link.href
+                  className={`text-sm xl:text-base font-semibold tracking-wide transition-colors duration-200 ${
+                    currPath === link.href
                       ? "text-white"
                       : "text-white/80 hover:text-white"
-                    }`}
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -98,10 +100,11 @@ export default function Toolbar() {
                 target="_blank"
               >
                 <button
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 ${scrolled
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 ${
+                    scrolled
                       ? "bg-sinfo-light text-sinfo-primary hover:bg-white"
                       : "bg-white text-sinfo-primary hover:bg-sinfo-light"
-                    }`}
+                  }`}
                 >
                   Go to App
                 </button>
@@ -127,10 +130,11 @@ export default function Toolbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsExpanded(false)}
-                    className={`block px-4 py-2.5 sm:py-3 text-sm font-semibold rounded-lg transition-colors ${currPath === link.href
+                    className={`block px-4 py-2.5 sm:py-3 text-sm font-semibold rounded-lg transition-colors ${
+                      currPath === link.href
                         ? "bg-white/10 text-white"
                         : "text-white/80 hover:bg-white/5 hover:text-white"
-                      }`}
+                    }`}
                   >
                     {link.label}
                   </Link>

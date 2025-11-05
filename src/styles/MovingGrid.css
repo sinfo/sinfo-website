@@ -1,44 +1,48 @@
 @keyframes scroll-left {
-    0% {
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    100% {
-        transform: translateX(-50%);
-    }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scroll-right {
-    0% {
-        transform: translateX(-50%);
-    }
+  0% {
+    transform: translateX(-50%);
+  }
 
-    100% {
-        transform: translateX(0);
-    }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .animate-scroll-left {
-    animation: scroll-left 60s linear infinite;
+  animation: scroll-left 60s linear infinite;
 }
 
 .animate-scroll-right {
-    animation: scroll-right 60s linear infinite;
+  animation: scroll-right 60s linear infinite;
 }
 
 .paused {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 /* Fade overlays used on the speakers grid to mask card cut-offs at the container edges */
 .grid-fade-left {
-    background: linear-gradient(to right, #f3f4f6 0%, rgba(243,244,246,0) 100%);
-    pointer-events: none;
-    z-index: 30;
+  background: linear-gradient(
+    to right,
+    #f3f4f6 0%,
+    rgba(243, 244, 246, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 30;
 }
 
 .grid-fade-right {
-    background: linear-gradient(to left, #f3f4f6 0%, rgba(243,244,246,0) 100%);
-    pointer-events: none;
-    z-index: 30;
+  background: linear-gradient(to left, #f3f4f6 0%, rgba(243, 244, 246, 0) 100%);
+  pointer-events: none;
+  z-index: 30;
 }
