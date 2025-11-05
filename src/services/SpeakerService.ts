@@ -3,15 +3,19 @@ export const SpeakerService = (() => {
 
   const getSpeaker = async (id: string): Promise<Speaker | null> => {
     const resp = await fetch(`${speakersEndpoint}/${id}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (resp.ok) return (await resp.json()) as Speaker;
     return null;
   };
 
-  const getSpeakers = async ({ event }: { event: number }): Promise<Speaker[] | null> => {
+  const getSpeakers = async ({
+    event,
+  }: {
+    event: number;
+  }): Promise<Speaker[] | null> => {
     const resp = await fetch(`${speakersEndpoint}?event=${event}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (resp.ok) {
       const { speakers }: { speakers: Speaker[] } = await resp.json();
@@ -24,17 +28,17 @@ export const SpeakerService = (() => {
   const getPreviousEditionSpeakersHighlight = async (): Promise<Speaker[]> => {
     const ids = [
       // "6480a212a4e6c9a68843d549", // Aleksa Gordić
-        "64a73a3f5e2cfce18d990c8d", // Shivani Poddar
-        "64beae835e2cfce18d9912cc", // Nemanja Rakicevic
+      "64a73a3f5e2cfce18d990c8d", // Shivani Poddar
+      "64beae835e2cfce18d9912cc", // Nemanja Rakicevic
       "66dc4093aa43584e5fa98d1e", // Naman Govil
       // "6537e3631410063dac6daa96", // Rohit Patel
-        "65a06f4d7562d858c0c9b2b3", // João Gante
-        "64a898125e2cfce18d990d19", // Abby LeMaster
-        "64a5b6e25e2cfce18d990b38", // Isaque Sanches
-        "668583d18d9f35b1d1ca109e", // Ere Santos
-        "656752c352c359b9a5ed7c86", // Cody Lyon
-        "6480a212a4e6c9a68843c9b1", // Roger Dingledine
-        "64c769065e2cfce18d9917ed", // Joseph Katsioloudes
+      "65a06f4d7562d858c0c9b2b3", // João Gante
+      "64a898125e2cfce18d990d19", // Abby LeMaster
+      "64a5b6e25e2cfce18d990b38", // Isaque Sanches
+      "668583d18d9f35b1d1ca109e", // Ere Santos
+      "656752c352c359b9a5ed7c86", // Cody Lyon
+      "6480a212a4e6c9a68843c9b1", // Roger Dingledine
+      "64c769065e2cfce18d9917ed", // Joseph Katsioloudes
     ];
     // Presentation metadata: explicit mapping of speaker id -> YouTube video id
     // This avoids confusion from index-based lists and makes assignment explicit.
@@ -64,7 +68,7 @@ export const SpeakerService = (() => {
         } catch {
           return null;
         }
-      })
+      }),
     );
 
     return speakers.filter((s): s is Speaker => s != null);

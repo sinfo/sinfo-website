@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SponsorHeading from "@/components/Companies/SponsorHeading";
 import GridList from "@/components/GridList";
 import CompanyCard from "@/components/CompanyCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
@@ -17,6 +18,13 @@ export default function CompaniesTabs({
   partners,
 }: CompaniesTabsProps) {
   const [activeTab, setActiveTab] = useState<Tab>("sponsors");
+
+  // Split sponsors by advertisement level
+  const maxSponsors = sponsors.filter((c) => c.advertisementLvl === "max");
+  const medSponsors = sponsors.filter((c) => c.advertisementLvl === "med");
+  const minSponsors = sponsors.filter(
+    (c) => c.advertisementLvl === "min" || c.advertisementLvl === "other",
+  );
 
   return (
     <>
@@ -59,13 +67,57 @@ export default function CompaniesTabs({
       <div className="w-full">
         {/* Sponsors Tab Content */}
         {activeTab === "sponsors" && (
-          <div className="animate-fadeIn">
+          <div className="animate-fadeIn space-y-8">
             {sponsors.length > 0 ? (
-              <GridList>
-                {sponsors.map((company) => (
-                  <CompanyCard key={company.id} company={company} />
-                ))}
-              </GridList>
+              <>
+                {/* Max tier */}
+                {maxSponsors.length > 0 && (
+                  <section>
+                    <SponsorHeading>Platinum Sponsors</SponsorHeading>
+                    <GridList className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                      {maxSponsors.map((company) => (
+                        <CompanyCard
+                          key={company.id}
+                          company={company}
+                          size="max"
+                        />
+                      ))}
+                    </GridList>
+                  </section>
+                )}
+
+                {/* Medium tier */}
+                {medSponsors.length > 0 && (
+                  <section>
+                    <SponsorHeading>Gold Sponsors</SponsorHeading>
+                    <GridList className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                      {medSponsors.map((company) => (
+                        <CompanyCard
+                          key={company.id}
+                          company={company}
+                          size="med"
+                        />
+                      ))}
+                    </GridList>
+                  </section>
+                )}
+
+                {/* Min / other tier */}
+                {minSponsors.length > 0 && (
+                  <section>
+                    <SponsorHeading>Silver Sponsors</SponsorHeading>
+                    <GridList className="grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                      {minSponsors.map((company) => (
+                        <CompanyCard
+                          key={company.id}
+                          company={company}
+                          size="min"
+                        />
+                      ))}
+                    </GridList>
+                  </section>
+                )}
+              </>
             ) : (
               <BlankPageMessage message="No sponsors to display at the moment." />
             )}

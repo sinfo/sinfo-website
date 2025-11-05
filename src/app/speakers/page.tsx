@@ -1,7 +1,7 @@
 import React from "react";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import { SpeakerService } from "@/services/SpeakerService";
-import MovingGrid from '@/components/MovingGrid';
+import MovingGrid from "@/components/MovingGrid";
 
 export const dynamic = "force-dynamic";
 
@@ -30,14 +30,13 @@ export default async function SpeakersPage() {
     const endIndex = Math.min(startIndex + speakersPerRow, speakers.length);
     const rowSpeakers = speakers.slice(startIndex, endIndex);
 
-
     const copies = 10; // enough
     return Array.from({ length: copies }).flatMap((_, copyIdx) =>
       rowSpeakers.map((speaker, index) => ({
         ...speaker,
         uniqueId: `${rowIndex}-${copyIdx}-${index}`,
         imageIndex: (startIndex + index) % 5,
-      }))
+      })),
     );
   });
 
@@ -51,7 +50,9 @@ export default async function SpeakersPage() {
               Meet our Past Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Every year, SINFO brings together some of the most influential minds in technology and innovation. Meet some of the global voices that helped shape SINFO&apos;s excellence. 
+              Every year, SINFO brings together some of the most influential
+              minds in technology and innovation. Meet some of the global voices
+              that helped shape SINFO&apos;s excellence.
             </p>
           </div>
         </div>

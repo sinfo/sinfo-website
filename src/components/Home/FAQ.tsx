@@ -21,8 +21,8 @@ export default function FAQ({ backgroundClass }: FAQProps) {
   const { event } = useEvent();
 
   const faqItems = useMemo<FAQItem[]>(() => {
-  const startDate = event ? getDayWithOrdinal(String(event.date)) : "";
-  const endDate = event ? getEventEndDateString(event.date) : "";
+    const startDate = event ? getDayWithOrdinal(String(event.date)) : "";
+    const endDate = event ? getEventEndDateString(event.date) : "";
     return [
       {
         question: "Is SINFO really free?",

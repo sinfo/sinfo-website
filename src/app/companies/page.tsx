@@ -13,8 +13,6 @@ export default async function CompaniesPage() {
     ? await CompanyService.getCompanies(edition.toString())
     : [];
 
-  console.log("Companies:", companies);
-
   if (!event || !companies) {
     return <BlankPageMessage message="Could not fetch companies data." />;
   }
