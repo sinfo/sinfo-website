@@ -4,9 +4,7 @@ export const PrizeService = (() => {
   const getPrizes = async (): Promise<Prize[] | null> => {
     try {
       const resp = await fetch(`${prizesEndpoint}`, {
-        next: {
-          revalidate: 0, // 1 day
-        },
+        cache: "force-cache",
       });
       if (resp.ok) return (await resp.json()) as Prize[];
     } catch (e) {

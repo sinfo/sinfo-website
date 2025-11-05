@@ -3,7 +3,7 @@ export const MemberService = (() => {
     const memberEndpoint = `${process.env.NEXT_PUBLIC_CANNON_URL}/member`;
     try {
       const resp = await fetch(`${memberEndpoint}`, {
-        cache: "no-store",
+        cache: "force-cache",
       });
       if (resp.ok) return (await resp.json()) as SINFOMember[];
     } catch (e) {
