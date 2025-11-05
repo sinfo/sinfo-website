@@ -2,7 +2,7 @@ type Company = {
   id: string;
   name: string;
   site: string;
-  advertisementLvl: "other" | "min" | "med" | "max";
+  advertisementLvl: "other" | "min" | "med" | "max" | "none";
   partner: boolean;
   img: string;
   standDetails?: StandDetails;
