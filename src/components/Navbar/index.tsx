@@ -41,9 +41,9 @@ export default function Toolbar() {
     <>
       <div
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isHomePage && !scrolled
+          isHomePage && !scrolled && !isExpanded
             ? "bg-transparent"
-            : scrolled
+            : scrolled || isExpanded
               ? "bg-sinfo-primary shadow-lg"
               : "bg-sinfo-primary backdrop-blur-sm"
         }`}
