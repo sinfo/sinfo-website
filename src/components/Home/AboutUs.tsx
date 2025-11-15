@@ -30,23 +30,23 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
           {/* Text Content */}
           <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 md:order-1">
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              SINFO is a student-led nonprofit that organizes one of
-              Portugal&apos;s largest free tech conferences. Our mission is to
+              SINFO is a <b>student-led nonprofit</b> that organizes one of 
+              Portugal&apos;s <b>largest free tech conferences</b>. Our mission is to
               connect students, professionals, and industry leaders around
               computer science and technology.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Each year, we host a week-long event at the Técnico Innovation
-              Center in Lisbon. Attendees can enjoy international keynotes,
+              Each year, we host a <b>week-long event</b> at the <b>Técnico Innovation
+              Center</b> in Lisbon. Attendees can enjoy international keynotes,
               hands-on workshops, company presentations, a job fair, and panel
-              discussions on the latest tech trends—all completely free.
+              discussions on the latest tech trends—all <b>completely free</b>.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Last year, we achieved record-breaking attendance, and we are
-              excited to build on that success during {event?.name}, happening
-              from the {startDate} to the {endDate}.
+              Last year, we achieved <b>record-breaking attendance</b>, and we are
+              excited to build on that success during <b>{event?.name}</b>, happening
+              from the <b>{startDate} to the {endDate}</b>.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
