@@ -50,7 +50,7 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Join us and be part of Portugal&apos;s vibrant tech community!
+              Join us and be part of Portugal&apos;s <b>vibrant tech community</b>!
             </p>
 
             <div className="pt-2 sm:pt-3 md:pt-4">
