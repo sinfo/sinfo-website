@@ -89,10 +89,9 @@ export default async function Page({ params }: Props) {
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tight text-white">
                 {speaker.name}
               </h1>
-              {(speaker.title || speaker.company?.name) && (
+              {speaker.title && (
                 <p className="mt-4 text-sinfo-tertiary text-xl md:text-2xl font-bold">
                   {speaker.title}
-                  {speaker.company?.name ? ` @${speaker.company.name}` : ""}
                 </p>
               )}
             </div>
