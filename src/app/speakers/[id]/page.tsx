@@ -89,16 +89,17 @@ export default async function Page({ params }: Props) {
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tight text-white">
                 {speaker.name}
               </h1>
-              {speaker.title && (
+              {(speaker.title || speaker.company?.name) && (
                 <p className="mt-4 text-sinfo-tertiary text-xl md:text-2xl font-bold">
                   {speaker.title}
+                  {speaker.company?.name ? ` @${speaker.company.name}` : ""}
                 </p>
               )}
             </div>
 
             {/* Description box with light background */}
-            <div className="bg-sinfo-light rounded-lg p-8 md:p-10 text-black min-h-[300px] md:min-h-[350px] flex items-center md:mr-[-27px]">
-              <p className="text-base md:text-lg font-bold leading-relaxed whitespace-pre-line">
+            <div className="bg-sinfo-light rounded-lg p-8 md:p-10 text-black min-h-[300px] flex items-center">
+              <p className="text-sm md:text-base font-bold leading-relaxed whitespace-pre-line">
                 {speaker.description || "Texto texto bla bla"}
               </p>
             </div>
@@ -118,11 +119,8 @@ export default async function Page({ params }: Props) {
 
           {/* Right column - Photo and session title */}
           <div className="space-y-8 relative">
-            {/* White background rectangle - right side only */}
-            <div className="absolute top-[272px] right-0 w-[111%] h-[400px] md:h-[270px] bg-sinfo-light rounded-lg z-0" />
-            
             {/* Speaker photo with yellow background */}
-            <div className="relative flex justify-center md:justify-center h-80 md:h-[340px] z-10">
+            <div className="relative flex justify-center md:justify-center h-80 md:h-[340px]">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-[60%] w-[340px] h-[340px] md:w-[380px] md:h-[380px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
                 <ImageWithFallback
                   src={speaker.img}
@@ -136,13 +134,13 @@ export default async function Page({ params }: Props) {
             </div>
 
             {/* Decorative plus */}
-            <div className="hidden md:block absolute right-8 top-[60%] w-20 h-20">
-              <span className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-black -translate-x-1/2" />
-              <span className="absolute top-1/2 left-0 right-0 h-[4px] bg-black -translate-y-1/2" />
+            <div className="hidden md:block absolute right-8 top-1/2 w-20 h-20">
+              <span className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-white -translate-x-1/2" />
+              <span className="absolute top-1/2 left-0 right-0 h-[4px] bg-white -translate-y-1/2" />
             </div>
 
             {/* Small decorative box */}
-            <div className="max-w-[180px] -mt-9 relative z-10">
+            <div className="max-w-[180px] -mt-9">
               <ImageWithFallback
                 src="/images/decorative-images/redElement.png"
                 alt="Decorative element"
