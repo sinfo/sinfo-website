@@ -14,7 +14,7 @@ export default function SchedulesComingSoon() {
       </div>
 
       <section className="mx-auto flex min-h-[60vh] max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center">
-        <h1 className="relative text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">
+        <h1 className="relative text-7xl font-extrabold leading-none tracking-tight sm:text-8xl">
           <span className="text-sinfo-primary">Coming soon</span>
         </h1>
 
