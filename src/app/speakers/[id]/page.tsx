@@ -68,6 +68,11 @@ export default async function Page({ params }: Props) {
       <div className="absolute left-0 bottom-0 w-28 h-28 md:w-40 md:h-40 bg-sinfo-tertiary rounded-tr-full z-10" />
       <div className="absolute right-0 bottom-0 w-28 h-28 md:w-40 md:h-40 bg-sinfo-secondary rounded-tl-full z-10" />
 
+      {/* Glowing line separator - positioned where circles end */}
+      <div className="absolute bottom-0 md:bottom-0 left-0 right-0 z-[5]">
+        <div className="w-full h-[3px] bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+      </div>
+
       <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16">
         {/* Top decorative elements */}
         <div className="absolute top-4 right-8 md:top-6 md:right-16 z-20">
