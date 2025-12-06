@@ -14,7 +14,7 @@ export default function SchedulesComingSoon() {
       </div>
 
       <section className="mx-auto flex min-h-[60vh] max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center">
-        <h1 className="relative text-7xl font-extrabold leading-none tracking-tight sm:text-8xl">
+        <h1 className="relative text-6xl font-extrabold leading-none tracking-tight sm:text-7xl">
           <span className="text-sinfo-primary">Coming soon</span>
         </h1>
 
@@ -29,7 +29,7 @@ export default function SchedulesComingSoon() {
               src={workHacky}
               alt="Work Hacky"
               priority
-              className="origin-bottom w-48 sm:w-56"
+              className="origin-bottom w-44 sm:w-52"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Link>
