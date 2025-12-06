@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ImageWithFallback from "@/components/ImageWithFallback";
-import { hackyPeeking } from "@/assets/images";
+import { workHacky } from "@/assets/images";
 import CallToAction from "@/components/CallToAction";
 
 export default function SchedulesComingSoon() {
@@ -23,11 +23,11 @@ export default function SchedulesComingSoon() {
         </p>
 
         {/* Static Hacky placed just above the CTA so it looks like he's holding the button */}
-        <div className="relative mx-auto mt-2 -mb-12 flex items-end justify-center">
+        <div className="relative mx-auto mt-2 -mb-11 flex items-end justify-center">
           <Link href="/" className="select-none">
             <ImageWithFallback
-              src={hackyPeeking}
-              alt="Hacky peeking"
+              src={workHacky}
+              alt="Work Hacky"
               priority
               className="origin-bottom w-48 sm:w-56"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
