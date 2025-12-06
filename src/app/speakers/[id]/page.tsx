@@ -97,14 +97,13 @@ export default async function Page({ params }: Props) {
               {(speaker.title || speaker.company?.name) && (
                 <p className="mt-4 text-sinfo-tertiary text-xl md:text-2xl font-bold">
                   {speaker.title}
-                  {speaker.company?.name ? ` @${speaker.company.name}` : ""}
                 </p>
               )}
             </div>
 
             {/* Description box with light background */}
-            <div className="bg-sinfo-light rounded-lg p-8 md:p-10 text-black min-h-[300px] flex items-center">
-              <p className="text-sm md:text-base font-bold leading-relaxed whitespace-pre-line">
+            <div className="bg-sinfo-light rounded-lg p-8 md:p-10 text-black flex items-center">
+              <p className="text-base md:text-lg font-bold leading-relaxed whitespace-pre-line">
                 {speaker.description || "Texto texto bla bla"}
               </p>
             </div>
@@ -157,7 +156,7 @@ export default async function Page({ params }: Props) {
 
             {/* Session title box */}
             {(mainSession?.name || mainSession?.title) && (
-              <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl">
+              <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit">
                 <p className="text-sinfo-quinary font-black uppercase text-2xl md:text-3xl leading-tight">
                   {(mainSession.name || mainSession.title) as string}
                 </p>
