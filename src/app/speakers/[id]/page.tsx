@@ -52,7 +52,8 @@ export default async function Page({ params }: Props) {
     );
   }
 
-  const mainSession: any | undefined = speaker.sessions?.[0];
+  const mainSession = speaker.sessions?.[0];
+  const sessionTitle = mainSession?.name;
   const formattedDate = mainSession?.date
     ? `${getEventMonth(mainSession.date, false)} ${getEventDay(mainSession.date)}`
     : undefined;
@@ -61,6 +62,43 @@ export default async function Page({ params }: Props) {
         onlyHours: true,
       })
     : undefined;
+  const sessionPlace = mainSession?.place || "Main Stage";
+
+  const SpeakerPhoto = ({ className = "" }: { className?: string }) => (
+    <div className={`relative flex justify-center ${className}`}>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 md:-translate-x-[60%] -translate-y-1/2 w-[340px] h-[340px] md:w-[380px] md:h-[380px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
+        <ImageWithFallback
+          src={speaker.img}
+          alt={speaker.name}
+          className="absolute inset-0 w-full h-full object-contain"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          width={380}
+          height={380}
+        />
+      </div>
+    </div>
+  );
+
+  const SessionInfo = ({ className = "" }: { className?: string }) => (
+    mainSession ? (
+      <div className={`text-white ${className}`}>
+        <p className="font-bold text-xl md:text-2xl">{sessionPlace}</p>
+        <p className="text-lg md:text-xl">
+          {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
+        </p>
+      </div>
+    ) : null
+  );
+
+  const SessionTitleBox = ({ className = "" }: { className?: string }) => (
+    sessionTitle ? (
+      <div className={`bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit ${className}`}>
+        <p className="text-sinfo-quinary font-black uppercase text-2xl md:text-3xl leading-tight">
+          {sessionTitle}
+        </p>
+      </div>
+    ) : null
+  );
 
   return (
     <main className="w-full min-h-screen bg-sinfo-primary relative overflow-hidden">
@@ -115,18 +153,7 @@ export default async function Page({ params }: Props) {
             {/* 2. Photo with decorative elements */}
             <div className="space-y-8 relative -mt-14">
               {/* Speaker photo with yellow background */}
-              <div className="relative flex justify-center h-80">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
-                  <ImageWithFallback
-                    src={speaker.img}
-                    alt={speaker.name}
-                    className="absolute inset-0 w-full h-full object-contain"
-                    sizes="100vw"
-                    width={380}
-                    height={380}
-                  />
-                </div>
-              </div>
+              <SpeakerPhoto className="h-80" />
 
               {/* Small decorative box */}
               <div className="max-w-[180px] -mt-9">
@@ -148,25 +175,10 @@ export default async function Page({ params }: Props) {
             </div>
 
             {/* 4. Session title box */}
-            {(mainSession?.name || mainSession?.title) && (
-              <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit">
-                <p className="text-sinfo-quinary font-black uppercase text-2xl leading-tight">
-                  {(mainSession.name || mainSession.title) as string}
-                </p>
-              </div>
-            )}
+            <SessionTitleBox />
 
             {/* 5. Session info */}
-            {mainSession && (
-              <div className="text-white">
-                <p className="font-bold text-xl">
-                  {mainSession.place || "Main Stage"}
-                </p>
-                <p className="text-lg">
-                  {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
-                </p>
-              </div>
-            )}
+            <SessionInfo />
           </div>
 
           {/* Desktop layout - original two columns */}
@@ -191,33 +203,13 @@ export default async function Page({ params }: Props) {
             </div>
 
             {/* Session info */}
-            {mainSession && (
-              <div className="text-white">
-                <p className="font-bold text-2xl">
-                  {mainSession.place || "Main Stage"}
-                </p>
-                <p className="text-xl">
-                  {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
-                </p>
-              </div>
-            )}
+            <SessionInfo />
           </div>
 
           {/* Desktop right column - Photo and session title */}
           <div className="hidden md:block space-y-8 relative">
             {/* Speaker photo with yellow background */}
-            <div className="relative flex justify-center h-[340px]">
-              <div className="absolute top-1/2 left-1/2 -translate-x-[60%] -translate-y-1/2 w-[380px] h-[380px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
-                <ImageWithFallback
-                  src={speaker.img}
-                  alt={speaker.name}
-                  className="absolute inset-0 w-full h-full object-contain"
-                  sizes="50vw"
-                  width={380}
-                  height={380}
-                />
-              </div>
-            </div>
+            <SpeakerPhoto className="h-[340px]" />
 
             {/* Decorative plus */}
             <div className="absolute right-8 top-1/2 w-20 h-20">
@@ -237,13 +229,7 @@ export default async function Page({ params }: Props) {
             </div>
 
             {/* Session title box */}
-            {(mainSession?.name || mainSession?.title) && (
-              <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit">
-                <p className="text-sinfo-quinary font-black uppercase text-3xl leading-tight">
-                  {(mainSession.name || mainSession.title) as string}
-                </p>
-              </div>
-            )}
+            <SessionTitleBox />
           </div>
         </div>
 
