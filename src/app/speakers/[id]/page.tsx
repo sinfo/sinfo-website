@@ -74,8 +74,8 @@ export default async function Page({ params }: Props) {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16">
-        {/* Top decorative elements */}
-        <div className="absolute top-4 right-8 md:top-6 md:right-16 z-20">
+        {/* Top decorative elements - only visible on desktop */}
+        <div className="hidden md:block absolute top-4 right-8 md:top-6 md:right-16 z-20">
           <ImageWithFallback
             src="/images/decorative-images/star.png"
             alt="Decorative star"
@@ -86,24 +86,106 @@ export default async function Page({ params }: Props) {
         </div>
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-          {/* Left column - Name and description */}
-          <div className="space-y-8">
-            {/* Name */}
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 md:items-start">
+          {/* Mobile layout - custom order */}
+          <div className="md:hidden space-y-8 relative">
+            {/* 1. Name and title */}
             <div>
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tight text-white">
+              <h1 className="text-6xl font-black uppercase leading-[0.85] tracking-tight text-white">
                 {speaker.name}
               </h1>
               {(speaker.title || speaker.company?.name) && (
-                <p className="mt-4 text-sinfo-tertiary text-xl md:text-2xl font-bold">
+                <p className="mt-4 text-sinfo-tertiary text-xl font-bold">
+                  {speaker.title}
+                </p>
+              )}
+            </div>
+
+            {/* Star decoration after title, before photo */}
+            <div className="flex justify-end -mb-14">
+              <ImageWithFallback
+                src="/images/decorative-images/star.png"
+                alt="Decorative star"
+                width={80}
+                height={80}
+                className="w-24 h-24"
+              />
+            </div>
+
+            {/* 2. Photo with decorative elements */}
+            <div className="space-y-8 relative -mt-14">
+              {/* Speaker photo with yellow background */}
+              <div className="relative flex justify-center h-80">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
+                  <ImageWithFallback
+                    src={speaker.img}
+                    alt={speaker.name}
+                    className="absolute inset-0 w-full h-full object-contain"
+                    sizes="100vw"
+                    width={380}
+                    height={380}
+                  />
+                </div>
+              </div>
+
+              {/* Small decorative box */}
+              <div className="max-w-[180px] -mt-9">
+                <ImageWithFallback
+                  src="/images/decorative-images/redElement.png"
+                  alt="Decorative element"
+                  width={140}
+                  height={140}
+                  className="w-28 h-28"
+                />
+              </div>
+            </div>
+
+            {/* 3. Description box */}
+            <div className="bg-sinfo-light rounded-lg p-8 text-black flex items-center relative">
+              <p className="text-base font-bold leading-relaxed whitespace-pre-line">
+                {speaker.description || "Texto texto bla bla"}
+              </p>
+            </div>
+
+            {/* 4. Session title box */}
+            {(mainSession?.name || mainSession?.title) && (
+              <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit">
+                <p className="text-sinfo-quinary font-black uppercase text-2xl leading-tight">
+                  {(mainSession.name || mainSession.title) as string}
+                </p>
+              </div>
+            )}
+
+            {/* 5. Session info */}
+            {mainSession && (
+              <div className="text-white">
+                <p className="font-bold text-xl">
+                  {mainSession.place || "Main Stage"}
+                </p>
+                <p className="text-lg">
+                  {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop layout - original two columns */}
+          <div className="hidden md:block space-y-8">
+            {/* Name */}
+            <div>
+              <h1 className="text-7xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tight text-white">
+                {speaker.name}
+              </h1>
+              {(speaker.title || speaker.company?.name) && (
+                <p className="mt-4 text-sinfo-tertiary text-2xl font-bold">
                   {speaker.title}
                 </p>
               )}
             </div>
 
             {/* Description box with light background */}
-            <div className="bg-sinfo-light rounded-lg p-8 md:p-10 text-black flex items-center">
-              <p className="text-base md:text-lg font-bold leading-relaxed whitespace-pre-line">
+            <div className="bg-sinfo-light rounded-lg p-10 text-black flex items-center">
+              <p className="text-lg font-bold leading-relaxed whitespace-pre-line">
                 {speaker.description || "Texto texto bla bla"}
               </p>
             </div>
@@ -111,26 +193,26 @@ export default async function Page({ params }: Props) {
             {/* Session info */}
             {mainSession && (
               <div className="text-white">
-                <p className="font-bold text-xl md:text-2xl">
+                <p className="font-bold text-2xl">
                   {mainSession.place || "Main Stage"}
                 </p>
-                <p className="text-lg md:text-xl">
+                <p className="text-xl">
                   {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
                 </p>
               </div>
             )}
           </div>
 
-          {/* Right column - Photo and session title */}
-          <div className="space-y-8 relative">
+          {/* Desktop right column - Photo and session title */}
+          <div className="hidden md:block space-y-8 relative">
             {/* Speaker photo with yellow background */}
-            <div className="relative flex justify-center md:justify-center h-80 md:h-[340px]">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-[60%] w-[340px] h-[340px] md:w-[380px] md:h-[380px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
+            <div className="relative flex justify-center h-[340px]">
+              <div className="absolute top-1/2 left-1/2 -translate-x-[60%] -translate-y-1/2 w-[380px] h-[380px] bg-sinfo-quinary rounded-full overflow-hidden shadow-2xl">
                 <ImageWithFallback
                   src={speaker.img}
                   alt={speaker.name}
                   className="absolute inset-0 w-full h-full object-contain"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="50vw"
                   width={380}
                   height={380}
                 />
@@ -138,7 +220,7 @@ export default async function Page({ params }: Props) {
             </div>
 
             {/* Decorative plus */}
-            <div className="hidden md:block absolute right-8 top-1/2 w-20 h-20">
+            <div className="absolute right-8 top-1/2 w-20 h-20">
               <span className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-white -translate-x-1/2" />
               <span className="absolute top-1/2 left-0 right-0 h-[4px] bg-white -translate-y-1/2" />
             </div>
@@ -150,14 +232,14 @@ export default async function Page({ params }: Props) {
                 alt="Decorative element"
                 width={140}
                 height={140}
-                className="w-28 h-28 md:w-32 md:h-32"
+                className="w-32 h-32"
               />
             </div>
 
             {/* Session title box */}
             {(mainSession?.name || mainSession?.title) && (
               <div className="bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit">
-                <p className="text-sinfo-quinary font-black uppercase text-2xl md:text-3xl leading-tight">
+                <p className="text-sinfo-quinary font-black uppercase text-3xl leading-tight">
                   {(mainSession.name || mainSession.title) as string}
                 </p>
               </div>
