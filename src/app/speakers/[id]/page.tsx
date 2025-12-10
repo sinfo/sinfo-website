@@ -11,12 +11,13 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const speaker = await SpeakerService.getSpeaker(params.id);
   return {
     title: speaker ? `${speaker.name} • SINFO` : "Speaker • SINFO",
@@ -29,7 +30,8 @@ export async function generateMetadata({ params }: Props) {
   } as any;
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const { id } = params;
   const speaker = await SpeakerService.getSpeaker(id);
 

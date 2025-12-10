@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useLayoutEffect, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
 
 interface ShowMoreProps {
@@ -24,11 +24,16 @@ export function ShowMore({ lines, children, className }: ShowMoreProps) {
   const [showMore, setShowMore] = useState<boolean>(false);
   const { width: windowWidth } = useWindowSize();
 
-  useEffect(() => {
-    setShowButton(
-      (textRef.current?.clientHeight ?? 0) <
-        (textRef.current?.scrollHeight ?? 1),
-    );
+  useLayoutEffect(() => {
+    const rafId = requestAnimationFrame(() => {
+      const isOverflowing =
+        (textRef.current?.clientHeight ?? 0) <
+        (textRef.current?.scrollHeight ?? 1);
+
+      setShowButton((prev) => (prev === isOverflowing ? prev : isOverflowing));
+    });
+
+    return () => cancelAnimationFrame(rafId);
   }, [lines, windowWidth]);
 
   return (

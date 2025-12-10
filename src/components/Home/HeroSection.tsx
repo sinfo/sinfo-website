@@ -7,6 +7,7 @@ import { ArrowRight, MessageCircleQuestionIcon } from "lucide-react";
 import { TIC_LOCATION } from "@/constants";
 import { useEvent } from "@/context/EventContext";
 import { addDays, formatEventDateRange } from "@/utils/utils";
+import Link from "next/link";
 
 export default function HeroSection() {
   const { event } = useEvent();
@@ -79,14 +80,14 @@ export default function HeroSection() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </div>
             </CallToAction>
-            <a
+            <Link
               href="/#faq"
               onClick={handleScrollToFAQ}
               className="flex items-center text-white/90 hover:text-white transition-colors font-medium text-sm sm:text-base"
             >
               FAQ
               <MessageCircleQuestionIcon className="ml-2 h-4 w-4" />
-            </a>
+            </Link>
           </div>
 
           {/* Stats Grid */}

@@ -175,7 +175,9 @@ export default function FAQ({ backgroundClass }: FAQProps) {
                 aria-hidden={openIndex !== index}
               >
                 <div
-                  ref={(el) => (contentRefs.current[index] = el)}
+                  ref={el => {
+                    (contentRefs.current[index] = el);
+                  }}
                   className={`px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 leading-relaxed transform transition-all duration-300 ${
                     openIndex === index
                       ? "opacity-100 translate-y-0"
