@@ -79,7 +79,7 @@ export default async function Page({ params }: Props) {
     </div>
   );
 
-  const SessionInfo = ({ className = "" }: { className?: string }) => (
+  const SessionInfo = ({ className = "" }: { className?: string }) =>
     mainSession ? (
       <div className={`text-white ${className}`}>
         <p className="font-bold text-xl md:text-2xl">{sessionPlace}</p>
@@ -87,18 +87,18 @@ export default async function Page({ params }: Props) {
           {formattedDate || "February 17"} • {timeRange || "16h30-17h20"}
         </p>
       </div>
-    ) : null
-  );
+    ) : null;
 
-  const SessionTitleBox = ({ className = "" }: { className?: string }) => (
+  const SessionTitleBox = ({ className = "" }: { className?: string }) =>
     sessionTitle ? (
-      <div className={`bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit ${className}`}>
+      <div
+        className={`bg-sinfo-primary border-4 border-white rounded-lg p-6 shadow-xl w-fit ${className}`}
+      >
         <p className="text-sinfo-quinary font-black uppercase text-2xl md:text-3xl leading-tight">
           {sessionTitle}
         </p>
       </div>
-    ) : null
-  );
+    ) : null;
 
   return (
     <main className="w-full min-h-screen bg-sinfo-primary relative overflow-hidden">
