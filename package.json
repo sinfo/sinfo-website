@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
     "prepare": "husky"
   },
   "dependencies": {
@@ -36,7 +39,14 @@
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "pinst": "^3.0.0",
     "prettier": "^3.7.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npx --yes eslint --ext .ts,.vue,.js,.json --fix",
+      "npx --yes prettier --write"
+    ]
   }
 }
