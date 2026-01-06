@@ -29,7 +29,7 @@ export default async function RootLayout({
   const event = await EventService.getLatest();
 
   return (
-    <html lang="en">
+    <html lang="en" className="bg-sinfo-primary">
       <body className={montserrat.className}>
         <EventProvider initialEvent={event}>
           <div className="min-h-dvh text-white flex flex-col">
