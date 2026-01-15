@@ -40,7 +40,7 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
               Each year, we host a <b>week-long event</b> at the <b>Técnico Innovation
               Center</b> in Lisbon. Attendees can enjoy international keynotes,
               hands-on workshops, company presentations, a job fair, and panel
-              discussions on the latest tech trends—all <b>completely free</b>.
+              discussions on the latest tech trends, all <b>completely free</b>.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
