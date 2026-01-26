@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default async function CompaniesPage() {
   const event = await EventService.getLatest();
-  const edition = event ? event.id - 1 : 33;
+  const edition = event ? event.id : 33;
 
   const companies = event
     ? await CompanyService.getCompanies(edition.toString())
