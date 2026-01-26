@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 interface SpeakersHighlightProps {
   backgroundClass: string;
@@ -190,54 +189,88 @@ export default function SpeakersHighlight({
           className={`flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 ${isDragging ? "dragging no-snap cursor-grabbing select-none" : "cursor-grab"}`}
           style={{ paddingLeft: "50vw", paddingRight: "50vw" }}
         >
-          {speakers.map((speaker, index) => {
+          {speakers.map((speaker) => {
             return (
               <div
                 key={speaker.id}
                 data-card
-                className="flex-shrink-0 w-[85vw] md:w-[800px] snap-center"
+                className="snap-start flex-shrink-0 w-[min(85vw,900px)] bg-white rounded-md overflow-hidden shadow-md"
                 onMouseEnter={() => setHoveredSpeaker(speaker.id)}
-                onMouseLeave={() => setHoveredSpeaker(null)}
+                onMouseLeave={() =>
+                  setHoveredSpeaker((prev) =>
+                    prev === speaker.id ? null : prev,
+                  )
+                }
               >
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] transform-gpu h-full flex flex-col">
-                  {/* Top Section: Image and Video */}
-                  {/* Use an aspect-ratio-driven video container so the height is determined by the 16:9 video; the image will stretch to match that height. On small screens it stacks vertically. */}
-                  <div className="flex flex-col md:flex-row items-stretch bg-black">
-                    {/* Speaker Image - Left Side */}
-                    <div className="w-full md:w-1/3 relative overflow-hidden aspect-[16/9] md:aspect-auto">
+                <div className="flex flex-col md:flex-row items-stretch bg-black">
+                  {/* Speaker Image - Left Side */}
+                  <div className="w-full md:w-1/3 relative overflow-hidden aspect-[16/9] md:aspect-auto">
+                    {/* Mobile background (visible on small screens only) */}
+                    <div
+                      className="block md:hidden w-full h-full bg-center bg-cover"
+                      style={{
+                        backgroundImage: `url(${speaker.imageNameMobile || speaker.imageName || speaker.img})`,
+                      }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Desktop (md and up): keep using ImageWithFallback for optimization */}
+                    <div className="hidden md:block w-full h-full relative">
                       <ImageWithFallback
-                        src={speaker.imageName || speaker.img}
+                        src={
+                          speaker.imageName ||
+                          speaker.img ||
+                          speaker.imageNameMobile ||
+                          ""
+                        }
                         alt={speaker.name}
                         fill
                         className="object-cover"
+                        sizes="(min-width: 768px) 33vw, 85vw"
                       />
                     </div>
 
-                    {/* YouTube Video - Right Side */}
-                    <div className="hidden md:block md:w-2/3 w-full relative overflow-hidden">
-                      <div className="iframe-container">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${speaker.videoId ?? ""}?autoplay=${hoveredSpeaker === speaker.id ? "1" : "0"}&mute=1&controls=1`}
-                          title={`${speaker.name} Talk`}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
+                    {/* Provide a hidden img for screen readers so the mobile background has accessible alt text */}
+                    <div className="block md:hidden">
+                      <ImageWithFallback
+                        src={
+                          speaker.imageNameMobile ||
+                          speaker.imageName ||
+                          speaker.img ||
+                          ""
+                        }
+                        alt={speaker.name}
+                        width={1}
+                        height={1}
+                        className="sr-only"
+                      />
                     </div>
                   </div>
 
-                  {/* Bottom Section: Speaker Info */}
-                  <div className="p-6 bg-white">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {speaker.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3 font-medium">
-                      {speaker.title}
-                    </p>
-                    <p className="text-sm text-gray-700 line-clamp-3">
-                      {speaker.description}
-                    </p>
+                  {/* YouTube Video - Right Side */}
+                  <div className="hidden md:block md:w-2/3 w-full relative overflow-hidden">
+                    <div className="iframe-container">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${speaker.videoId ?? ""}?autoplay=${hoveredSpeaker === speaker.id ? "1" : "0"}&mute=1&controls=1`}
+                        title={`${speaker.name} Talk`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
                   </div>
+                </div>
+
+                {/* Bottom Section: Speaker Info */}
+                <div className="p-6 bg-white">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {speaker.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3 font-medium">
+                    {speaker.title}
+                  </p>
+                  <p className="text-sm text-gray-700 line-clamp-3">
+                    {speaker.description}
+                  </p>
                 </div>
               </div>
             );

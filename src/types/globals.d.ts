@@ -45,9 +45,10 @@ type Speaker = {
   };
   sessions?: SINFOSession[];
   updated?: string;
+
   // Optional client-only presentation helpers
-  // If provided, `imageName` should match a file in `public/images/speakers/{imageName}.jpg`
   imageName?: string;
+  imageNameMobile?: string;
   videoId?: string;
 };
 

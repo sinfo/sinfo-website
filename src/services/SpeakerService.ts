@@ -63,8 +63,9 @@ export const SpeakerService = (() => {
           if (!s) return null;
 
           const imageName = "/images/speakers/" + s.id + ".jpg";
+          const imageNameMobile = "/images/speakers/" + s.id + "-mobile.jpg";
           const videoId = videoMap[id] ?? "";
-          return { ...s, imageName, videoId } as Speaker;
+          return { ...s, imageName, imageNameMobile, videoId } as Speaker;
         } catch {
           return null;
         }
