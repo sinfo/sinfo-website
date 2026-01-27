@@ -14,20 +14,20 @@ const eventItems = [
     image: "/images/event/speakers.jpg",
   },
   {
-    title: "Networking",
-    image: "/images/event/networking.jpg",
+    title: "Panels",
+    image: "/images/event/panels.jpg",
   },
   {
-    title: "Company Presentations",
-    image: "/images/event/company-presentations.jpg",
+    title: "Networking",
+    image: "/images/event/networking.jpg",
   },
   {
     title: "Workshops",
     image: "/images/event/workshops.jpg",
   },
   {
-    title: "Opportunities",
-    image: "/images/event/opportunities.jpg",
+    title: "Company Presentations",
+    image: "/images/event/company-presentations.jpg",
   },
   {
     title: "Giveaways",
