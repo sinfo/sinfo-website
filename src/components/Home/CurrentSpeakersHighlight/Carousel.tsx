@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import SpeakerCard from "./SpeakerCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
