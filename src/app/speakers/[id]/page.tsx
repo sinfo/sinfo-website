@@ -237,7 +237,7 @@ export default async function Page({ params }: Props) {
         <div className="mt-12 md:mt-16 flex justify-center relative z-10">
           <Link
             href="/speakers"
-            className="bg-sinfo-senary text-sinfo-primary font-black py-5 px-16 md:py-6 md:px-20 rounded-full text-xl md:text-2xl uppercase shadow-2xl hover:opacity-90 transition-opacity"
+            className="bg-sinfo-senary text-white font-black py-5 px-16 md:py-6 md:px-20 rounded-full text-xl md:text-2xl uppercase shadow-2xl hover:opacity-90 transition-opacity"
           >
             SEE ALL SPEAKERS
           </Link>
