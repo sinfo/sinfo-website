@@ -115,11 +115,11 @@ export default async function Page({ params }: Props) {
         {/* Top decorative elements - only visible on desktop */}
         <div className="hidden md:block absolute top-4 right-8 md:top-6 md:right-16 z-20">
           <ImageWithFallback
-            src="/images/decorative-images/star.png"
-            alt="Decorative star"
-            width={120}
-            height={120}
-            className="w-24 h-24 md:w-28 md:h-28"
+            src="/images/decorative-images/redElement.svg"
+            alt="Decorative element"
+            width={80}
+            height={80}
+            className="w-16 h-16 md:w-20 md:h-20"
           />
         </div>
 
@@ -139,14 +139,14 @@ export default async function Page({ params }: Props) {
               )}
             </div>
 
-            {/* Star decoration after title, before photo */}
+            {/* Red element decoration after title, before photo */}
             <div className="flex justify-end -mb-14">
               <ImageWithFallback
-                src="/images/decorative-images/star.png"
-                alt="Decorative star"
-                width={80}
-                height={80}
-                className="w-24 h-24"
+                src="/images/decorative-images/redElement.svg"
+                alt="Decorative element"
+                width={56}
+                height={56}
+                className="w-16 h-16"
               />
             </div>
 
@@ -158,11 +158,11 @@ export default async function Page({ params }: Props) {
               {/* Small decorative box */}
               <div className="max-w-[180px] -mt-9">
                 <ImageWithFallback
-                  src="/images/decorative-images/redElement.png"
-                  alt="Decorative element"
-                  width={140}
-                  height={140}
-                  className="w-28 h-28"
+                  src="/images/decorative-images/star.svg"
+                  alt="Decorative star"
+                  width={100}
+                  height={100}
+                  className="w-20 h-20"
                 />
               </div>
             </div>
@@ -220,11 +220,11 @@ export default async function Page({ params }: Props) {
             {/* Small decorative box */}
             <div className="max-w-[180px] -mt-9">
               <ImageWithFallback
-                src="/images/decorative-images/redElement.png"
-                alt="Decorative element"
-                width={140}
-                height={140}
-                className="w-32 h-32"
+                src="/images/decorative-images/star.svg"
+                alt="Decorative star"
+                width={100}
+                height={100}
+                className="w-24 h-24"
               />
             </div>
 
