@@ -115,11 +115,11 @@ export default async function Page({ params }: Props) {
         {/* Top decorative elements - only visible on desktop */}
         <div className="hidden md:block absolute top-4 right-8 md:top-6 md:right-16 z-20">
           <ImageWithFallback
-            src="/images/decorative-images/star.png"
+            src="/images/decorative-images/star.svg"
             alt="Decorative star"
-            width={120}
-            height={120}
-            className="w-24 h-24 md:w-28 md:h-28"
+            width={100}
+            height={100}
+            className="w-20 h-20 md:w-24 md:h-24"
           />
         </div>
 
@@ -142,11 +142,11 @@ export default async function Page({ params }: Props) {
             {/* Star decoration after title, before photo */}
             <div className="flex justify-end -mb-14">
               <ImageWithFallback
-                src="/images/decorative-images/star.png"
+                src="/images/decorative-images/star.svg"
                 alt="Decorative star"
-                width={80}
-                height={80}
-                className="w-24 h-24"
+                width={64}
+                height={64}
+                className="w-20 h-20"
               />
             </div>
 
@@ -158,11 +158,11 @@ export default async function Page({ params }: Props) {
               {/* Small decorative box */}
               <div className="max-w-[180px] -mt-9">
                 <ImageWithFallback
-                  src="/images/decorative-images/redElement.png"
+                  src="/images/decorative-images/redElement.svg"
                   alt="Decorative element"
-                  width={140}
-                  height={140}
-                  className="w-28 h-28"
+                  width={120}
+                  height={120}
+                  className="w-24 h-24"
                 />
               </div>
             </div>
@@ -220,11 +220,11 @@ export default async function Page({ params }: Props) {
             {/* Small decorative box */}
             <div className="max-w-[180px] -mt-9">
               <ImageWithFallback
-                src="/images/decorative-images/redElement.png"
+                src="/images/decorative-images/redElement.svg"
                 alt="Decorative element"
-                width={140}
-                height={140}
-                className="w-32 h-32"
+                width={120}
+                height={120}
+                className="w-28 h-28"
               />
             </div>
 
