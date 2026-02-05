@@ -15,12 +15,12 @@ export const MemberService = (() => {
   const getFilteredMembers = async (
     eventId: number,
   ): Promise<SINFOMember[] | null> => {
-    const filterNames = ["zzPartnernerships", "ToolBot!"];
+    const botsTeam = "BOTS";
 
     try {
       const allMembers = await getMembers(eventId);
       if (!allMembers) return null;
-      return allMembers.filter((member) => !filterNames.includes(member.name));
+      return allMembers.filter((member) => member.team !== botsTeam);
     } catch (e) {
       console.error(e);
     }
