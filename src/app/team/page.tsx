@@ -61,6 +61,8 @@ export default async function TeamPage() {
                 key={member.name}
                 name={member.name}
                 img={member.img}
+                team={member.team}
+                linkedin={member.social?.linkedin}
               />
             ))}
           </div>
