@@ -15,11 +15,6 @@ export default function MemberCard({
   team,
   linkedin,
 }: MemberCardProps) {
-  // Separate first name and last name
-  const nameParts = name.trim().split(" ");
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(" ");
-
   // Remove (33) or any number in parentheses from team name
   const cleanTeam = team.replace(/\s*\(\d+\)\s*/g, "").trim();
 
@@ -28,14 +23,20 @@ export default function MemberCard({
 
   const getTeamColor = (team: string) => {
     const teamLower = team.toLowerCase();
-    if (teamLower.includes("dev")) return "from-blue-500 to-blue-700";
+    if (teamLower.includes("coord"))
+      return "from-sinfo-primary to-sinfo-primary";
+    if (teamLower.includes("dev")) return "from-blue-400 to-blue-600";
     if (teamLower.includes("multi")) return "from-pink-500 to-rose-600";
-    if (teamLower.includes("coord")) return "from-blue-500 to-blue-600";
     if (teamLower.includes("mkt") || teamLower.includes("marketing"))
       return "from-red-600 to-red-700";
-    if (teamLower.includes("logística") || teamLower.includes("logistica"))
+    if (
+      teamLower.includes("logística") ||
+      teamLower.includes("logistica") ||
+      teamLower.includes("logistics")
+    )
       return "from-orange-500 to-orange-600";
-    if (teamLower.includes("parcerias")) return "from-green-600 to-green-700";
+    if (teamLower.includes("parcerias") || teamLower.includes("partnerships"))
+      return "from-green-400 to-green-600";
     if (teamLower.includes("laranja")) return "from-orange-500 to-orange-600";
     if (teamLower.includes("amarelo")) return "from-yellow-500 to-yellow-600";
     if (teamLower.includes("roxo")) return "from-purple-600 to-purple-700";
@@ -43,7 +44,7 @@ export default function MemberCard({
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
       {/* Image Container */}
       <div className="relative w-full aspect-square overflow-hidden bg-gray-100">
         {img && (
@@ -51,36 +52,41 @@ export default function MemberCard({
             src={img}
             alt={name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         )}
 
-        {/* Gradient Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-sinfo-primary/80 via-sinfo-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Gradient Overlay on Hover - Animates smoothly */}
+        <div className="absolute inset-0 bg-gradient-to-t from-sinfo-primary/80 via-sinfo-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
-      {/* Info Container */}
-      <div
-        className={`p-3 sm:p-4 flex items-center justify-between bg-gradient-to-r ${getTeamColor(team)}`}
-      >
-        <div className="flex-1">
-          <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white leading-tight">
-            {firstName}
+      {/* Info Container with Animated Gradient */}
+      <div className="relative p-3 sm:p-4 flex items-center justify-between overflow-hidden">
+        {/* Base gradient layer */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-r ${getTeamColor(team)} transition-opacity duration-500`}
+        />
+
+        {/* Hover gradient layer with different direction */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${getTeamColor(team)} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+        />
+
+        <div className="flex-1 relative z-10">
+          <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white leading-tight transition-all duration-300">
+            {name}
           </h3>
-          {lastName && (
-            <p className="text-sm sm:text-base md:text-lg font-semibold text-white leading-tight">
-              {lastName}
-            </p>
-          )}
-          <p className="text-xs sm:text-sm text-white/90 mt-1">{displayTeam}</p>
+          <p className="text-xs sm:text-sm text-white/90 mt-1 transition-all duration-300">
+            {displayTeam}
+          </p>
         </div>
         {linkedin && (
           <Link
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 text-white hover:text-white/80 transition-colors duration-300"
+            className="ml-2 text-white hover:text-white/80 transition-all duration-300 relative z-10 hover:scale-110"
           >
             <svg
               className="w-5 h-5 sm:w-6 sm:h-6"

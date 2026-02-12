@@ -55,7 +55,7 @@ export default async function TeamPage() {
           </div>
 
           {/* Members Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             {sortedMembers.map((member) => (
               <MemberCard
                 key={member.name}
