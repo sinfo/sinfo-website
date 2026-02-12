@@ -62,7 +62,7 @@ export default function MemberCard({
       </div>
 
       {/* Info Container with Animated Gradient */}
-      <div className="relative p-3 sm:p-4 flex items-center justify-between overflow-hidden">
+      <div className="relative p-3 sm:p-4 overflow-hidden">
         {/* Base gradient layer */}
         <div
           className={`absolute inset-0 bg-gradient-to-r ${getTeamColor(team)} transition-opacity duration-500`}
@@ -86,7 +86,7 @@ export default function MemberCard({
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 text-white hover:text-white/80 transition-all duration-300 relative z-10 hover:scale-110"
+            className="absolute bottom-3 right-3 text-white hover:text-white/80 transition-all duration-300 z-10 hover:scale-110"
           >
             <svg
               className="w-5 h-5 sm:w-6 sm:h-6"
