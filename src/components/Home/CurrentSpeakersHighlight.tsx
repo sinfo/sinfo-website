@@ -78,7 +78,7 @@ export default async function CurrentSpeakersHighlight({
 
       <div className="container mx-auto px-6 mt-8 flex justify-center gap-4">
         <Link
-          href="/oldSpeakers"
+          href="/speakers/previous"
           className="px-6 py-3 border border-sinfo-primary text-sinfo-primary rounded-md font-semibold hover:bg-sinfo-primary/10 transition"
         >
           Previous speakers
