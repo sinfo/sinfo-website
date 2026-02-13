@@ -5,6 +5,8 @@ import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";
 import config from "../../../tailwind.config";
 
+export const dynamic = "force-dynamic";
+
 interface CurrentSpeakersHighlightProps {
   backgroundClass?: string;
 }
