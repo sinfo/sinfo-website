@@ -5,19 +5,25 @@ export const SessionService = (() => {
     sessionId: string,
   ): Promise<SINFOSession | null> => {
     const resp = await fetch(`${sessionsEndpoint}/${sessionId}`, {
-      cache: "force-cache",
+      next: { revalidate: 60 },
     });
     if (resp.ok) return (await resp.json()) as SINFOSession;
     return null;
   };
 
   const getSessions = async (): Promise<SINFOSession[] | null> => {
-    const resp = await fetch(sessionsEndpoint, {
-      cache: "force-cache",
-    });
+    const resp = await fetch(sessionsEndpoint);
     if (resp.ok) return (await resp.json()) as SINFOSession[];
     return null;
   };
 
-  return { getSession, getSessions };
+  const getSessionBySpeaker = async (
+    speakerId: string,
+  ): Promise<SINFOSession[] | null> => {
+    const resp = await fetch(`${sessionsEndpoint}?speaker=${speakerId}`);
+    if (resp.ok) return (await resp.json()) as SINFOSession[];
+    return null;
+  };
+
+  return { getSession, getSessions, getSessionBySpeaker };
 })();

@@ -35,7 +35,7 @@ export function ShowMore({ lines, children, className }: ShowMoreProps) {
     <span className={className}>
       <p
         ref={textRef}
-        className={`w-full ${showMore ? "" : lineClamps[lines - 1]}`}
+        className={`w-full whitespace-pre-line ${showMore ? "" : lineClamps[lines - 1]}`}
       >
         {children}
       </p>

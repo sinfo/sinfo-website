@@ -3,7 +3,7 @@ export const CompanyService = (() => {
 
   const getCompany = async (id: string): Promise<Company | null> => {
     const resp = await fetch(`${companiesEndpoint}/${id}`, {
-      cache: "force-cache",
+      next: { revalidate: 60 },
     });
     if (resp.ok) return (await resp.json()) as Company;
     return null;
@@ -11,7 +11,7 @@ export const CompanyService = (() => {
 
   const getCompanies = async (eventId: string): Promise<Company[] | null> => {
     const resp = await fetch(`${companiesEndpoint}?edition=${eventId}`, {
-      cache: "force-cache",
+      next: { revalidate: 60 },
     });
     if (resp.ok) return (await resp.json()) as Company[];
     return null;
