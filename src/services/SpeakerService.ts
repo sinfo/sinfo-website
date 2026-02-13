@@ -2,9 +2,7 @@ export const SpeakerService = (() => {
   const speakersEndpoint = process.env.NEXT_PUBLIC_CANNON_URL + "/speaker";
 
   const getSpeaker = async (id: string): Promise<Speaker | null> => {
-    const resp = await fetch(`${speakersEndpoint}/${id}`, {
-      cache: "force-cache",
-    });
+    const resp = await fetch(`${speakersEndpoint}/${id}`);
     if (resp.ok) return (await resp.json()) as Speaker;
     return null;
   };
@@ -14,9 +12,7 @@ export const SpeakerService = (() => {
   }: {
     event: number;
   }): Promise<Speaker[] | null> => {
-    const resp = await fetch(`${speakersEndpoint}?event=${event}`, {
-      cache: "force-cache",
-    });
+    const resp = await fetch(`${speakersEndpoint}?event=${event}`);
     if (resp.ok) {
       const { speakers }: { speakers: Speaker[] } = await resp.json();
       return speakers;

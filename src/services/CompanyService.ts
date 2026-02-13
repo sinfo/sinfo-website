@@ -10,9 +10,7 @@ export const CompanyService = (() => {
   };
 
   const getCompanies = async (eventId: string): Promise<Company[] | null> => {
-    const resp = await fetch(`${companiesEndpoint}?edition=${eventId}`, {
-      cache: "force-cache",
-    });
+    const resp = await fetch(`${companiesEndpoint}?edition=${eventId}`);
     if (resp.ok) return (await resp.json()) as Company[];
     return null;
   };
