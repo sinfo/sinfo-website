@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Carousel from "./CurrentSpeakersHighlight/Carousel";
 import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";
@@ -30,16 +31,15 @@ export default async function CurrentSpeakersHighlight({
         // Map days to colors (Approximate logic, can be refined based on exact dates)
         // Assuming 5 days of event
         const dayColors = [
-          themeColors.primary || "#1c2b70", // Mon - Blue
-          themeColors.secondary || "#bf2c21", // Tue - Red
-          themeColors.tertiary || "#f1853a", // Wed - Orange
-          themeColors.quaternary || "#E0B485", // Thu - Gold
-          themeColors.quinary || "#fcbd14", // Fri - Yellow?
-          themeColors.senary || "#c465a2", // Sat/Extra
+          themeColors.secondary, // Mon
+          themeColors.tertiary, // Tue
+          themeColors.quinary, // Wed
+          themeColors.septenary, // Thu
+          themeColors.senary, // Fri
         ];
 
-        speakersData.forEach((s) => {
-          let color = dayColors[0];
+        speakersData.forEach((s, i) => {
+          let color = dayColors[i % dayColors.length]; // Default color based on index
           if (s.sessions && s.sessions.length > 0) {
             const dateStr = s.sessions[0].date;
             if (dateStr) {
@@ -75,6 +75,22 @@ export default async function CurrentSpeakersHighlight({
       </div>
 
       <Carousel speakers={speakers} speakerColors={speakerColors} />
+
+      <div className="container mx-auto px-6 mt-8 flex justify-center gap-4">
+        <Link
+          href="/oldSpeakers"
+          className="px-6 py-3 bg-sinfo-primary text-white rounded-md font-semibold hover:opacity-95 transition"
+        >
+          Old speakers
+        </Link>
+
+        <Link
+          href="/speakers"
+          className="px-6 py-3 border border-sinfo-primary text-sinfo-primary rounded-md font-semibold hover:bg-sinfo-primary/10 transition"
+        >
+          Current speakers
+        </Link>
+      </div>
     </section>
   );
 }

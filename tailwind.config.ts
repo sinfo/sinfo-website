@@ -20,6 +20,7 @@ const config = {
           light: "#F2F5FC",
           quinary: "#fcbd14",
           senary: "#c465a2",
+          septenary: "#48c6e4",
         },
       },
     },
