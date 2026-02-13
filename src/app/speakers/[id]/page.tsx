@@ -4,6 +4,7 @@ import { SpeakerService } from "@/services/SpeakerService";
 import { SessionService } from "@/services/SessionService";
 import { generateTimeInterval } from "@/utils/utils";
 import ImageWithFallback from "@/components/ImageWithFallback";
+import { ShowMore } from "@/components/ShowMore";
 import { Calendar, Clock, MapPin } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -128,9 +129,9 @@ export default async function Page({ params }: Props) {
                             {session.name}
                           </h4>
                           {session.description && (
-                            <p className="mt-2 text-gray-600 whitespace-pre-line">
+                            <ShowMore lines={3} className="mt-2 text-gray-600">
                               {session.description}
-                            </p>
+                            </ShowMore>
                           )}
                         </div>
                       );
