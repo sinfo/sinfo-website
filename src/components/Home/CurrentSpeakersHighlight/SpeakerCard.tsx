@@ -42,7 +42,6 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
               alt={speaker.name}
               fill
               className="object-cover"
-              fallbackSrc="/images/speakers/default.png"
             />
           </div>
         </div>
