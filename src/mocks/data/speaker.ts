@@ -62,7 +62,7 @@ export const MOCK_SPEAKER: Speaker = {
   name: "Manuel Sousa",
   description:
     "Experienced Information Security Engineer specializing in protecting data and systems for large-scale organizations. Skilled in cybersecurity strategy, threat analysis, and implementing secure protocols.",
-  title: "Information Security Engineer @ Google",
+  title: "Information Security Engineer",
   img: "https://media.licdn.com/dms/image/v2/D5603AQH5kR-KsoQnYA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1710492770943?e=1739404800&v=beta&t=04t380W5KVYBf6HGEoncTCO77XuzTQW-UFmqc3Ss95U",
   company: {
     name: "Google",
@@ -74,7 +74,7 @@ export const MOCK_SPEAKER: Speaker = {
       name: "Prompt Like an Absolute Pro",
       kind: "Keynote",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-      place: "Auditorium",
+      place: "Main Stage",
       description:
         "A deep dive into crafting effective and powerful prompts to unlock AI&apos;s potential in creative workflows.",
       speakers: [MOCK_SPEAKERS[4]],

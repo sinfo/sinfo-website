@@ -68,15 +68,6 @@ export default async function Page({ params }: Props) {
       {/* Main Content */}
       <section className="py-12 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <Link
-              href="/speakers"
-              className="text-sinfo-primary hover:underline font-medium"
-            >
-              &larr; Back to all speakers
-            </Link>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Column - Info */}
             <div className="lg:col-span-7 xl:col-span-8 order-2 lg:order-1">
@@ -157,7 +148,7 @@ export default async function Page({ params }: Props) {
 
             {/* Right Column - Image */}
             <div className="lg:col-span-5 xl:col-span-4 order-1 lg:order-2">
-              <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200">
+              <div className="relative aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden shadow-xl bg-gray-200">
                 <ImageWithFallback
                   src={speaker.img}
                   alt={speaker.name}
@@ -167,6 +158,16 @@ export default async function Page({ params }: Props) {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Back Button */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/speakers"
+              className="inline-flex items-center px-6 py-3 bg-sinfo-primary text-white rounded-lg font-semibold hover:opacity-95 transition"
+            >
+              &larr; Back to all speakers
+            </Link>
           </div>
         </div>
       </section>
