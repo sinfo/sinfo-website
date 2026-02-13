@@ -21,6 +21,13 @@ const config = {
           quinary: "#fcbd14",
           senary: "#c465a2",
           septenary: "#48c6e4",
+          days: {
+            mon: "#bf2c21",
+            tue: "#f1853a",
+            wed: "#fcbd14",
+            thu: "#48c6e4",
+            fri: "#c465a2",
+          },
         },
       },
     },

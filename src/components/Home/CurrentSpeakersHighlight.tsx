@@ -20,24 +20,19 @@ export default async function CurrentSpeakersHighlight({
   try {
     const event = await EventService.getLatest();
     if (event) {
-      const speakersData = await SpeakerService.getSpeakers({
-        event: event.id as unknown as number,
-      });
-
+      const speakersData = await SpeakerService.getSpeakers();
       if (speakersData) {
         speakers = speakersData;
 
         // Process colors based on sessions
-        const themeColors = (config.theme?.extend?.colors?.sinfo as any) || {};
-
-        // Map days to colors (Approximate logic, can be refined based on exact dates)
-        // Assuming 5 days of event
+        const themeColors =
+          (config.theme?.extend?.colors?.sinfo?.days as any) || {};
         const dayColors = [
-          themeColors.secondary, // Mon
-          themeColors.tertiary, // Tue
-          themeColors.quinary, // Wed
-          themeColors.septenary, // Thu
-          themeColors.senary, // Fri
+          themeColors.mon,
+          themeColors.tue,
+          themeColors.wed,
+          themeColors.thu,
+          themeColors.fri,
         ];
 
         speakersData.forEach((s, i) => {

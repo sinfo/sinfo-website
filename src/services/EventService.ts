@@ -4,7 +4,7 @@ export const EventService = (() => {
   const getLatest = async (): Promise<SINFOEvent | null> => {
     try {
       const resp = await fetch(`${eventEndpoint}/latest`, {
-        cache: "force-cache",
+        next: { revalidate: 60 },
       });
       if (resp.ok) return (await resp.json()) as SINFOEvent;
     } catch (e) {

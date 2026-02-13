@@ -9,9 +9,7 @@ export const dynamic = "force-dynamic";
 
 export default async function CurrentSpeakersPage() {
   const event = await EventService.getLatest();
-  const speakers = event
-    ? await SpeakerService.getSpeakers({ event: event.id as unknown as number })
-    : [];
+  const speakers = event ? await SpeakerService.getSpeakers() : [];
 
   if (!speakers || speakers.length === 0) {
     return <BlankPageMessage message="No current speakers found." />;

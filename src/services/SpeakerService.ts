@@ -2,17 +2,27 @@ export const SpeakerService = (() => {
   const speakersEndpoint = process.env.NEXT_PUBLIC_CANNON_URL + "/speaker";
 
   const getSpeaker = async (id: string): Promise<Speaker | null> => {
-    const resp = await fetch(`${speakersEndpoint}/${id}`);
+    const resp = await fetch(`${speakersEndpoint}/${id}`, {
+      next: { revalidate: 60 },
+    });
     if (resp.ok) return (await resp.json()) as Speaker;
     return null;
   };
 
-  const getSpeakers = async ({
-    event,
-  }: {
-    event: number;
+  const getSpeakers = async (params?: {
+    event?: number | null;
+    previousEdition?: boolean;
   }): Promise<Speaker[] | null> => {
-    const resp = await fetch(`${speakersEndpoint}?event=${event}`);
+    const queryParam = params?.event ? `?event=${params.event}` : "";
+    const previousEditionParam = params?.previousEdition
+      ? `${queryParam ? "&" : "?"}previousEdition=true`
+      : "";
+    const resp = await fetch(
+      `${speakersEndpoint}${queryParam}${previousEditionParam}`,
+      {
+        next: { revalidate: 60 },
+      },
+    );
     if (resp.ok) {
       const { speakers }: { speakers: Speaker[] } = await resp.json();
       return speakers;

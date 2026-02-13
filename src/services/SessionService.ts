@@ -4,7 +4,9 @@ export const SessionService = (() => {
   const getSession = async (
     sessionId: string,
   ): Promise<SINFOSession | null> => {
-    const resp = await fetch(`${sessionsEndpoint}/${sessionId}`);
+    const resp = await fetch(`${sessionsEndpoint}/${sessionId}`, {
+      next: { revalidate: 60 },
+    });
     if (resp.ok) return (await resp.json()) as SINFOSession;
     return null;
   };

@@ -6,7 +6,7 @@ import MovingGrid from "@/components/MovingGrid";
 export const dynamic = "force-dynamic";
 
 export default async function SpeakersPage() {
-  const speakers = await SpeakerService.getSpeakers({ event: 32 });
+  const speakers = await SpeakerService.getSpeakers({ previousEdition: true });
   /**
    * TODO: Fetch speakers from multiple past editions
    *  const eventIds = [32, 30, 31];
