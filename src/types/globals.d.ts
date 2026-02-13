@@ -95,9 +95,12 @@ type Prize = {
 type SINFOMember = {
   name: string;
   img: string;
+  social: SINFOMemberSocials;
+  team: string;
+  sinfo_email: string;
 };
 
-type Socials = {
+type SINFOMemberSocials = {
   linkedin?: string;
   github?: string;
   twitter?: string;

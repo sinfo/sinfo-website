@@ -12,9 +12,7 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
     <div className="group relative flex h-[380px] w-[280px] md:h-[420px] md:w-[300px] flex-shrink-0 flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
       {/* Background container for the blob */}
       <div className="absolute inset-0 flex items-end justify-center overflow-hidden">
-        <div
-          className="relative h-[300px] w-[300px] translate-y-[20%] transition-transform duration-500 ease-in-out group-hover:scale-[5] group-hover:translate-y-0"
-        >
+        <div className="relative h-[300px] w-[300px] translate-y-[20%] transition-transform duration-500 ease-in-out group-hover:scale-[5] group-hover:translate-y-0">
           <SpeakerBlob color={color} className="h-full w-full" />
         </div>
       </div>
@@ -38,15 +36,15 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
 
         {/* Image - Pushed to bottom */}
         <div className="mt-auto flex justify-center">
-             <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 group-hover:scale-105">
-                <ImageWithFallback
-                    src={speaker.img}
-                    alt={speaker.name}
-                    fill
-                    className="object-cover"
-                    fallbackSrc="/images/speakers/default.png"
-                />
-             </div>
+          <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 group-hover:scale-105">
+            <ImageWithFallback
+              src={speaker.img}
+              alt={speaker.name}
+              fill
+              className="object-cover"
+              fallbackSrc="/images/speakers/default.png"
+            />
+          </div>
         </div>
       </div>
     </div>

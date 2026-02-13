@@ -36,12 +36,16 @@ export default function Carousel({
       const container = scrollContainerRef.current;
       const cardWidth = 320; // approximate card width + gap
       const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
-      
+
       // If we are at the end and scrolling right, go back to start (loop effect approximation)
-      if (direction === "right" && container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-          container.scrollTo({ left: 0, behavior: "smooth" });
+      if (
+        direction === "right" &&
+        container.scrollLeft + container.clientWidth >=
+          container.scrollWidth - 10
+      ) {
+        container.scrollTo({ left: 0, behavior: "smooth" });
       } else if (direction === "left" && container.scrollLeft <= 0) {
-          container.scrollTo({ left: container.scrollWidth, behavior: "smooth" });
+        container.scrollTo({ left: container.scrollWidth, behavior: "smooth" });
       } else {
         container.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
@@ -60,7 +64,6 @@ export default function Carousel({
     return () => stopAutoPlay();
   }, [startAutoPlay, stopAutoPlay]);
 
-
   // Check if arrows are needed
   useEffect(() => {
     const checkScrollable = () => {
@@ -73,7 +76,6 @@ export default function Carousel({
     window.addEventListener("resize", checkScrollable);
     return () => window.removeEventListener("resize", checkScrollable);
   }, [speakers]);
-
 
   // Drag Handlers
   const onMouseDown = (e: React.MouseEvent) => {
@@ -105,57 +107,59 @@ export default function Carousel({
 
   return (
     <div className="relative w-full overflow-hidden px-4 md:px-0 py-4 md:py-10 group/carousel">
-        <div className="container mx-auto relative">
-             {/* Left Arrow */}
-            {showArrows && (
-                <button
-                onClick={() => {
-                    scroll("left");
-                    stopAutoPlay();
-                    // Restart autoplay after interaction
-                    setTimeout(startAutoPlay, 5000);
-                }}
-                className="absolute left-0 top-1/2 z-30 -translate-y-1/2 -translate-x-4 transform rounded-full bg-white/80 p-3 shadow-lg backdrop-blur-sm transition-all hover:bg-white hover:scale-110 opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
-                >
-                <ChevronLeft className="h-6 w-6 text-sinfo-primary" />
-                </button>
-            )}
+      <div className="container mx-auto relative">
+        {/* Left Arrow */}
+        {showArrows && (
+          <button
+            onClick={() => {
+              scroll("left");
+              stopAutoPlay();
+              // Restart autoplay after interaction
+              setTimeout(startAutoPlay, 5000);
+            }}
+            className="absolute left-0 top-1/2 z-30 -translate-y-1/2 -translate-x-4 transform rounded-full bg-white/80 p-3 shadow-lg backdrop-blur-sm transition-all hover:bg-white hover:scale-110 opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
+          >
+            <ChevronLeft className="h-6 w-6 text-sinfo-primary" />
+          </button>
+        )}
 
-
+        <div
+          ref={scrollContainerRef}
+          className="flex cursor-grab gap-4 md:gap-8 overflow-x-auto pb-8 pt-4 scrollbar-hide active:cursor-grabbing snap-x snap-mandatory"
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
+          onMouseMove={onMouseMove}
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {/* Add padding to the ends so elements aren't cut off on the sides in container */}
+          {speakers.map((speaker, index) => (
             <div
-                ref={scrollContainerRef}
-                className="flex cursor-grab gap-4 md:gap-8 overflow-x-auto pb-8 pt-4 scrollbar-hide active:cursor-grabbing snap-x snap-mandatory"
-                onMouseDown={onMouseDown}
-                onMouseLeave={onMouseLeave}
-                onMouseUp={onMouseUp}
-                onMouseMove={onMouseMove}
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              key={`${speaker.id}-${index}`}
+              className="snap-center shrink-0"
             >
-                {/* Add padding to the ends so elements aren't cut off on the sides in container */}
-                {speakers.map((speaker, index) => (
-                <div key={`${speaker.id}-${index}`} className="snap-center shrink-0">
-                    <SpeakerCard
-                        speaker={speaker}
-                        color={speakerColors[speaker.id] || "#1c2b70"}
-                    />
-                </div>
-                ))}
+              <SpeakerCard
+                speaker={speaker}
+                color={speakerColors[speaker.id] || "#1c2b70"}
+              />
             </div>
-
-            {/* Right Arrow */}
-             {showArrows && (
-                <button
-                onClick={() => {
-                    scroll("right");
-                    stopAutoPlay();
-                    setTimeout(startAutoPlay, 5000);
-                }}
-                className="absolute right-0 top-1/2 z-30 -translate-y-1/2 translate-x-4 transform rounded-full bg-white/80 p-3 shadow-lg backdrop-blur-sm transition-all hover:bg-white hover:scale-110 opacity-0 group-hover/carousel:opacity-100"
-                >
-                <ChevronRight className="h-6 w-6 text-sinfo-primary" />
-                </button>
-            )}
+          ))}
         </div>
+
+        {/* Right Arrow */}
+        {showArrows && (
+          <button
+            onClick={() => {
+              scroll("right");
+              stopAutoPlay();
+              setTimeout(startAutoPlay, 5000);
+            }}
+            className="absolute right-0 top-1/2 z-30 -translate-y-1/2 translate-x-4 transform rounded-full bg-white/80 p-3 shadow-lg backdrop-blur-sm transition-all hover:bg-white hover:scale-110 opacity-0 group-hover/carousel:opacity-100"
+          >
+            <ChevronRight className="h-6 w-6 text-sinfo-primary" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
