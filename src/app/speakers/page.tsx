@@ -60,16 +60,19 @@ export default async function CurrentSpeakersPage() {
           </div>
         </div>
       </section>
+
       <section className="py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-          {speakers.map((speaker) => (
-            <div key={speaker.id}>
-              <SpeakerCard
-                speaker={speaker}
-                color={speakerColors[speaker.id]}
-              />
-            </div>
-          ))}
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+            {speakers.map((speaker) => (
+              <div key={speaker.id}>
+                <SpeakerCard
+                  speaker={speaker}
+                  color={speakerColors[speaker.id]}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </main>
