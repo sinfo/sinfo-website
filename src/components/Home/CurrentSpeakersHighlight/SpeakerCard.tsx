@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import SpeakerBlob from "./SpeakerBlob";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
@@ -9,7 +10,10 @@ interface SpeakerCardProps {
 
 export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
   return (
-    <div className="group relative flex h-[380px] w-[280px] md:h-[420px] md:w-[300px] flex-shrink-0 flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+    <Link
+      href={`/speakers/${speaker.id}`}
+      className="group relative flex h-[380px] w-[280px] md:h-[420px] md:w-[300px] flex-shrink-0 flex-col overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+    >
       {/* Background container for the blob */}
       <div className="absolute inset-0 flex items-end justify-center overflow-hidden">
         <div className="relative h-[300px] w-[300px] translate-y-[20%] transition-transform duration-500 ease-in-out group-hover:scale-[5] group-hover:translate-y-0">
@@ -46,6 +50,6 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
