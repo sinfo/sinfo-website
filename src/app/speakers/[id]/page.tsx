@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { SpeakerService } from "@/services/SpeakerService";
+import { SessionService } from "@/services/SessionService";
 import { generateTimeInterval } from "@/utils/utils";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { Calendar, Clock, MapPin } from "lucide-react";
@@ -13,22 +14,10 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }: Props) {
-  const speaker = await SpeakerService.getSpeaker(params.id);
-  return {
-    title: speaker ? `${speaker.name} • SINFO` : "Speaker • SINFO",
-    description: speaker?.description || "Speaker details",
-    openGraph: speaker
-      ? {
-          images: speaker.img ? [speaker.img] : undefined,
-        }
-      : undefined,
-  } as any;
-}
-
 export default async function Page({ params }: Props) {
   const { id } = params;
   const speaker = await SpeakerService.getSpeaker(id);
+  const session = await SessionService.getSessionBySpeaker(id);
 
   if (!speaker) {
     return (
@@ -138,6 +127,11 @@ export default async function Page({ params }: Props) {
                           <h4 className="text-xl font-bold text-gray-900">
                             {session.name}
                           </h4>
+                          {session.description && (
+                            <p className="mt-2 text-gray-600 whitespace-pre-line">
+                              {session.description}
+                            </p>
+                          )}
                         </div>
                       );
                     })}
