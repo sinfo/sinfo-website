@@ -1,46 +1,150 @@
-import Link from "next/link";
-import ImageWithFallback from "@/components/ImageWithFallback";
-import { workHacky } from "@/assets/images";
-import CallToAction from "@/components/CallToAction";
+import { SessionService } from "@/services/SessionService";
+import { EventService } from "@/services/EventService";
+import BlankPageMessage from "@/components/BlankPageMessage";
 
-export default function SchedulesComingSoon() {
+export const dynamic = "force-dynamic";
+
+function groupSessionsByDay(sessions: SINFOSession[]) {
+  return sessions.reduce(
+    (acc, session) => {
+      const date = new Date(session.date).toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(session);
+      return acc;
+    },
+    {} as Record<string, SINFOSession[]>,
+  );
+}
+
+function getEndTime(session: SINFOSession): Date {
+  const startTime = new Date(session.date);
+  const endTime = new Date(startTime.getTime() + session.duration * 60000);
+  return endTime;
+}
+
+export default async function SchedulePage() {
+  const event = await EventService.getLatest();
+  const sessions = event ? await SessionService.getSessions() : [];
+
+  if (!sessions || sessions.length === 0) {
+    return <BlankPageMessage message="No sessions available at the moment." />;
+  }
+
+  const sessionsByDay = groupSessionsByDay(sessions);
+
   return (
-    <div className="relative overflow-hidden">
-      {/* Background accents */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-sinfo-primary/10 blur-3xl animate-blob" />
-        <div className="absolute top-1/4 -right-10 h-64 w-64 rounded-full bg-sinfo-tertiary/10 blur-3xl animate-blob [animation-delay:800ms]" />
-        <div className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-sinfo-quinary/10 blur-3xl animate-blob [animation-delay:1500ms]" />
-      </div>
-
-      <section className="mx-auto flex min-h-[60vh] max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center">
-        <h1 className="relative text-6xl font-extrabold leading-none tracking-tight sm:text-7xl">
-          <span className="text-sinfo-primary">Coming soon</span>
-        </h1>
-
-        <p className="max-w-xl text-balance text-base text-gray-600 sm:text-lg">
-          It looks like Hacky is working on something awesome!
-        </p>
-
-        {/* Static Hacky placed just above the CTA so it looks like he's holding the button */}
-        <div className="relative mx-auto mt-2 -mb-11 flex items-end justify-center">
-          <Link href="/" className="select-none">
-            <ImageWithFallback
-              src={workHacky}
-              alt="Work Hacky"
-              priority
-              className="origin-bottom w-44 sm:w-52"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </Link>
-        </div>
-
-        <div className="mt-1 flex items-center justify-center gap-3">
-          <CallToAction href="/" variant="primary">
-            Go back home
-          </CallToAction>
+    <main className="min-h-screen bg-gray-100">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-sinfo-primary via-sinfo-primary to-sinfo-secondary py-16 sm:py-20 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+              Schedule
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+              Check out the complete schedule for all SINFO sessions, workshops,
+              and presentations.
+            </p>
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* Schedule Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {Object.entries(sessionsByDay).map(([day, daySessions]) => (
+            <div key={day} className="mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-sinfo-primary sticky top-0 bg-gray-100 py-2 z-10">
+                {day}
+              </h2>
+
+              <div className="space-y-4">
+                {daySessions
+                  .sort(
+                    (a, b) =>
+                      new Date(a.date).getTime() - new Date(b.date).getTime(),
+                  )
+                  .map((session) => {
+                    const startTime = new Date(session.date);
+                    const endTime = getEndTime(session);
+
+                    return (
+                      <div
+                        key={session.id}
+                        className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                      >
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                          <div className="flex-1">
+                            <h3 className="text-xl font-semibold text-gray-900">
+                              {session.name}
+                            </h3>
+                            <span className="inline-block mt-1 px-2 py-1 text-xs font-medium bg-sinfo-primary/10 text-sinfo-primary rounded">
+                              {session.kind}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                            {startTime.toLocaleTimeString("en-US", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}{" "}
+                            -{" "}
+                            {endTime.toLocaleTimeString("en-US", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}
+                          </span>
+                        </div>
+
+                        <p className="text-gray-700 mb-4">
+                          {session.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-4 items-center text-sm text-gray-600">
+                          {session.speakers && session.speakers.length > 0 && (
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium">Speaker(s):</span>
+                              <span>
+                                {session.speakers.map((s) => s.name).join(", ")}
+                              </span>
+                            </div>
+                          )}
+                          {session.place && (
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium">Location:</span>
+                              <span>{session.place}</span>
+                            </div>
+                          )}
+                          {session.company && (
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium">Company:</span>
+                              <span>{session.company.name}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {session.tickets?.needed && (
+                          <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded text-sm text-amber-800">
+                            Tickets required for this session
+                            {session.tickets.max &&
+                              ` (Max: ${session.tickets.max})`}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
