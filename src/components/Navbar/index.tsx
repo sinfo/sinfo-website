@@ -94,7 +94,7 @@ export default function Toolbar() {
 
             {/* Right section - CTA Button and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <Link
+              {/*<Link
                 href="https://app.sinfo.org/"
                 className="hidden sm:block"
                 target="_blank"
@@ -108,7 +108,7 @@ export default function Toolbar() {
                 >
                   Go to App
                 </button>
-              </Link>
+              </Link>*/}
 
               {/* Mobile menu button */}
               <button
@@ -139,7 +139,7 @@ export default function Toolbar() {
                     {link.label}
                   </Link>
                 ))}
-                <Link
+                {/*<Link
                   href="https://app.sinfo.org/"
                   onClick={() => setIsExpanded(false)}
                   className="block sm:hidden"
@@ -148,7 +148,7 @@ export default function Toolbar() {
                   <button className="w-full mt-2 px-4 py-2.5 sm:py-3 bg-white text-sinfo-primary rounded-lg font-semibold text-sm hover:bg-sinfo-light transition-colors">
                     Go to App
                   </button>
-                </Link>
+                </Link>*/}
               </div>
             </div>
           )}
