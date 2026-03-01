@@ -48,7 +48,13 @@ export default async function CompaniesPage() {
           {companies.length === 0 ? (
             <BlankPageMessage message="No companies to display at the moment." />
           ) : (
-            <CompaniesTabs sponsors={sponsors} partners={partners} />
+            <CompaniesTabs
+              sponsors={
+                // sponsors
+                [] // TODO: Uncomment when sponsors data can be public
+              }
+              partners={partners}
+            />
           )}
         </div>
       </section>
