@@ -49,10 +49,7 @@ export default function MemberCard({
   sinfo_email,
 }: MemberCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-      {/* Team Color Header */}
-      <div className={`h-2 w-full ${getTeamColor(team)}`} />
-
+    <div className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
       {/* Image Container */}
       <div className="relative w-full aspect-square overflow-hidden bg-gray-100">
         {img && (
@@ -145,6 +142,11 @@ export default function MemberCard({
           )}
         </div>
       </div>
+
+      {/* Team Color Footer */}
+      <div
+        className={`h-2 w-full ${getTeamColor(team)} mt-auto rounded-b-xl`}
+      />
     </div>
   );
 }
