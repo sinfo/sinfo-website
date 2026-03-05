@@ -66,6 +66,9 @@ export default function MemberCard({
         <div className="absolute inset-0 bg-gradient-to-t from-sinfo-primary/80 via-sinfo-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
+      {/* Team Color (under photo) */}
+      <div className={`h-2 w-full ${getTeamColor(team)}`} />
+
       {/* Content Container */}
       <div className="p-3 sm:p-4">
         {/* Name */}
@@ -142,11 +145,6 @@ export default function MemberCard({
           )}
         </div>
       </div>
-
-      {/* Team Color Footer */}
-      <div
-        className={`h-2 w-full ${getTeamColor(team)} mt-auto rounded-b-xl`}
-      />
     </div>
   );
 }
