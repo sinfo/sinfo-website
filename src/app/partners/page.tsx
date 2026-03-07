@@ -29,7 +29,9 @@ export default async function PartnersPage() {
               Partners
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the amazing partners supporting SINFO.
+              Meet the fantastic partners and organisations that collaborate
+              with SINFO. Their support through partnerships helps us deliver an
+              unforgettable experience year after year.
             </p>
           </div>
         </div>

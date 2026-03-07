@@ -11,9 +11,10 @@ export default async function SponsorsPage() {
   const event = await EventService.getLatest();
   const edition = event ? event.id : 33;
 
-  const companies = event
-    ? await CompanyService.getCompanies(edition.toString())
-    : [];
+  //   const companies = event
+  //     ? await CompanyService.getCompanies(edition.toString())
+  //     : [];
+  const companies: any[] = []; // Placeholder for companies data
 
   if (!event || !companies) {
     return <BlankPageMessage message="Could not fetch companies data." />;
@@ -37,7 +38,9 @@ export default async function SponsorsPage() {
               Sponsors
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the amazing companies and organizations that sponsor SINFO.
+              Meet the amazing sponsors that make SINFO shine. Their commitment
+              help us deliver an unforgettable, free tech conference to over
+              5,000 attendees every year.
             </p>
           </div>
         </div>
@@ -46,7 +49,7 @@ export default async function SponsorsPage() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6 space-y-10">
           {sponsors.length === 0 ? (
-            <BlankPageMessage message="No sponsors to display at the moment." />
+            <BlankPageMessage message="We currently have no sponsors to showcase. Please check back later to see the amazing companies supporting SINFO!" />
           ) : (
             <>
               {maxSponsors.length > 0 && (
