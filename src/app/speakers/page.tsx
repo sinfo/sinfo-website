@@ -3,7 +3,7 @@ import BlankPageMessage from "@/components/BlankPageMessage";
 import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
 import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";
-import config from "../../../tailwind.config";
+import { buildSpeakerColorMap } from "@/utils/speakerColors";
 
 export const dynamic = "force-dynamic";
 
@@ -15,32 +15,7 @@ export default async function CurrentSpeakersPage() {
     return <BlankPageMessage message="No current speakers found." />;
   }
 
-  // Build simple color map based on theme colors (reuse logic from highlight)
-  const themeColors = (config.theme?.extend?.colors?.sinfo as any) || {};
-  const dayColors = [
-    themeColors.secondary,
-    themeColors.tertiary,
-    themeColors.quinary,
-    themeColors.septenary,
-    themeColors.senary,
-  ];
-
-  const speakerColors: Record<string, string> = {};
-  speakers.forEach((s, i) => {
-    let color = dayColors[i % dayColors.length];
-    if (s.sessions && s.sessions.length > 0) {
-      const dateStr = s.sessions[0].date;
-      if (dateStr) {
-        const date = new Date(dateStr);
-        const dayIndex = date.getDay();
-        let index = dayIndex - 1;
-        if (index < 0) index = 0;
-        if (index >= dayColors.length) index = index % dayColors.length;
-        color = dayColors[index];
-      }
-    }
-    speakerColors[s.id] = color;
-  });
+  const speakerColors = await buildSpeakerColorMap(speakers as any);
 
   return (
     <main className="min-h-screen bg-white">

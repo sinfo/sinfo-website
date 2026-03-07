@@ -3,7 +3,7 @@ import Link from "next/link";
 import Carousel from "./CurrentSpeakersHighlight/Carousel";
 import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";
-import config from "../../../tailwind.config";
+import { buildSpeakerColorMap } from "@/utils/speakerColors";
 
 export const dynamic = "force-dynamic";
 
@@ -23,35 +23,7 @@ export default async function CurrentSpeakersHighlight({
       const speakersData = await SpeakerService.getSpeakers();
       if (speakersData) {
         speakers = speakersData;
-
-        // Process colors based on sessions
-        const themeColors =
-          (config.theme?.extend?.colors?.sinfo?.days as any) || {};
-        const dayColors = [
-          themeColors.mon,
-          themeColors.tue,
-          themeColors.wed,
-          themeColors.thu,
-          themeColors.fri,
-        ];
-
-        speakersData.forEach((s, i) => {
-          let color = dayColors[i % dayColors.length]; // Default color based on index
-          if (s.sessions && s.sessions.length > 0) {
-            const dateStr = s.sessions[0].date;
-            if (dateStr) {
-              const date = new Date(dateStr);
-              const dayIndex = date.getDay(); // 0-6 (Sun-Sat). Mon is 1.
-              // Map Mon(1) -> 0, Tue(2) -> 1, ...
-              let index = dayIndex - 1;
-              if (index < 0) index = 0; // Fallback for Sunday or items without proper date
-              if (index >= dayColors.length) index = index % dayColors.length;
-
-              color = dayColors[index];
-            }
-          }
-          speakerColors[s.id] = color;
-        });
+        speakerColors = await buildSpeakerColorMap(speakersData as any);
       }
     }
   } catch (error) {
