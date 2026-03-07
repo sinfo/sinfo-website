@@ -48,5 +48,6 @@
       "npx eslint --ext .ts,.tsx,.js,.jsx,.json --fix",
       "npx prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@4.2.2"
 }
