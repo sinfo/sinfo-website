@@ -2,9 +2,9 @@ import config from "../../tailwind.config";
 import { SessionService } from "@/services/SessionService";
 
 export async function buildSpeakerColorMap(
-  speakers: any[],
-): Promise<Record<string, string>> {
-  const map: Record<string, string> = {};
+  speakers: Speaker[],
+): Promise<{ [id: string]: string }> {
+  const map: { [id: string]: string } = {};
 
   const sinfoColors = (config.theme?.extend?.colors?.sinfo as any) || {};
   const days = (sinfoColors?.days as any) || null;
@@ -32,16 +32,18 @@ export async function buildSpeakerColorMap(
   const needSessions = speakers.some(
     (s) => !s?.sessions || s.sessions.length === 0,
   );
-  let sessionsBySpeaker: Record<string, any[]> = {};
+  let sessionsBySpeaker: { [id: string]: SINFOSession[] } = {};
 
   if (needSessions) {
     const allSessions = await SessionService.getSessions();
     if (allSessions && Array.isArray(allSessions)) {
       sessionsBySpeaker = allSessions.reduce(
-        (acc: Record<string, any[]>, sess: any) => {
+        (acc: { [id: string]: SINFOSession[] }, sess: SINFOSession) => {
           // Case A: session has a top-level speaker id field (legacy)
           const singleSpeakerId =
-            sess.speaker || sess.speakerId || sess.speaker_id;
+            (sess as any).speaker ||
+            (sess as any).speakerId ||
+            (sess as any).speaker_id;
           if (singleSpeakerId) {
             acc[singleSpeakerId] = acc[singleSpeakerId] || [];
             acc[singleSpeakerId].push(sess);
@@ -50,11 +52,14 @@ export async function buildSpeakerColorMap(
 
           // Case B: session has a `speakers` array with speaker objects [{ id, ... }, ...]
           if (Array.isArray(sess.speakers)) {
-            sess.speakers.forEach((sp: any) => {
+            sess.speakers.forEach((sp: Speaker | string) => {
               const spId =
                 typeof sp === "string"
                   ? sp
-                  : sp?.id || sp?.speaker || sp?.speakerId || sp?.speaker_id;
+                  : sp?.id ||
+                    (sp as any)?.speaker ||
+                    (sp as any)?.speakerId ||
+                    (sp as any)?.speaker_id;
               if (!spId) return;
               acc[spId] = acc[spId] || [];
               acc[spId].push(sess);
@@ -69,8 +74,8 @@ export async function buildSpeakerColorMap(
     }
   }
 
-  speakers.forEach((s: any, i: number) => {
-    const sessions =
+  speakers.forEach((s: Speaker, i: number) => {
+    const sessions: SINFOSession[] =
       s.sessions && s.sessions.length > 0
         ? s.sessions
         : sessionsBySpeaker[s.id] || [];
