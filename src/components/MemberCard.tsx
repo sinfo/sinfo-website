@@ -72,7 +72,9 @@ export default function MemberCard({
       {/* Content Container */}
       <div className="p-3 sm:p-4">
         {/* Name */}
-        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 text-center mb-2 group-hover:text-sinfo-primary transition-colors duration-300">
+        <h3
+          className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 text-center mb-2 group-hover:text-sinfo-primary transition-colors duration-300 break-words leading-snug"
+        >
           {name}
         </h3>
 
