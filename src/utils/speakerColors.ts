@@ -98,3 +98,24 @@ export async function buildSpeakerColorMap(
 
   return map;
 }
+
+export async function buildEditionColorMap(
+  speakers: Speaker[],
+  edition?: number,
+): Promise<{ [id: string]: string }> {
+  const map: { [id: string]: string } = {};
+
+  const sinfoColors = (config.theme?.extend?.colors?.sinfo as any) || {};
+  const editions = (sinfoColors?.editions as any) || {};
+  const editionKey = edition != null ? String(edition) : undefined;
+
+  const editionColor = editionKey ? editions[editionKey] : undefined;
+  const fallback = sinfoColors?.primary || "#1c2b70";
+  const color = editionColor || fallback;
+
+  speakers.forEach((s) => {
+    map[s.id] = color;
+  });
+
+  return map;
+}

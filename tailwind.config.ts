@@ -28,6 +28,9 @@ const config = {
             thu: "#48c6e4",
             fri: "#c465a2",
           },
+          editions: {
+            "32": "#323363",
+          },
         },
       },
     },

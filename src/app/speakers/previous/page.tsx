@@ -1,7 +1,8 @@
 import React from "react";
 import BlankPageMessage from "@/components/BlankPageMessage";
+import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
 import { SpeakerService } from "@/services/SpeakerService";
-import MovingGrid from "@/components/MovingGrid";
+import { buildEditionColorMap } from "@/utils/speakerColors";
 
 export const dynamic = "force-dynamic";
 
@@ -23,22 +24,8 @@ export default async function SpeakersPage() {
     );
   }
 
-  // Split speakers into 3 rows
-  const speakersPerRow = Math.ceil(speakers.length / 3);
-  const rows = Array.from({ length: 3 }, (_, rowIndex) => {
-    const startIndex = rowIndex * speakersPerRow;
-    const endIndex = Math.min(startIndex + speakersPerRow, speakers.length);
-    const rowSpeakers = speakers.slice(startIndex, endIndex);
-
-    const copies = 10; // enough
-    return Array.from({ length: copies }).flatMap((_, copyIdx) =>
-      rowSpeakers.map((speaker, index) => ({
-        ...speaker,
-        uniqueId: `${rowIndex}-${copyIdx}-${index}`,
-        imageIndex: (startIndex + index) % 5,
-      })),
-    );
-  });
+  // compute speaker color map: use edition color (edition 32) for previous speakers
+  const speakerColors = await buildEditionColorMap(speakers as any, 32);
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -59,10 +46,17 @@ export default async function SpeakersPage() {
       </section>
 
       {/* Speakers Grid */}
-      <section className="pb-12 sm:pb-16 md:pb-20 lg:pb-24">
-        <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            <MovingGrid rows={rows} />
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+            {speakers.map((speaker) => (
+              <div key={speaker.id}>
+                <SpeakerCard
+                  speaker={speaker}
+                  color={speakerColors[speaker.id]}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
