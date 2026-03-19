@@ -133,13 +133,8 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/terms" className="hover:underline">
-                      Terms of Use
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cookies" className="hover:underline">
-                      Cookies Policy
+                    <Link href="/conduct" className="hover:underline">
+                      Code of Conduct
                     </Link>
                   </li>
                 </ul>
