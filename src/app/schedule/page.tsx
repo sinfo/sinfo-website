@@ -1,6 +1,8 @@
 import { SessionService } from "@/services/SessionService";
 import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";
+import { ShowMore } from "@/components/ShowMore";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +43,7 @@ export default async function SchedulePage() {
   const sessionsByDay = groupSessionsByDay(sessions);
 
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-sinfo-primary via-sinfo-primary to-sinfo-secondary py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,11 +64,11 @@ export default async function SchedulePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {Object.entries(sessionsByDay).map(([day, daySessions]) => (
             <div key={day} className="mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-sinfo-primary sticky top-0 bg-gray-100 py-2 z-10">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 sticky top-0 bg-gray-50 py-2 z-10">
                 {day}
               </h2>
 
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {daySessions
                   .sort(
                     (a, b) =>
@@ -79,64 +81,122 @@ export default async function SchedulePage() {
                     return (
                       <div
                         key={session.id}
-                        className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200"
                       >
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
-                          <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-gray-900">
-                              {session.name}
-                            </h3>
-                            <span className="inline-block mt-1 px-2 py-1 text-xs font-medium bg-sinfo-primary/10 text-sinfo-primary rounded">
-                              {session.kind}
-                            </span>
-                          </div>
-                          <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
-                            {startTime.toLocaleTimeString("en-US", {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}{" "}
-                            -{" "}
-                            {endTime.toLocaleTimeString("en-US", {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
+                        {/* Badge */}
+                        <div className="px-4 pt-4">
+                          <span className="inline-block px-3 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">
+                            {session.kind}
                           </span>
                         </div>
 
-                        <p className="text-gray-700 mb-4">
-                          {session.description}
-                        </p>
+                        {/* Content */}
+                        <div className="p-4">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                            {session.name}
+                          </h3>
 
-                        <div className="flex flex-wrap gap-4 items-center text-sm text-gray-600">
-                          {session.speakers && session.speakers.length > 0 && (
-                            <div className="flex items-center gap-1">
-                              <span className="font-medium">Speaker(s):</span>
+                          <div className="text-sm text-gray-600 mb-3 space-y-1">
+                            <div className="flex items-start gap-2">
+                              <span className="font-medium">
+                                {new Date(session.date).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                              </span>
+                              <span>•</span>
                               <span>
-                                {session.speakers.map((s) => s.name).join(", ")}
+                                {startTime.toLocaleTimeString("en-US", {
+                                  hour: "numeric",
+                                  minute: "2-digit",
+                                  hour12: true,
+                                })}{" "}
+                                -{" "}
+                                {endTime.toLocaleTimeString("en-US", {
+                                  hour: "numeric",
+                                  minute: "2-digit",
+                                  hour12: true,
+                                })}
+                              </span>
+                            </div>
+                            {session.place && (
+                              <div className="text-gray-700 font-medium">
+                                {session.place}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Description with ShowMore */}
+                          <ShowMore
+                            lines={3}
+                            className="text-sm text-gray-700 mb-4"
+                          >
+                            {session.description}
+                          </ShowMore>
+
+                          {/* Speakers */}
+                          {session.speakers && session.speakers.length > 0 && (
+                            <div className="mt-4 pt-4 border-t border-gray-100">
+                              <div className="flex items-center gap-3 flex-wrap">
+                                {session.speakers.map((speaker) => (
+                                  <div
+                                    key={speaker.id}
+                                    className="flex flex-col items-center"
+                                  >
+                                    {speaker.img ? (
+                                      <div className="relative w-12 h-12 rounded-full overflow-hidden mb-1 bg-gray-200">
+                                        <ImageWithFallback
+                                          src={speaker.img}
+                                          alt={speaker.name}
+                                          fill
+                                          className="object-cover"
+                                        />
+                                      </div>
+                                    ) : (
+                                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sinfo-primary to-sinfo-secondary flex items-center justify-center text-white font-bold mb-1">
+                                        {speaker.name
+                                          .split(" ")
+                                          .map((n) => n[0])
+                                          .join("")
+                                          .substring(0, 2)
+                                          .toUpperCase()}
+                                      </div>
+                                    )}
+                                    <span className="text-xs text-gray-700 font-medium text-center max-w-[80px] truncate">
+                                      {speaker.name}
+                                    </span>
+                                    {speaker.title && (
+                                      <span className="text-xs text-gray-500 text-center max-w-[80px] truncate">
+                                        {speaker.title}
+                                      </span>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Company Badge */}
+                          {session.company && (
+                            <div className="mt-3">
+                              <span className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded">
+                                {session.company.name}
                               </span>
                             </div>
                           )}
-                          {session.place && (
-                            <div className="flex items-center gap-1">
-                              <span className="font-medium">Location:</span>
-                              <span>{session.place}</span>
-                            </div>
-                          )}
-                          {session.company && (
-                            <div className="flex items-center gap-1">
-                              <span className="font-medium">Company:</span>
-                              <span>{session.company.name}</span>
+
+                          {/* Tickets Warning */}
+                          {session.tickets?.needed && (
+                            <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
+                              Tickets required
+                              {session.tickets.max &&
+                                ` (Max: ${session.tickets.max})`}
                             </div>
                           )}
                         </div>
-
-                        {session.tickets?.needed && (
-                          <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded text-sm text-amber-800">
-                            Tickets required for this session
-                            {session.tickets.max &&
-                              ` (Max: ${session.tickets.max})`}
-                          </div>
-                        )}
                       </div>
                     );
                   })}
