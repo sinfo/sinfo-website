@@ -57,6 +57,11 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/venue" className="hover:underline">
+                      Venue
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/team" className="hover:underline">
                       Our Team
                     </Link>

@@ -37,6 +37,7 @@ export default function Toolbar() {
     { href: "/sponsors", label: "SPONSORS" },
     { href: "/partners", label: "PARTNERS" },
     { href: "/schedule", label: "SCHEDULE" },
+    { href: "/venue", label: "VENUE" },
     { href: "/team", label: "TEAM" },
   ];
 
