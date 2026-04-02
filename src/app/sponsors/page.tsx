@@ -11,10 +11,7 @@ export default async function SponsorsPage() {
   const event = await EventService.getLatest();
   const edition = event ? event.id : 33;
 
-  //   const companies = event
-  //     ? await CompanyService.getCompanies(edition.toString())
-  //     : [];
-  const companies: any[] = []; // Placeholder for companies data
+  const companies: any[] = [];
 
   if (!event || !companies) {
     return <BlankPageMessage message="Could not fetch companies data." />;
@@ -22,7 +19,6 @@ export default async function SponsorsPage() {
 
   const sponsors = companies.filter((c) => c.partner === false);
 
-  // Split sponsors by package
   const maxSponsors = sponsors.filter((c) => c.advertisementLvl === "max");
   const medSponsors = sponsors.filter((c) => c.advertisementLvl === "med");
   const minSponsors = sponsors.filter(
