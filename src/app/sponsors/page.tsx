@@ -11,10 +11,9 @@ export default async function SponsorsPage() {
   const event = await EventService.getLatest();
   const edition = event ? event.id : 33;
 
-  //   const companies = event
-  //     ? await CompanyService.getCompanies(edition.toString())
-  //     : [];
-  const companies: any[] = []; // Placeholder for companies data
+  const companies = event
+    ? await CompanyService.getCompanies(edition.toString())
+    : [];
 
   if (!event || !companies) {
     return <BlankPageMessage message="Could not fetch companies data." />;
