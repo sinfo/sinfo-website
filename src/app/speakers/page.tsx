@@ -1,5 +1,14 @@
 import React from "react";
+import { createMetadata } from "@/lib/seo";
 import BlankPageMessage from "@/components/BlankPageMessage";
+
+export const metadata = createMetadata({
+  title: "Speakers",
+  description:
+    "Meet the world-class speakers at SINFO — influential minds in technology and innovation shaping the future.",
+  path: "/speakers",
+  image: "/images/pages/current-speakers.jpg",
+});
 import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
 import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";

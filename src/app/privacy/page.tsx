@@ -1,3 +1,13 @@
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: "Privacy Policy",
+  description:
+    "Read SINFO's Privacy Policy to understand how we collect, use, and protect your personal information.",
+  path: "/privacy",
+  image: "/images/pages/privacy.jpg",
+});
+
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-gray-100">

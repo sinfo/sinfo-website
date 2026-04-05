@@ -1,4 +1,13 @@
+import { createMetadata } from "@/lib/seo";
 import { CompanyService } from "@/services/CompanyService";
+
+export const metadata = createMetadata({
+  title: "Sponsors",
+  description:
+    "Meet the amazing sponsors that make SINFO possible — companies committed to delivering a free world-class tech conference.",
+  path: "/sponsors",
+  image: "/images/pages/sponsors.jpg",
+});
 import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import GridList from "@/components/GridList";

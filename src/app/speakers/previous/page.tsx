@@ -1,5 +1,14 @@
 import React from "react";
+import { createMetadata } from "@/lib/seo";
 import BlankPageMessage from "@/components/BlankPageMessage";
+
+export const metadata = createMetadata({
+  title: "Past Speakers",
+  description:
+    "Explore the past speakers of SINFO — global voices that helped shape Portugal's biggest free tech conference.",
+  path: "/speakers/previous",
+  image: "/images/pages/past-speakers.jpg",
+});
 import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
 import { SpeakerService } from "@/services/SpeakerService";
 import { buildEditionColorMap } from "@/utils/speakerColors";

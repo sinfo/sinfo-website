@@ -1,4 +1,13 @@
+import { createMetadata } from "@/lib/seo";
 import Link from "next/link";
+
+export const metadata = createMetadata({
+  title: "Schedule",
+  description:
+    "Check out the SINFO event schedule — talks, workshops, panels, and more.",
+  path: "/schedule",
+  image: "/images/pages/schedule.jpg",
+});
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { workHacky } from "@/assets/images";
 import CallToAction from "@/components/CallToAction";
