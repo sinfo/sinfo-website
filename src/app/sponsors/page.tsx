@@ -7,6 +7,35 @@ import SponsorHeading from "@/components/Companies/SponsorHeading";
 
 export const dynamic = "force-dynamic";
 
+const mainSponsors: Company[] = [
+  {
+    id: "64d9184f72ad7c08e74ca398",
+    name: "Amazon Web Services",
+    site: "https://aws.amazon.com/",
+    advertisementLvl: "none",
+    partner: false,
+    img: "https://static.sinfo.org/deck2-dev/sinfo-31/companies/internal/64d9184f72ad7c08e74ca398",
+    standDetails: {
+      chairs: 0,
+      table: false,
+      lettering: false,
+    },
+  },
+  {
+    id: "69a7f33005e6826581f3e4ef",
+    name: "Darede",
+    site: "",
+    advertisementLvl: "none",
+    partner: false,
+    img: "https://static.sinfo.org/deck2/sinfo-33/companies/public/69a7f33005e6826581f3e4ef",
+    standDetails: {
+      chairs: 0,
+      table: false,
+      lettering: false,
+    },
+  },
+];
+
 export default async function SponsorsPage() {
   const event = await EventService.getLatest();
   const edition = event ? event.id : 33;
@@ -51,6 +80,20 @@ export default async function SponsorsPage() {
             <BlankPageMessage message="We currently have no sponsors to showcase. Please check back later to see the amazing companies supporting SINFO!" />
           ) : (
             <>
+              <section>
+                <SponsorHeading>Main Sponsors</SponsorHeading>
+                <GridList className="!grid-cols-1 lg:!grid-cols-2 gap-8 max-w-5xl mx-auto justify-items-center">
+                  {mainSponsors.map((company) => (
+                    <div
+                      key={company.id}
+                      className="w-full flex justify-center"
+                    >
+                      <CompanyCard company={company} size="main" />
+                    </div>
+                  ))}
+                </GridList>
+              </section>
+
               {maxSponsors.length > 0 && (
                 <section>
                   <SponsorHeading>Platinum Sponsors</SponsorHeading>
