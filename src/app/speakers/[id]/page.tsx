@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SpeakerService } from "@/services/SpeakerService";
 import { SessionService } from "@/services/SessionService";
@@ -6,6 +7,7 @@ import { generateTimeInterval } from "@/utils/utils";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { ShowMore } from "@/components/ShowMore";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { createMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +16,22 @@ type Props = {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const speaker = await SpeakerService.getSpeaker(params.id);
+  if (!speaker) return { title: "Speaker Not Found" };
+
+  const description = speaker.description
+    ? speaker.description.slice(0, 160)
+    : `${speaker.name} — speaker at SINFO, Portugal's biggest free tech conference.`;
+
+  return createMetadata({
+    title: speaker.name,
+    description,
+    path: `/speakers/${params.id}`,
+    image: speaker.img ?? "/images/pages/current-speakers.jpg",
+  });
+}
 
 export default async function Page({ params }: Props) {
   const { id } = params;

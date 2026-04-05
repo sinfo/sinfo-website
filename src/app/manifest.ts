@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "SINFO - Website",
+    name: "SINFO — Portugal's Biggest Free Tech Conference",
     short_name: "SINFO",
-    description: "SINFO Website",
+    description:
+      "SINFO is Portugal's biggest free technology conference, held annually at Instituto Superior Técnico in Lisbon.",
     start_url: "/",
     display: "standalone",
     background_color: "#1c2b70", // SINFO Primary

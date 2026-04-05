@@ -1,3 +1,13 @@
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: "Code of Conduct",
+  description:
+    "SINFO is dedicated to providing a harassment-free conference experience for everyone. Read our Code of Conduct.",
+  path: "/conduct",
+  image: "/images/pages/conduct.jpg",
+});
+
 export default function CodeConduct() {
   return (
     <main className="min-h-screen bg-gray-100">

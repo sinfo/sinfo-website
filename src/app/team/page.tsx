@@ -1,4 +1,13 @@
+import { createMetadata } from "@/lib/seo";
 import { MemberService } from "@/services/MemberService";
+
+export const metadata = createMetadata({
+  title: "Team",
+  description:
+    "Meet the passionate students behind SINFO — the team that organises Portugal's biggest free tech conference.",
+  path: "/team",
+  image: "/images/pages/team.jpg",
+});
 import { EventService } from "@/services/EventService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
