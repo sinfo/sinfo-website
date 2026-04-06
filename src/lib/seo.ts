@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 
-const siteUrl = "https://sinfo.org";
-const defaultImage = "/images/pages/home.png";
+const defaultImage = "/images/pages/home.jpg";
+
+function getSiteUrl(): string {
+  try {
+    const host = headers().get("host") ?? "sinfo.org";
+    const proto = host.startsWith("localhost") ? "http" : "https";
+    return `${proto}://${host}`;
+  } catch {
+    return "https://sinfo.org";
+  }
+}
 
 export function createMetadata({
   title,
@@ -14,7 +24,9 @@ export function createMetadata({
   path?: string;
   image?: string;
 }): Metadata {
+  const siteUrl = getSiteUrl();
   const url = `${siteUrl}${path}`;
+  const absoluteImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
   return {
     title,
@@ -23,13 +35,13 @@ export function createMetadata({
       title: `${title} | SINFO`,
       description,
       url,
-      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      images: [{ url: absoluteImage, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | SINFO`,
       description,
-      images: [image],
+      images: [absoluteImage],
     },
     alternates: { canonical: url },
   };
