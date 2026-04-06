@@ -25,11 +25,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? speaker.description.slice(0, 160)
     : `${speaker.name} — speaker at SINFO, Portugal's biggest free tech conference.`;
 
+  const seoImageUrl = `https://static.sinfo.org/website/33-sinfo/seo/speakers/${params.id}.jpg`;
+  const seoImageExists = await fetch(seoImageUrl, { method: "HEAD" })
+    .then((r) => r.ok)
+    .catch(() => false);
+  const image = seoImageExists ? seoImageUrl : "/images/pages/home.jpg";
+
   return createMetadata({
     title: speaker.name,
     description,
     path: `/speakers/${params.id}`,
-    image: speaker.img ?? "/images/pages/current-speakers.jpg",
+    image,
   });
 }
 

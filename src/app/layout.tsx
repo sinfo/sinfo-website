@@ -43,8 +43,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/pages/home.jpg",
-        width: 1200,
-        height: 630,
         alt: "SINFO — Portugal's Biggest Free Tech Conference",
       },
     ],
