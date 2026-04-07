@@ -42,8 +42,13 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/companies" className="hover:underline">
-                      Companies
+                    <Link href="/sponsors" className="hover:underline">
+                      Sponsors
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/partners" className="hover:underline">
+                      Partners
                     </Link>
                   </li>
                   <li>
@@ -104,6 +109,16 @@ export default function Footer() {
                       TikTok
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="https://github.com/sinfo/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:underline"
+                    >
+                      GitHub
+                    </a>
+                  </li>
                 </ul>
               </div>
 
@@ -118,13 +133,8 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/terms" className="hover:underline">
-                      Terms of Use
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cookies" className="hover:underline">
-                      Cookies Policy
+                    <Link href="/conduct" className="hover:underline">
+                      Code of Conduct
                     </Link>
                   </li>
                 </ul>

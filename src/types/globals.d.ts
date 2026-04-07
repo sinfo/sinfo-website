@@ -59,7 +59,7 @@ type SINFOSession = {
   kind: string;
   event: string;
   date: string;
-  duration: int; // minutes
+  duration: number; // minutes
   place: string;
   img?: string;
   company?: Company;
@@ -95,7 +95,7 @@ type Prize = {
 type SINFOMember = {
   name: string;
   img: string;
-  social: SINFOMemberSocials;
+  socials: SINFOMemberSocials;
   team: string;
   sinfo_email: string;
 };

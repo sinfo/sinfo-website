@@ -1,4 +1,13 @@
+import { createMetadata } from "@/lib/seo";
 import { MemberService } from "@/services/MemberService";
+
+export const metadata = createMetadata({
+  title: "Team",
+  description:
+    "Meet the passionate students behind SINFO — the team that organises Portugal's biggest free tech conference.",
+  path: "/team",
+  image: "/images/pages/team.jpg",
+});
 import { EventService } from "@/services/EventService";
 import MemberCard from "@/components/MemberCard";
 import BlankPageMessage from "@/components/BlankPageMessage";
@@ -55,12 +64,15 @@ export default async function TeamPage() {
           </div>
 
           {/* Members Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
             {sortedMembers.map((member) => (
               <MemberCard
                 key={member.name}
                 name={member.name}
                 img={member.img}
+                team={member.team}
+                socials={member.socials}
+                sinfo_email={member.sinfo_email}
               />
             ))}
           </div>

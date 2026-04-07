@@ -1,3 +1,13 @@
+import { createMetadata } from "@/lib/seo";
+import Link from "next/link";
+
+export const metadata = createMetadata({
+  title: "Schedule",
+  description:
+    "Check out the SINFO event schedule — talks, workshops, panels, and more.",
+  path: "/schedule",
+  image: "/images/pages/schedule.jpg",
+});
 import { SessionService } from "@/services/SessionService";
 import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";

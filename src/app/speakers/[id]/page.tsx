@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SpeakerService } from "@/services/SpeakerService";
 import { SessionService } from "@/services/SessionService";
@@ -6,6 +7,7 @@ import { generateTimeInterval } from "@/utils/utils";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { ShowMore } from "@/components/ShowMore";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { createMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +16,28 @@ type Props = {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const speaker = await SpeakerService.getSpeaker(params.id);
+  if (!speaker) return { title: "Speaker Not Found" };
+
+  const description = speaker.description
+    ? speaker.description.slice(0, 160)
+    : `${speaker.name} — speaker at SINFO, Portugal's biggest free tech conference.`;
+
+  const seoImageUrl = `https://static.sinfo.org/website/33-sinfo/seo/speakers/${params.id}.jpg`;
+  const seoImageExists = await fetch(seoImageUrl, { method: "HEAD" })
+    .then((r) => r.ok)
+    .catch(() => false);
+  const image = seoImageExists ? seoImageUrl : "/images/pages/home.jpg";
+
+  return createMetadata({
+    title: speaker.name,
+    description,
+    path: `/speakers/${params.id}`,
+    image,
+  });
+}
 
 export default async function Page({ params }: Props) {
   const { id } = params;
@@ -152,6 +176,19 @@ export default async function Page({ params }: Props) {
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
+              {speaker.company?.img && (
+                <div className="mt-8 text-center">
+                  <div className="relative aspect-square w-32 mx-auto rounded-lg overflow-hidden shadow-md bg-gray-100">
+                    <ImageWithFallback
+                      src={speaker.company.img}
+                      alt={`${speaker.company.name} logo`}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 50vw, 16vw"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
