@@ -74,7 +74,7 @@ export default async function SchedulePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {Object.entries(sessionsByDay).map(([day, daySessions]) => (
             <div key={day}>
-              <h2 className="sticky top-20 z-20 text-2xl sm:text-3xl font-bold mb-6 text-gray-900 bg-gray-50 py-2 shadow-sm">
+              <h2 className="sticky top-14 md:top-16 lg:top-20 z-20 text-2xl sm:text-3xl font-bold mb-6 text-gray-900 bg-gray-50 py-2 shadow-sm">
                 {day}
               </h2>
 
