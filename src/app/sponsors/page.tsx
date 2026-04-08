@@ -23,7 +23,7 @@ const mainSponsors: Company[] = [
     site: "https://aws.amazon.com/",
     advertisementLvl: "none",
     partner: false,
-    img: "https://static.sinfo.org/deck2-dev/sinfo-31/companies/internal/64d9184f72ad7c08e74ca398",
+    img: "https://static.sinfo.org/deck2/sinfo-33/companies/public/64d9184f72ad7c08e74ca398",
     standDetails: {
       chairs: 0,
       table: false,
