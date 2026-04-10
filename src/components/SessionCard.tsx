@@ -204,24 +204,6 @@ export default function SessionCard({
             </div>
           )}
 
-          {/* Company Badge */}
-          {session.company && (
-            <div className="mt-2">
-              <span className="inline-block px-2 py-0.5 text-xs bg-gray-100 text-gray-700 rounded">
-                {session.company.name}
-              </span>
-            </div>
-          )}
-
-          {/* Single speaker chip */}
-          {speakers.length === 1 && (
-            <div className="mt-2">
-              <span className="inline-block px-2 py-0.5 text-xs bg-gray-100 text-gray-700 rounded">
-                {speakers[0].name}
-              </span>
-            </div>
-          )}
-
           {/* Tickets Warning */}
           {session.tickets?.needed && (
             <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
@@ -239,23 +221,23 @@ export default function SessionCard({
                 </span>
                 <div className="text-xs text-gray-500 mt-1">
                   <div className="flex items-center gap-1.5">
-                  <Calendar
-                    size={10}
-                    className="text-sinfo-primary/70 flex-shrink-0"
-                  />
-                  <span className="font-bold text-sinfo-primary whitespace-nowrap">
-                    {new Date(qna.date).toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "2-digit",
-                      hour12: true,
-                    })}{" "}
-                    -{" "}
-                    {qnaEndTime.toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "2-digit",
-                      hour12: true,
-                    })}
-                  </span>
+                    <Calendar
+                      size={10}
+                      className="text-sinfo-primary/70 flex-shrink-0"
+                    />
+                    <span className="font-bold text-sinfo-primary whitespace-nowrap">
+                      {new Date(qna.date).toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}{" "}
+                      -{" "}
+                      {qnaEndTime.toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}
+                    </span>
                   </div>
                   {qna.place && (
                     <div className="mt-1 flex items-center gap-1.5 text-gray-600 min-w-0">
