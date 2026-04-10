@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { createMetadata } from "@/lib/seo";
 import { SessionService } from "@/services/SessionService";
 import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import SessionCard from "@/components/SessionCard";
+import ScheduleDaysNav from "@/components/ScheduleDaysNav";
 import {
   attachQnaSessions,
   getDayId,
@@ -31,6 +31,10 @@ export default async function SchedulePage() {
 
   const sessionsByDay = groupSessionsByDay(sessions);
   const dayEntries = Object.entries(sessionsByDay);
+  const dayItems = dayEntries.map(([day]) => ({
+    day,
+    id: getDayId(day),
+  }));
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -54,27 +58,7 @@ export default async function SchedulePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
             <aside className="hidden lg:block">
-              <div className="sticky top-20">
-                <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                  <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
-                    Days
-                  </p>
-                  <nav className="space-y-2">
-                    {dayEntries.map(([day]) => {
-                      const dayId = getDayId(day);
-                      return (
-                        <Link
-                          key={dayId}
-                          href={`#${dayId}`}
-                          className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
-                        >
-                          {day}
-                        </Link>
-                      );
-                    })}
-                  </nav>
-                </div>
-              </div>
+              <ScheduleDaysNav dayItems={dayItems} />
             </aside>
 
             <div className="space-y-12">
