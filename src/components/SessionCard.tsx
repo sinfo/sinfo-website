@@ -46,7 +46,7 @@ export default function SessionCard({
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-      <div className="p-4 flex gap-4 h-full">
+      <div className="p-3 sm:p-4 flex gap-3 sm:gap-4 h-full">
         {/* Left: Company logo for presentations, speaker avatar otherwise */}
         {(isPresentation && session.company?.img) || firstSpeaker ? (
           <div className="flex-shrink-0">
@@ -97,7 +97,7 @@ export default function SessionCard({
           </h3>
 
           <div className="text-xs text-gray-600 mb-2 space-y-1">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 flex-wrap">
               <Calendar
                 size={12}
                 className="text-sinfo-primary/80 flex-shrink-0"
@@ -124,9 +124,9 @@ export default function SessionCard({
               </span>
             </div>
             {session.place && (
-              <div className="flex items-center gap-1.5 text-gray-700 font-medium">
+              <div className="flex items-center gap-1.5 text-gray-700 font-medium min-w-0">
                 <MapPin size={12} className="text-gray-400 flex-shrink-0" />
-                {session.place}
+                <span className="break-words">{session.place}</span>
               </div>
             )}
           </div>
@@ -237,7 +237,8 @@ export default function SessionCard({
                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                   Q&A
                 </span>
-                <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-1">
+                <div className="text-xs text-gray-500 mt-1">
+                  <div className="flex items-center gap-1.5">
                   <Calendar
                     size={10}
                     className="text-sinfo-primary/70 flex-shrink-0"
@@ -255,15 +256,15 @@ export default function SessionCard({
                       hour12: true,
                     })}
                   </span>
+                  </div>
                   {qna.place && (
-                    <>
-                      <span>·</span>
+                    <div className="mt-1 flex items-center gap-1.5 text-gray-600 min-w-0">
                       <MapPin
                         size={10}
                         className="text-gray-400 flex-shrink-0"
                       />
-                      <span>{qna.place}</span>
-                    </>
+                      <span className="break-words">{qna.place}</span>
+                    </div>
                   )}
                 </div>
               </div>
