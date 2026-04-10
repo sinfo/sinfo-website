@@ -38,18 +38,19 @@ export default function SessionCard({
   const isWorkshop = session.kind?.toLowerCase().includes("workshop");
   const isPanel = session.kind?.toLowerCase().includes("panel");
   const isPresentation = session.kind?.toLowerCase().includes("presentation");
+  const isPresentationLike = isPresentation || isWorkshop;
 
   const speakers = session.speakers ?? [];
   const firstSpeaker =
-    isKeynote && speakers.length > 1 ? undefined : speakers[0];
+    (isKeynote || isPanel) && speakers.length > 1 ? undefined : speakers[0];
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
       <div className="p-3 sm:p-4 flex gap-3 sm:gap-4 h-full">
         {/* Left: Company logo for presentations, speaker avatar otherwise */}
-        {(isPresentation && session.company?.img) || firstSpeaker ? (
+        {(isPresentationLike && session.company?.img) || firstSpeaker ? (
           <div className="flex-shrink-0">
-            {isPresentation && session.company?.img ? (
+            {isPresentationLike && session.company?.img ? (
               <div className="w-14 h-14 rounded-lg overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
                 <ImageWithFallback
                   src={session.company.img}
@@ -128,7 +129,7 @@ export default function SessionCard({
           </ShowMore>
 
           {/* Additional speakers (non-keynote with multiple speakers) */}
-          {!isKeynote && speakers.length > 1 && (
+          {!isKeynote && !isPanel && speakers.length > 1 && (
             <div className="flex items-center gap-2 flex-wrap mt-2">
               {speakers.slice(1).map((speaker) => (
                 <div key={speaker.id} className="flex items-center gap-1">
@@ -158,7 +159,7 @@ export default function SessionCard({
           )}
 
           {/* All speakers at bottom for multi-speaker keynotes */}
-          {isKeynote && speakers.length > 1 && (
+          {(isKeynote || isPanel) && speakers.length > 1 && (
             <div className="mt-3 pt-3 border-t border-gray-100 grid grid-cols-2 gap-2">
               {speakers.map((speaker) => (
                 <div key={speaker.id} className="flex items-center gap-2">
