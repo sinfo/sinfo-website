@@ -208,7 +208,7 @@ export default function Toolbar() {
 
             {/* Right section - CTA Button and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
-              {/*<Link
+              <Link
                 href="https://app.sinfo.org/"
                 className="hidden sm:block"
                 target="_blank"
@@ -222,7 +222,7 @@ export default function Toolbar() {
                 >
                   Go to App
                 </button>
-              </Link>*/}
+              </Link>
 
               {/* Mobile menu button */}
               <button
