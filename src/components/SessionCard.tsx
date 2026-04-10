@@ -96,9 +96,12 @@ export default function SessionCard({
             {session.name}
           </h3>
 
-          <div className="text-xs text-gray-600 mb-2 space-y-0.5">
+          <div className="text-xs text-gray-600 mb-2 space-y-1">
             <div className="flex items-center gap-1.5">
-              <Calendar size={12} className="text-gray-400 flex-shrink-0" />
+              <Calendar
+                size={12}
+                className="text-sinfo-primary/80 flex-shrink-0"
+              />
               <span className="font-medium">
                 {new Date(session.date).toLocaleDateString("en-US", {
                   month: "short",
@@ -106,7 +109,7 @@ export default function SessionCard({
                 })}
               </span>
               <span>•</span>
-              <span>
+              <span className="font-bold text-sinfo-primary whitespace-nowrap">
                 {startTime.toLocaleTimeString("en-US", {
                   hour: "numeric",
                   minute: "2-digit",
@@ -234,9 +237,12 @@ export default function SessionCard({
                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                   Q&A
                 </span>
-                <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-0.5">
-                  <Calendar size={10} className="text-gray-400 flex-shrink-0" />
-                  <span>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-1">
+                  <Calendar
+                    size={10}
+                    className="text-sinfo-primary/70 flex-shrink-0"
+                  />
+                  <span className="font-bold text-sinfo-primary whitespace-nowrap">
                     {new Date(qna.date).toLocaleTimeString("en-US", {
                       hour: "numeric",
                       minute: "2-digit",
