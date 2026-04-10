@@ -102,13 +102,6 @@ export default function SessionCard({
                 size={12}
                 className="text-sinfo-primary/80 flex-shrink-0"
               />
-              <span className="font-medium">
-                {new Date(session.date).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })}
-              </span>
-              <span>•</span>
               <span className="font-bold text-sinfo-primary whitespace-nowrap">
                 {startTime.toLocaleTimeString("en-US", {
                   hour: "numeric",
