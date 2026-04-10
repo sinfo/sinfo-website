@@ -34,12 +34,11 @@ export default function SessionCard({
   const endTime = getEndTime(session);
   const qnaEndTime = qna ? getEndTime(qna) : null;
 
-  const isKeynote =
-    session.kind?.toLowerCase().includes("keynote") ||
-    session.kind?.toLowerCase().includes("connect stage");
-  const isPresentation = ["presentation", "workshop"].includes(
-    session.kind?.toLowerCase(),
-  );
+  const isKeynote = session.kind?.toLowerCase().includes("keynote");
+  const isWorkshop = session.kind?.toLowerCase().includes("workshop");
+  const isPanel = session.kind?.toLowerCase().includes("panel");
+  const isPresentation = session.kind?.toLowerCase().includes("presentation");
+
   const speakers = session.speakers ?? [];
   const firstSpeaker =
     isKeynote && speakers.length > 1 ? undefined : speakers[0];
