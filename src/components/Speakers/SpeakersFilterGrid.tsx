@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
-import { getDayColorForDate } from "@/utils/speakerColors";
+import { getDayColorForDate, SINFO_PRIMARY_COLOR } from "@/utils/speakerColors";
 
 type SpeakersFilterGridProps = {
   speakers: Speaker[];
   speakerColors: Record<string, string>;
+  speakerFilterSessionsById: Record<string, { date: string; kind: string }[]>;
 };
 
 const ALL_DAYS = "__ALL_DAYS__";
@@ -17,7 +18,7 @@ type DayOption = {
   timestamp: number;
 };
 
-function isFilterableSession(session: SINFOSession) {
+function isFilterableSession(session: { date: string; kind: string }) {
   return !session.kind?.toLowerCase().includes("q&a");
 }
 
@@ -44,6 +45,7 @@ function toDayInfo(dateValue: string): DayOption | null {
 export default function SpeakersFilterGrid({
   speakers,
   speakerColors,
+  speakerFilterSessionsById,
 }: SpeakersFilterGridProps) {
   const [selectedDay, setSelectedDay] = useState<string>(ALL_DAYS);
 
@@ -53,8 +55,9 @@ export default function SpeakersFilterGrid({
 
     speakers.forEach((speaker) => {
       const dayKeys = new Set<string>();
+      const speakerSessions = speakerFilterSessionsById[speaker.id] ?? [];
 
-      speaker.sessions?.forEach((session) => {
+      speakerSessions.forEach((session) => {
         if (!isFilterableSession(session)) return;
         const day = toDayInfo(session.date);
         if (!day) return;
@@ -75,7 +78,7 @@ export default function SpeakersFilterGrid({
       ),
       speakerDayKeys: speakerDays,
     };
-  }, [speakers]);
+  }, [speakers, speakerFilterSessionsById]);
 
   const selectedDayColor = useMemo(() => {
     if (selectedDay === ALL_DAYS) return null;
@@ -135,7 +138,7 @@ export default function SpeakersFilterGrid({
       {filteredSpeakers.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-sinfo-primary/30 bg-sinfo-light/40 p-8 text-center">
           <p className="text-sinfo-primary font-semibold mb-2">
-            No speakers found for the selected filters.
+            No speakers found for the selected day.
           </p>
           <button
             type="button"
@@ -154,7 +157,9 @@ export default function SpeakersFilterGrid({
               <SpeakerCard
                 speaker={speaker}
                 color={
-                  selectedDayColor ?? speakerColors[speaker.id] ?? "#2B50AA"
+                  selectedDayColor ??
+                  speakerColors[speaker.id] ??
+                  SINFO_PRIMARY_COLOR
                 }
               />
             </div>
