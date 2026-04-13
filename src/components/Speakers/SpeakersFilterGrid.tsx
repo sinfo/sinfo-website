@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
-import { getDayColorForDate, SINFO_PRIMARY_COLOR } from "@/utils/speakerColors";
+import { getDayColorForDate } from "@/utils/speakerColors";
 
 type SpeakersFilterGridProps = {
   speakers: Speaker[];
@@ -157,9 +157,7 @@ export default function SpeakersFilterGrid({
               <SpeakerCard
                 speaker={speaker}
                 color={
-                  selectedDayColor ??
-                  speakerColors[speaker.id] ??
-                  SINFO_PRIMARY_COLOR
+                  selectedDayColor ?? speakerColors[speaker.id] ?? "#1c2b70"
                 }
               />
             </div>
