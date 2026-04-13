@@ -235,9 +235,9 @@ export default function PrivacyPage() {
             of this site, or your dealings with this site, please contact us.
           </p>
 
-          <br />
-          <br />
-          <p>This document was last updated on March 19, 2026.</p>
+          <p className="!mt-10 pt-4 border-t border-gray-200 text-sm text-gray-500 italic">
+            This document was last updated on March 19, 2026.
+          </p>
         </div>
       </section>
     </main>

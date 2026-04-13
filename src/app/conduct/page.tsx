@@ -84,9 +84,9 @@ export default function CodeConduct() {
             your attendance. We expect participants to follow these rules at
             conference and workshop venues and conference-related social events.
           </p>
-          <br />
-          <br />
-          <p>This document was last updated on March 19, 2026.</p>
+          <p className="!mt-10 pt-4 border-t border-gray-200 text-sm text-gray-500 italic">
+            This document was last updated on March 19, 2026.
+          </p>
         </div>
       </section>
     </main>
