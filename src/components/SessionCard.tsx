@@ -96,6 +96,25 @@ export default function SessionCard({
             {session.name}
           </h3>
 
+          {session.company?.name && (
+            <div className="text-xs font-medium text-gray-900 mb-2">
+              {session.company.name}
+            </div>
+          )}
+
+          {firstSpeaker && (
+            <div className="mb-3">
+              <div className="text-xs font-medium text-gray-900">
+                {firstSpeaker.name}
+              </div>
+              {firstSpeaker.company?.name && (
+                <div className="text-xs font-medium text-gray-900 mt-1">
+                  {firstSpeaker.company.name}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="text-xs text-gray-600 mb-2 space-y-1">
             <div className="flex items-center gap-1.5 flex-wrap">
               <Calendar
@@ -186,9 +205,9 @@ export default function SessionCard({
                     <div className="text-xs font-medium text-gray-800 truncate">
                       {speaker.name}
                     </div>
-                    {speaker.title && (
+                    {(speaker.company?.name || speaker.title) && (
                       <div className="text-xs text-gray-500 truncate">
-                        {speaker.title}
+                        {speaker.company?.name || speaker.title}
                       </div>
                     )}
                   </div>
