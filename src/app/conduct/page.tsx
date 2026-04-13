@@ -10,7 +10,7 @@ export const metadata = createMetadata({
 
 export default function CodeConduct() {
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-100 pb-16">
       <section className="bg-gradient-to-br from-sinfo-primary via-sinfo-primary to-sinfo-secondary py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -21,9 +21,9 @@ export default function CodeConduct() {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <h3>Need help?</h3>
+      <section className="py-10 sm:py-12">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-10 bg-white rounded-2xl border border-gray-200 shadow-sm text-gray-700 leading-7 [&>br]:hidden [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-sinfo-primary [&>h2]:mt-10 [&>h2]:mb-3 [&>h2:first-of-type]:mt-0 [&>p]:text-base [&>p]:mt-3">
+          <h2>Need help?</h2>
           <p>
             You can reach us through our email{" "}
             <a
@@ -37,7 +37,7 @@ export default function CodeConduct() {
 
           <br />
 
-          <h3>The quick version</h3>
+          <h2>The quick version</h2>
           <p>
             SINFO is dedicated to providing a harassment-free conference
             experience for everyone, regardless of gender, age, sexual
@@ -52,7 +52,7 @@ export default function CodeConduct() {
 
           <br />
 
-          <h3>The less quick version</h3>
+          <h2>The less quick version</h2>
           <p>
             We do not tolerate harassment of event participants in any form and
             we expect all participants to conduct themselves in a professional
