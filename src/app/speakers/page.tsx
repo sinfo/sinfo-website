@@ -30,20 +30,50 @@ export default async function CurrentSpeakersPage() {
     (session) => String(session.event) === String(event?.id),
   );
 
+  const getSpeakerId = (sessionSpeaker: Speaker | string) => {
+    return typeof sessionSpeaker === "string"
+      ? sessionSpeaker
+      : sessionSpeaker?.id ||
+          (sessionSpeaker as any)?.speaker ||
+          (sessionSpeaker as any)?.speakerId ||
+          (sessionSpeaker as any)?.speaker_id;
+  };
+
   const sessionsBySpeakerId = new Map<string, SINFOSession[]>();
+  const speakerFilterSessionsById: Record<
+    string,
+    { date: string; kind: string }[]
+  > = {};
+
   eventSessions.forEach((session) => {
     session.speakers?.forEach((sessionSpeaker) => {
-      if (!sessionSpeaker?.id) return;
-      const existing = sessionsBySpeakerId.get(sessionSpeaker.id) ?? [];
+      const speakerId = getSpeakerId(sessionSpeaker);
+
+      if (!speakerId) return;
+
+      const existing = sessionsBySpeakerId.get(speakerId) ?? [];
       existing.push(session);
-      sessionsBySpeakerId.set(sessionSpeaker.id, existing);
+      sessionsBySpeakerId.set(speakerId, existing);
+
+      const filterSessions = speakerFilterSessionsById[speakerId] ?? [];
+      filterSessions.push({ date: session.date, kind: session.kind });
+      speakerFilterSessionsById[speakerId] = filterSessions;
     });
   });
 
-  const speakersWithSessions = speakers.map((speaker) => ({
-    ...speaker,
-    sessions: sessionsBySpeakerId.get(speaker.id) ?? speaker.sessions ?? [],
-  }));
+  const speakersWithSessions = speakers.map((speaker) => {
+    const speakerSessions = [
+      ...(sessionsBySpeakerId.get(speaker.id) ?? speaker.sessions ?? []),
+    ].sort(
+      (a, b) =>
+        new Date(String(a.date)).getTime() - new Date(String(b.date)).getTime(),
+    );
+
+    return {
+      ...speaker,
+      sessions: speakerSessions,
+    };
+  });
 
   const speakerColors = await buildSpeakerColorMap(speakersWithSessions);
 
@@ -67,8 +97,9 @@ export default async function CurrentSpeakersPage() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <SpeakersFilterGrid
-            speakers={speakersWithSessions}
+            speakers={speakers}
             speakerColors={speakerColors}
+            speakerFilterSessionsById={speakerFilterSessionsById}
           />
         </div>
       </section>

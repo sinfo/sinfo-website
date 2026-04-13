@@ -1,9 +1,11 @@
 import config from "../../tailwind.config";
 import { SessionService } from "@/services/SessionService";
 
+const sinfoThemeColors = (config.theme?.extend?.colors?.sinfo as any) || {};
+export const SINFO_PRIMARY_COLOR = sinfoThemeColors?.primary || "#1c2b70";
+
 function resolveDayColors(): string[] {
-  const sinfoColors = (config.theme?.extend?.colors?.sinfo as any) || {};
-  const days = (sinfoColors?.days as any) || null;
+  const days = (sinfoThemeColors?.days as any) || null;
 
   let dayColors: string[] = [];
   if (days) {
@@ -12,11 +14,11 @@ function resolveDayColors(): string[] {
     );
   } else {
     dayColors = [
-      sinfoColors.secondary,
-      sinfoColors.tertiary,
-      sinfoColors.quinary,
-      sinfoColors.septenary,
-      sinfoColors.senary,
+      sinfoThemeColors.secondary,
+      sinfoThemeColors.tertiary,
+      sinfoThemeColors.quinary,
+      sinfoThemeColors.septenary,
+      sinfoThemeColors.senary,
     ].filter(Boolean);
   }
 
@@ -27,8 +29,11 @@ function resolveDayColors(): string[] {
   return dayColors;
 }
 
-export function getDayColorForDate(date: Date): string {
-  const dayColors = resolveDayColors();
+export function getDayColorForDate(
+  date: Date,
+  precomputedDayColors?: string[],
+): string {
+  const dayColors = precomputedDayColors ?? resolveDayColors();
   const dayIndex = date.getDay();
   let index = dayIndex - 1;
 
@@ -101,7 +106,7 @@ export async function buildSpeakerColorMap(
     if (sessions.length > 0) {
       const dateStr = sessions[0].date;
       if (dateStr) {
-        color = getDayColorForDate(new Date(dateStr));
+        color = getDayColorForDate(new Date(dateStr), dayColors);
       }
     }
 
@@ -117,12 +122,11 @@ export async function buildEditionColorMap(
 ): Promise<{ [id: string]: string }> {
   const map: { [id: string]: string } = {};
 
-  const sinfoColors = (config.theme?.extend?.colors?.sinfo as any) || {};
-  const editions = (sinfoColors?.editions as any) || {};
+  const editions = (sinfoThemeColors?.editions as any) || {};
   const editionKey = edition != null ? String(edition) : undefined;
 
   const editionColor = editionKey ? editions[editionKey] : undefined;
-  const fallback = sinfoColors?.primary || "#1c2b70";
+  const fallback = SINFO_PRIMARY_COLOR;
   const color = editionColor || fallback;
 
   speakers.forEach((s) => {
