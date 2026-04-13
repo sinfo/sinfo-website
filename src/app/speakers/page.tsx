@@ -27,7 +27,7 @@ export default async function CurrentSpeakersPage() {
   }
 
   const eventSessions = (sessions ?? []).filter(
-    (session) => String(session.event) === String(event?.id),
+     (session) => String(session.event) === String(event?.id),
   );
 
   const getSpeakerId = (sessionSpeaker: Speaker | string) => {
