@@ -27,13 +27,14 @@ export default function Toolbar() {
 
   // Navigation links
   const navLinks: NavLink[] = [
-    {
-      label: "SPEAKERS",
-      children: [
-        { href: "/speakers", label: "Current Edition" },
-        { href: "/speakers/previous", label: "Previous Edition" },
-      ],
-    },
+    { href: "/speakers", label: "SPEAKERS" },
+    // {
+    //   label: "SPEAKERS",
+    //   children: [
+    //     { href: "/speakers", label: "Current Edition" },
+    //     { href: "/speakers/previous", label: "Previous Edition" },
+    //   ],
+    // },
     { href: "/sponsors", label: "SPONSORS" },
     { href: "/partners", label: "PARTNERS" },
     { href: "/schedule", label: "SCHEDULE" },
