@@ -22,9 +22,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="py-10 sm:py-12">
-        <div
-          className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-10 bg-white rounded-2xl border border-gray-200 shadow-sm text-gray-700 leading-7 [&>br]:hidden [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-sinfo-primary [&>h2]:mt-10 [&>h2]:mb-3 [&>h2:first-of-type]:mt-0 [&>p]:text-base [&>p]:mt-3 [&>ul]:mt-5 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-4 [&_li]:pl-1"
-        >
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-10 bg-white rounded-2xl border border-gray-200 shadow-sm text-gray-700 leading-7 [&>br]:hidden [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-sinfo-primary [&>h2]:mt-10 [&>h2]:mb-3 [&>h2:first-of-type]:mt-0 [&>p]:text-base [&>p]:mt-3 [&>ul]:mt-5 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-4 [&_li]:pl-1">
           <p className="mb-6">
             This Privacy Policy governs the manner in which SINFO collects,
             uses, maintains and discloses information collected from users
