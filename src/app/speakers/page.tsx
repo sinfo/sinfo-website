@@ -9,22 +9,43 @@ export const metadata = createMetadata({
   path: "/speakers",
   image: "/images/pages/current-speakers.jpg",
 });
-import SpeakerCard from "@/components/Home/CurrentSpeakersHighlight/SpeakerCard";
 import { SpeakerService } from "@/services/SpeakerService";
 import { EventService } from "@/services/EventService";
+import { SessionService } from "@/services/SessionService";
 import { buildSpeakerColorMap } from "@/utils/speakerColors";
+import SpeakersFilterGrid from "@/components/Speakers/SpeakersFilterGrid";
 
 export const dynamic = "force-dynamic";
 
 export default async function CurrentSpeakersPage() {
   const event = await EventService.getLatest();
   const speakers = event ? await SpeakerService.getSpeakers() : [];
+  const sessions = event ? await SessionService.getSessions() : [];
 
   if (!speakers || speakers.length === 0) {
     return <BlankPageMessage message="No current speakers found." />;
   }
 
-  const speakerColors = await buildSpeakerColorMap(speakers as any);
+  const eventSessions = (sessions ?? []).filter(
+    (session) => String(session.event) === String(event?.id),
+  );
+
+  const sessionsBySpeakerId = new Map<string, SINFOSession[]>();
+  eventSessions.forEach((session) => {
+    session.speakers?.forEach((sessionSpeaker) => {
+      if (!sessionSpeaker?.id) return;
+      const existing = sessionsBySpeakerId.get(sessionSpeaker.id) ?? [];
+      existing.push(session);
+      sessionsBySpeakerId.set(sessionSpeaker.id, existing);
+    });
+  });
+
+  const speakersWithSessions = speakers.map((speaker) => ({
+    ...speaker,
+    sessions: sessionsBySpeakerId.get(speaker.id) ?? speaker.sessions ?? [],
+  }));
+
+  const speakerColors = await buildSpeakerColorMap(speakersWithSessions);
 
   return (
     <main className="min-h-screen bg-white">
@@ -45,16 +66,10 @@ export default async function CurrentSpeakersPage() {
 
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-            {speakers.map((speaker) => (
-              <div key={speaker.id}>
-                <SpeakerCard
-                  speaker={speaker}
-                  color={speakerColors[speaker.id]}
-                />
-              </div>
-            ))}
-          </div>
+          <SpeakersFilterGrid
+            speakers={speakersWithSessions}
+            speakerColors={speakerColors}
+          />
         </div>
       </section>
     </main>
