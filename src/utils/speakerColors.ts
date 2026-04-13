@@ -1,11 +1,7 @@
 import config from "../../tailwind.config";
 import { SessionService } from "@/services/SessionService";
 
-export async function buildSpeakerColorMap(
-  speakers: Speaker[],
-): Promise<{ [id: string]: string }> {
-  const map: { [id: string]: string } = {};
-
+function resolveDayColors(): string[] {
   const sinfoColors = (config.theme?.extend?.colors?.sinfo as any) || {};
   const days = (sinfoColors?.days as any) || null;
 
@@ -27,6 +23,27 @@ export async function buildSpeakerColorMap(
   if (dayColors.length === 0) {
     dayColors = ["#bf2c21", "#f1853a", "#fcbd14", "#48c6e4", "#c465a2"];
   }
+
+  return dayColors;
+}
+
+export function getDayColorForDate(date: Date): string {
+  const dayColors = resolveDayColors();
+  const dayIndex = date.getDay();
+  let index = dayIndex - 1;
+
+  if (index < 0) index = 0;
+  if (index >= dayColors.length) index = index % dayColors.length;
+
+  return dayColors[index];
+}
+
+export async function buildSpeakerColorMap(
+  speakers: Speaker[],
+): Promise<{ [id: string]: string }> {
+  const map: { [id: string]: string } = {};
+
+  const dayColors = resolveDayColors();
 
   // If speakers don't carry sessions
   const needSessions = speakers.some(
@@ -84,12 +101,7 @@ export async function buildSpeakerColorMap(
     if (sessions.length > 0) {
       const dateStr = sessions[0].date;
       if (dateStr) {
-        const date = new Date(dateStr);
-        const dayIndex = date.getDay(); // 0-6 (Sun-Sat)
-        let index = dayIndex - 1; // Map Mon(1)->0
-        if (index < 0) index = 0;
-        if (index >= dayColors.length) index = index % dayColors.length;
-        color = dayColors[index];
+        color = getDayColorForDate(new Date(dateStr));
       }
     }
 
