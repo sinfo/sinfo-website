@@ -10,7 +10,7 @@ export const metadata = createMetadata({
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-100 pb-16">
       <section className="bg-gradient-to-br from-sinfo-primary via-sinfo-primary to-sinfo-secondary py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -21,9 +21,11 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <p>
+      <section className="py-10 sm:py-12">
+        <div
+          className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-10 bg-white rounded-2xl border border-gray-200 shadow-sm text-gray-700 leading-7 [&>br]:hidden [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-sinfo-primary [&>h2]:mt-10 [&>h2]:mb-3 [&>h2:first-of-type]:mt-0 [&>p]:text-base [&>p]:mt-3 [&>ul]:mt-5 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-4 [&_li]:pl-1"
+        >
+          <p className="mb-6">
             This Privacy Policy governs the manner in which SINFO collects,
             uses, maintains and discloses information collected from users
             (each, a &quot;User&quot;) of the http://sinfo.org website
@@ -31,7 +33,7 @@ export default function PrivacyPage() {
           </p>
           <br />
 
-          <h3>Personal identification information</h3>
+          <h2>Personal identification information</h2>
           <p>
             We may collect personal identification information from Users in a
             variety of ways, including, but not limited to, when Users visit our
@@ -48,7 +50,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Non-personal identification information</h3>
+          <h2>Non-personal identification information</h2>
           <p>
             We may collect non-personal identification information about Users
             whenever they interact with our Site. Non-personal identification
@@ -60,7 +62,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Web browser cookies</h3>
+          <h2>Web browser cookies</h2>
           <p>
             Our Site may use &quot;cookies&quot; to enhance User experience.
             User&apos;s web browser places cookies on their hard drive for
@@ -72,7 +74,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>How we use collected information</h3>
+          <h2>How we use collected information</h2>
           <p>
             SINFO may collect and use Users personal information for the
             following purposes:
@@ -86,32 +88,27 @@ export default function PrivacyPage() {
               We may need your information display content on the Site
               correctly.
             </li>
-            <br />
             <li>
               <b>To improve customer service</b>
               <br /> The information you provide helps us respond to your
               customer service requests and support needs more efficiently.
             </li>
-            <br />
             <li>
               <b>To personalize user experience</b>
               <br /> We may use information in the aggregate to understand how
               our Users as a group use the services and resources provided on
               our Site.
             </li>
-            <br />
             <li>
               <b>To improve our Site</b>
               <br /> We may use feedback you provide to improve our products and
               services.
             </li>
-            <br />
             <li>
               <b>To run a promotion, contest, survey or other</b>
               <br /> Site feature We send Users information they agreed to
               receive about topics we think will be of interest to them.
             </li>
-            <br />
             <li>
               <b>To send periodic emails</b>
               <br /> We may use the email address to send User information and
@@ -122,7 +119,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>How we protect your information</h3>
+          <h2>How we protect your information</h2>
           <p>
             We adopt appropriate data collection, storage and processing
             practices and security measures to protect against unauthorized
@@ -133,9 +130,9 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>
+          <h2>
             Sharing your non-personal information with third-party services
-          </h3>
+          </h2>
           <p>
             We may use third party service providers to help us operate our
             business and the Site or administer activities on our behalf, such
@@ -146,7 +143,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Sharing your personal information with sponsors</h3>
+          <h2>Sharing your personal information with sponsors</h2>
           <p>
             We may provide the event sponsors the personal information the User
             explicitly grant us to share with them — specifically, the
@@ -159,7 +156,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Electronic newsletters</h3>
+          <h2>Electronic newsletters</h2>
           <p>
             If User decides to opt-in to our mailing list, they will receive
             emails that may include company news, updates, related product or
@@ -177,7 +174,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Third party websites</h3>
+          <h2>Third party websites</h2>
           <p>
             Users may find advertising or other content on our Site that link to
             the sites and services of our partners, suppliers, advertisers,
@@ -194,7 +191,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Image and video coverage</h3>
+          <h2>Image and video coverage</h2>
           <p>
             We may capture image and video content throughout the event&apos;s
             sessions. We may share this material within our social networks, and
@@ -208,7 +205,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Changes to this privacy policy</h3>
+          <h2>Changes to this privacy policy</h2>
           <p>
             SINFO has the discretion to update this privacy policy at any time.
             When we do, we will post a notification on the main page of our
@@ -221,7 +218,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Your acceptance of these terms</h3>
+          <h2>Your acceptance of these terms</h2>
           <p>
             By using this Site and attending our event, you signify your
             acceptance of this policy. If you do not agree to this policy,
@@ -232,7 +229,7 @@ export default function PrivacyPage() {
 
           <br />
 
-          <h3>Contacting us</h3>
+          <h2>Contacting us</h2>
           <p>
             If you have any questions about this Privacy Policy, the practices
             of this site, or your dealings with this site, please contact us.
