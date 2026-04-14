@@ -6,11 +6,11 @@ import { TIC_LOCATION } from "@/constants";
 export default function Footer() {
   return (
     <footer className="bg-sinfo-primary text-white">
-      <div className="container mx-auto px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="container mx-auto px-6 laptop:px-8 py-12">
+        <div className="grid grid-cols-1 laptop:grid-cols-12 gap-8 items-start">
           {/* Logo (left) */}
-          <div className="hidden lg:flex flex-col items-start lg:col-span-3">
-            <div className="w-48 lg:w-64">
+          <div className="hidden laptop:flex flex-col items-start laptop:col-span-3">
+            <div className="w-48 laptop:w-64">
               <Link href="/" className="flex items-center justify-center">
                 <ImageWithFallback
                   src={sinfoLogo}
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* Columns group (right) */}
-          <div className="lg:col-span-9 flex justify-end">
+          <div className="laptop:col-span-9 flex justify-end">
             <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-4 gap-8">
               <div className="text-left">
                 <h4 className="text-xs font-bold uppercase tracking-wider mb-4">

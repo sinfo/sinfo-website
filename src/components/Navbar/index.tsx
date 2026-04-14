@@ -75,13 +75,13 @@ export default function Toolbar() {
               : "bg-sinfo-primary backdrop-blur-sm"
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
+        <div className="container mx-auto px-4 sm:px-6 laptop:px-8">
+          <nav className="flex items-center justify-between h-14 sm:h-16 laptop:h-20">
             {/* Left section - Logo */}
             <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
               <Link href="/" className="flex items-center">
                 <ImageWithFallback
-                  className="h-7 sm:h-8 w-auto lg:h-10"
+                  className="h-7 sm:h-8 w-auto laptop:h-10"
                   src={sinfoLogo}
                   alt="SINFO logo"
                   quality={100}
@@ -90,7 +90,7 @@ export default function Toolbar() {
                 />
               </Link>
               <div className="hidden md:block h-6 w-px bg-white/30" />
-              <div className="hidden md:block text-white/90 text-xs lg:text-sm font-medium tracking-wide">
+              <div className="hidden md:block text-white/90 text-xs laptop:text-sm font-medium tracking-wide">
                 <a href={TIC_LOCATION} target="_blank">
                   Técnico Innovation Center
                 </a>
@@ -103,7 +103,7 @@ export default function Toolbar() {
             </div>
 
             {/* Center section - Navigation links (Desktop only) */}
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <div className="hidden laptop:flex items-center space-x-6 xl:space-x-8">
               {navLinks.map((link) => {
                 // If link has children, render a dropdown
                 if ((link as any).children) {
@@ -228,7 +228,7 @@ export default function Toolbar() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+                className="laptop:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
                 aria-label="Toggle menu"
               >
                 {isExpanded ? <X size={22} /> : <Menu size={22} />}
@@ -238,7 +238,7 @@ export default function Toolbar() {
 
           {/* Mobile Navigation Menu */}
           {isExpanded && (
-            <div className="lg:hidden border-t border-white/10">
+            <div className="laptop:hidden border-t border-white/10">
               <div className="py-3 sm:py-4 space-y-1 sm:space-y-2">
                 {navLinks.map((link) => {
                   if ((link as any).children) {
@@ -304,7 +304,7 @@ export default function Toolbar() {
       </div>
 
       {/* Spacer to prevent content from going under fixed navbar */}
-      {!isHomePage && <div className="h-14 sm:h-16 lg:h-20" />}
+      {!isHomePage && <div className="h-14 sm:h-16 laptop:h-20" />}
     </>
   );
 }

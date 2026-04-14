@@ -8,6 +8,9 @@ const config = {
   ],
   theme: {
     extend: {
+      screens: {
+        laptop: "1080px",
+      },
       spacing: {
         navbar: "70px",
       },
