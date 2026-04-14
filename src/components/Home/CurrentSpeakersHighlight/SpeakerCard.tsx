@@ -24,14 +24,16 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col p-8">
         {/* Text Details */}
-        <div className="mb-6">
-          <h3 className="text-2xl font-bold leading-tight text-sinfo-primary transition-colors duration-300 group-hover:text-white">
+        <div className="mb-4 min-h-0 flex-1 overflow-hidden">
+          <h3 className="overflow-hidden text-2xl font-bold leading-tight text-sinfo-primary transition-colors duration-300 group-hover:text-white [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] md:[-webkit-line-clamp:2]">
             {speaker.name}
           </h3>
           <div className="mt-2 text-sm font-medium text-gray-500 transition-colors duration-300 group-hover:text-white/90">
-            <span className="block">{speaker.title}</span>
+            <span className="block overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+              {speaker.title}
+            </span>
             {speaker.company?.name && (
-              <span className="mt-1 block font-normal opacity-80">
+              <span className="mt-1 block text-sm font-normal opacity-80">
                 {speaker.company.name}
               </span>
             )}
@@ -39,8 +41,8 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
         </div>
 
         {/* Image - Pushed to bottom */}
-        <div className="mt-auto flex justify-center">
-          <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 group-hover:scale-105">
+        <div className="mt-2 flex flex-none justify-center">
+          <div className="relative h-44 w-44 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 group-hover:scale-105 md:h-48 md:w-48">
             <ImageWithFallback
               src={speaker.img}
               alt={speaker.name}
