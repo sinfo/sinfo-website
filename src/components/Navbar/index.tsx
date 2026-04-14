@@ -287,7 +287,7 @@ export default function Toolbar() {
                     </Link>
                   );
                 })}
-                {/*<Link
+                <Link
                   href="https://app.sinfo.org/"
                   onClick={() => setIsExpanded(false)}
                   className="block sm:hidden"
@@ -296,7 +296,7 @@ export default function Toolbar() {
                   <button className="w-full mt-2 px-4 py-2.5 sm:py-3 bg-white text-sinfo-primary rounded-lg font-semibold text-sm hover:bg-sinfo-light transition-colors">
                     Go to App
                   </button>
-                </Link>*/}
+                </Link>
               </div>
             </div>
           )}
