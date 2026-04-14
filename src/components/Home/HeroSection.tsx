@@ -12,7 +12,7 @@ export default function HeroSection() {
   const { event } = useEvent();
 
   const stats = [
-    { label: "ATTENDEES", value: "5,000+" },
+    { label: "ATTENDEES", value: "6,000+" },
     { label: "SPEAKERS", value: "30+" },
     { label: "COMPANIES", value: "100+" },
     { label: "YEARS OF COMMUNITY", value: event?.id.toString() || "32" },
