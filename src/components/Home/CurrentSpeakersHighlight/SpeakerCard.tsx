@@ -33,7 +33,7 @@ export default function SpeakerCard({ speaker, color }: SpeakerCardProps) {
               {speaker.title}
             </span>
             {speaker.company?.name && (
-              <span className="mt-1 block text-sm font-normal opacity-80">
+              <span className="mt-1 block text-sm font-bold opacity-80">
                 {speaker.company.name}
               </span>
             )}

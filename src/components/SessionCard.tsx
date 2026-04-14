@@ -108,7 +108,7 @@ export default function SessionCard({
                 {firstSpeaker.name}
               </div>
               {firstSpeaker.company?.name && (
-                <div className="text-xs font-medium text-gray-900 mt-1">
+                <div className="mt-1 text-xs font-bold text-gray-900">
                   {firstSpeaker.company.name}
                 </div>
               )}
@@ -205,11 +205,15 @@ export default function SessionCard({
                     <div className="text-xs font-medium text-gray-800 truncate">
                       {speaker.name}
                     </div>
-                    {(speaker.company?.name || speaker.title) && (
-                      <div className="text-xs text-gray-500 truncate">
-                        {speaker.company?.name || speaker.title}
+                    {speaker.company?.name ? (
+                      <div className="text-xs font-bold text-gray-600 truncate">
+                        {speaker.company.name}
                       </div>
-                    )}
+                    ) : speaker.title ? (
+                      <div className="text-xs text-gray-500 truncate">
+                        {speaker.title}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               ))}
