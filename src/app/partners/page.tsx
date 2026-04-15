@@ -41,7 +41,11 @@ const getPartnerCategory = (company: Company) => {
     return "Supported By";
   }
 
-  if (name.includes("dei") || name.includes("teamlyzer")) {
+  if (
+    name.includes("dei") ||
+    name.includes("teamlyzer") ||
+    name.includes("microsoft")
+  ) {
     return "Institutional Partners";
   }
 
