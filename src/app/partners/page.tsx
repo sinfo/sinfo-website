@@ -12,8 +12,41 @@ import { EventService } from "@/services/EventService";
 import BlankPageMessage from "@/components/BlankPageMessage";
 import GridList from "@/components/GridList";
 import CompanyCard from "@/components/CompanyCard";
+import SponsorHeading from "@/components/Companies/SponsorHeading";
 
 export const dynamic = "force-dynamic";
+
+type PartnerCategory = {
+  title: string;
+  items: Company[];
+};
+
+const normalizeName = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+const getPartnerCategory = (company: Company) => {
+  const name = normalizeName(company.name);
+
+  if (name.includes("publico") || name.includes("the next big idea")) {
+    return "Media Partners";
+  }
+
+  if (
+    name.includes("turismo de lisboa") ||
+    name.includes("turismo de portugal")
+  ) {
+    return "Supported By";
+  }
+
+  if (name.includes("dei") || name.includes("teamlyzer")) {
+    return "Institutional Partners";
+  }
+
+  return "Other Partners";
+};
 
 export default async function PartnersPage() {
   const event = await EventService.getLatest();
@@ -28,6 +61,32 @@ export default async function PartnersPage() {
   }
 
   const partners = companies.filter((c) => c.partner === true);
+  const partnerCategories: PartnerCategory[] = [
+    {
+      title: "Media Partners",
+      items: partners.filter(
+        (company) => getPartnerCategory(company) === "Media Partners",
+      ),
+    },
+    {
+      title: "Supported By",
+      items: partners.filter(
+        (company) => getPartnerCategory(company) === "Supported By",
+      ),
+    },
+    {
+      title: "Institutional Partners",
+      items: partners.filter(
+        (company) => getPartnerCategory(company) === "Institutional Partners",
+      ),
+    },
+    {
+      title: "Other Partners",
+      items: partners.filter(
+        (company) => getPartnerCategory(company) === "Other Partners",
+      ),
+    },
+  ].filter((category) => category.items.length > 0);
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -51,11 +110,18 @@ export default async function PartnersPage() {
           {partners.length === 0 ? (
             <BlankPageMessage message="No partners to display at the moment." />
           ) : (
-            <GridList>
-              {partners.map((company) => (
-                <CompanyCard key={company.id} company={company} />
+            <div className="space-y-12">
+              {partnerCategories.map((category) => (
+                <section key={category.title} className="space-y-4">
+                  <SponsorHeading>{category.title}</SponsorHeading>
+                  <GridList className="!grid-cols-[repeat(auto-fit,minmax(16rem,18rem))] justify-center">
+                    {category.items.map((company) => (
+                      <CompanyCard key={company.id} company={company} />
+                    ))}
+                  </GridList>
+                </section>
               ))}
-            </GridList>
+            </div>
           )}
         </div>
       </section>
