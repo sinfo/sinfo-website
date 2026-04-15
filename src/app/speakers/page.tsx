@@ -17,6 +17,49 @@ import SpeakersFilterGrid from "@/components/Speakers/SpeakersFilterGrid";
 
 export const dynamic = "force-dynamic";
 
+const SPEAKER_ORDER = {
+  keynote: 0,
+  workshop: 1,
+  panel: 2,
+  other: 3,
+} as const;
+
+const getSessionPriority = (session: SINFOSession): number => {
+  const kind = session.kind?.toLowerCase() ?? "";
+
+  if (kind.includes("keynote")) return SPEAKER_ORDER.keynote;
+  if (kind.includes("workshop")) return SPEAKER_ORDER.workshop;
+  if (kind.includes("panel")) return SPEAKER_ORDER.panel;
+
+  return SPEAKER_ORDER.other;
+};
+
+const getSpeakerPriority = (speaker: Speaker): number => {
+  const sessions = speaker.sessions ?? [];
+  if (sessions.length === 0) return SPEAKER_ORDER.other;
+
+  return sessions.reduce<number>(
+    (bestPriority, session) =>
+      Math.min(bestPriority, getSessionPriority(session)),
+    SPEAKER_ORDER.other,
+  );
+};
+
+const getSpeakerTimestampForPriority = (
+  speaker: Speaker,
+  priority: number,
+): number => {
+  const sessions = speaker.sessions ?? [];
+
+  const timestamps = sessions
+    .filter((session) => getSessionPriority(session) === priority)
+    .map((session) => new Date(String(session.date)).getTime())
+    .filter((value) => Number.isFinite(value));
+
+  if (timestamps.length === 0) return Number.POSITIVE_INFINITY;
+  return Math.min(...timestamps);
+};
+
 export default async function CurrentSpeakersPage() {
   const event = await EventService.getLatest();
   const speakers = event ? await SpeakerService.getSpeakers() : [];
@@ -75,7 +118,21 @@ export default async function CurrentSpeakersPage() {
     };
   });
 
-  const speakerColors = await buildSpeakerColorMap(speakersWithSessions);
+  const orderedSpeakers = [...speakersWithSessions].sort((a, b) => {
+    const priorityA = getSpeakerPriority(a);
+    const priorityB = getSpeakerPriority(b);
+
+    if (priorityA !== priorityB) return priorityA - priorityB;
+
+    const timeA = getSpeakerTimestampForPriority(a, priorityA);
+    const timeB = getSpeakerTimestampForPriority(b, priorityB);
+
+    if (timeA !== timeB) return timeA - timeB;
+
+    return a.name.localeCompare(b.name);
+  });
+
+  const speakerColors = await buildSpeakerColorMap(orderedSpeakers);
 
   return (
     <main className="min-h-screen bg-white">
@@ -97,7 +154,7 @@ export default async function CurrentSpeakersPage() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <SpeakersFilterGrid
-            speakers={speakers}
+            speakers={orderedSpeakers}
             speakerColors={speakerColors}
             speakerFilterSessionsById={speakerFilterSessionsById}
           />
