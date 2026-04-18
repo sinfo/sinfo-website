@@ -46,7 +46,8 @@ const getPartnerCategory = (company: Company) => {
     name.includes("teamlyzer") ||
     name.includes("microsoft") ||
     name.includes("lovable") ||
-    name.includes("center for responsible ai")
+    name.includes("center for responsible ai") ||
+    name.includes("security team @tecnico")
   ) {
     return "Institutional Partners";
   }
