@@ -108,10 +108,13 @@ export default async function CurrentSpeakersPage() {
   const speakersWithSessions = speakers.map((speaker) => {
     const speakerSessions = [
       ...(sessionsBySpeakerId.get(speaker.id) ?? speaker.sessions ?? []),
-    ].sort(
-      (a, b) =>
-        new Date(String(a.date)).getTime() - new Date(String(b.date)).getTime(),
-    ).filter(item => item.id === CECILIA_ID);   // filter Cecilia out of the speakers page
+    ]
+      .sort(
+        (a, b) =>
+          new Date(String(a.date)).getTime() -
+          new Date(String(b.date)).getTime(),
+      )
+      .filter((item) => item.id === CECILIA_ID); // filter Cecilia out of the speakers page
 
     return {
       ...speaker,
