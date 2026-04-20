@@ -114,7 +114,7 @@ export default async function CurrentSpeakersPage() {
           new Date(String(a.date)).getTime() -
           new Date(String(b.date)).getTime(),
       )
-      .filter((item) => item.id === CECILIA_ID); // filter Cecilia out of the speakers page
+      .filter((s) => s.id !== CECILIA_ID); // filter Cecilia out of the speakers page
 
     return {
       ...speaker,
