@@ -104,13 +104,14 @@ export default async function CurrentSpeakersPage() {
     });
   });
 
+  const CECILIA_ID = "69e5e2c4868a84c5e45715a1";
   const speakersWithSessions = speakers.map((speaker) => {
     const speakerSessions = [
       ...(sessionsBySpeakerId.get(speaker.id) ?? speaker.sessions ?? []),
     ].sort(
       (a, b) =>
         new Date(String(a.date)).getTime() - new Date(String(b.date)).getTime(),
-    );
+    ).filter(item => item.id === CECILIA_ID);
 
     return {
       ...speaker,
