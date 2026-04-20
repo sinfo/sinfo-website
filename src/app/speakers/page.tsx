@@ -111,7 +111,7 @@ export default async function CurrentSpeakersPage() {
     ].sort(
       (a, b) =>
         new Date(String(a.date)).getTime() - new Date(String(b.date)).getTime(),
-    ).filter(item => item.id === CECILIA_ID);
+    ).filter(item => item.id === CECILIA_ID);   // filter Cecilia out of the speakers page
 
     return {
       ...speaker,
