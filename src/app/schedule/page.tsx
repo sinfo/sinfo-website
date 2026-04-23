@@ -7,7 +7,6 @@ import ScheduleDaysNav from "@/components/ScheduleDaysNav";
 import {
   attachQnaSessions,
   getDayId,
-  groupByKind,
   groupSessionsByDay,
 } from "@/utils/scheduleHelpers";
 
@@ -74,28 +73,21 @@ export default async function SchedulePage() {
                       {day}
                     </h2>
 
-                    {groupByKind(
-                      attachQnaSessions(
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {attachQnaSessions(
                         daySessions.sort(
                           (a, b) =>
                             new Date(a.date).getTime() -
                             new Date(b.date).getTime(),
                         ),
-                      ),
-                    ).map((group, i) => (
-                      <div key={i}>
-                        {i > 0 && <hr className="my-8 border-gray-200" />}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {group.map(({ session, qna }) => (
-                            <SessionCard
-                              key={session.id}
-                              session={session}
-                              qna={qna}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+                      ).map(({ session, qna }) => (
+                        <SessionCard
+                          key={session.id}
+                          session={session}
+                          qna={qna}
+                        />
+                      ))}
+                    </div>
                   </div>
                 );
               })}
