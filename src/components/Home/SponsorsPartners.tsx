@@ -76,9 +76,8 @@ export default function SponsorsPartners({
           Sponsors & Partners
         </h2>
         <p className="text-sm sm:text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16 px-4">
-          Join leading tech companies in supporting Portugal&apos;s biggest free
-          tech conference. Connect with thousands of talented students and
-          professionals.
+          Companies and organizations that help keep Portugal&apos;s biggest
+          tech conference completely free for thousands of attendees.
         </p>
 
         {/* Become a Sponsor Section */}
@@ -90,10 +89,9 @@ export default function SponsorsPartners({
                 Become a Sponsor
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-5 sm:mb-6 leading-relaxed">
-                SINFO isn&apos;t just a tech event, it&apos;s a prime networking
-                hub! Whether you&apos;re seeking career opportunities, industry
-                insights, or simply want to make valuable connections, this is
-                the place to be.
+                Showcase your company, connect directly with university students
+                and tech professionals, and present your tech challenges.
+                Partner with SINFO for our upcoming edition.
               </p>
               <div className="inline-block bg-white/95 backdrop-blur-sm rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 shadow-lg">
                 <Link
@@ -136,9 +134,9 @@ export default function SponsorsPartners({
                 Become a Partner
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-5 sm:mb-6 leading-relaxed">
-                Gain visibility among 5,000+ attendees, showcase your brand, and
-                connect with top talent. Let&apos;s discuss how we can create a
-                partnership that works for you.
+                We partner with media outlets, university organizations, and
+                tech communities to share SINFO with a wider audience. Reach out
+                to collaborate with us.
               </p>
               <div className="inline-block bg-white/95 backdrop-blur-sm rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 shadow-lg">
                 <Link

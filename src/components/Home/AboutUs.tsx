@@ -30,33 +30,30 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
           {/* Text Content */}
           <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 md:order-1">
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              SINFO is a <b>student-led nonprofit</b> that organizes one of
-              Portugal&apos;s <b>largest free tech conferences</b>. Our mission
-              is to connect students, professionals, and industry leaders around
-              computer science and technology.
+              SINFO is a non-profit, <b>student-led organization</b> responsible
+              for Portugal&apos;s <b>largest free tech conference</b>. We bring
+              together students, developers, and technology leaders to share
+              knowledge and spark new ideas.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Each year, we host a <b>week-long event</b> at the{" "}
-              <b>Técnico Innovation Center</b> in Lisbon. Attendees can enjoy
-              international keynotes, hands-on workshops, company presentations,
-              a job fair, and panel discussions on the latest tech trends, all{" "}
-              <b>completely free</b>.
+              Every year, we host a <b>week-long event</b> at the{" "}
+              <b>Técnico Innovation Center</b> in Lisbon featuring keynote talks
+              from world-renowned speakers, practical workshops, panel
+              discussions, and a company exhibition space, all <b>100% free</b>.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Last year, we achieved <b>record-breaking attendance</b>, and we
-              are excited to build on that success during <b>{event?.name}</b>,
-              happening from the{" "}
+              We&apos;re excited to welcome you to <b>{event?.name}</b>, taking
+              place from{" "}
               <b>
-                {startDate} to the {endDate}
+                {startDate} to {endDate}
               </b>
               .
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Join us and be part of Portugal&apos;s{" "}
-              <b>vibrant tech community</b>!
+              Come join us and be part of Portugal&apos;s tech community!
             </p>
 
             <div className="pt-2 sm:pt-3 md:pt-4">

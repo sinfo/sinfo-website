@@ -65,10 +65,9 @@ export default function HeroSection() {
 
           {/* Description */}
           <p className="text-sm sm:text-base md:text-lg text-white/90 mb-8 sm:mb-10 md:mb-12 max-w-2xl leading-relaxed">
-            SINFO is Portugal&apos;s largest free technology event connecting
-            students, startups, and global innovators. Discover emerging trends,
-            master new skills, and unlock opportunities with the brightest minds
-            in the industry.
+            SINFO brings students, developers, and tech experts together for a
+            week of inspiring talks, hands-on workshops, and networking at
+            Técnico Innovation Center in Lisbon. Completely free.
           </p>
 
           {/* Action Buttons */}

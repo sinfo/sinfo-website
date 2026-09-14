@@ -27,41 +27,41 @@ export default function FAQ({ backgroundClass }: FAQProps) {
       {
         question: "Is SINFO really free?",
         answer:
-          "Yes! SINFO is — and always will be — completely free to attend. We believe in making technology and knowledge accessible to everyone.",
+          "Yes! SINFO is and always will be completely free to attend. We believe in making technology accessible to everyone.",
       },
       {
-        question: `Where is ${event?.name} taking place?`,
+        question: `Where does ${event?.name} take place?`,
         answer: (
           <>
-            Visit us at{" "}
+            Join us at{" "}
             <Link
               href={TIC_LOCATION}
               target="_blank"
               className="text-sinfo-primary font-semibold hover:underline"
             >
               Técnico Innovation Center
-            </Link>
-            , in Lisbon, from the {startDate} to the {endDate}!
+            </Link>{" "}
+            in Lisbon, from {startDate} to {endDate}!
           </>
         ),
       },
       {
-        question: "I'm not a student can I attend the event?",
+        question: "I'm not a student, can I still attend?",
         answer:
-          "Absolutely! While SINFO is organized by students, we welcome everyone interested in technology, regardless of their background or current occupation.",
+          "Absolutely! Although SINFO is organized by university students, anyone curious about technology is welcome to drop by.",
       },
       {
-        question: "We want to be sponsors, how can we proceed?",
+        question: "How can my company become a sponsor?",
         answer: (
           <>
-            We&apos;d love to have you as a sponsor! Please reach out to us at{" "}
+            We&apos;d love to partner with you! Feel free to reach out to us at{" "}
             <Link
-              href="mailto:geral@sinfo.org"
+              href="mailto:sponsor@sinfo.org"
               className="text-sinfo-primary font-semibold hover:underline"
             >
-              geral@sinfo.org
+              sponsor@sinfo.org
             </Link>{" "}
-            for additional information and assistance!
+            and our team will be happy to share all the details.
           </>
         ),
       },
@@ -69,31 +69,31 @@ export default function FAQ({ backgroundClass }: FAQProps) {
         question: "How can I join the SINFO team?",
         answer: (
           <>
-            We&apos;d love to have you on our team! If you&apos;re a student and
-            want to help organize one of the country&apos;s biggest tech
-            conferences, send us an e-mail to{" "}
+            If you&apos;re a university student and want to get involved in
+            organizing the conference, send an email to{" "}
             <Link
               href="mailto:rh@sinfo.org"
               className="text-sinfo-primary font-semibold hover:underline"
             >
               rh@sinfo.org
             </Link>{" "}
-            with your name, contact, degree & year, university, and motivation!
+            with your name, university, degree and year, and a short message on
+            why you&apos;d like to join.
           </>
         ),
       },
       {
-        question: "I need help. How can I contact the SINFO team?",
+        question: "How can I get in touch with the team?",
         answer: (
           <>
-            You can reach out to us by sending an e-mail to{" "}
+            You can reach us anytime at{" "}
             <Link
               href="mailto:geral@sinfo.org"
               className="text-sinfo-primary font-semibold hover:underline"
             >
               geral@sinfo.org
             </Link>{" "}
-            or contact us through any of our social networks!
+            or send us a message on social media!
           </>
         ),
       },

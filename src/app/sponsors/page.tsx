@@ -4,7 +4,7 @@ import { CompanyService } from "@/services/CompanyService";
 export const metadata = createMetadata({
   title: "Sponsors",
   description:
-    "Meet the amazing sponsors that make SINFO possible — companies committed to delivering a free world-class tech conference.",
+    "Meet the sponsors supporting SINFO, the companies that make our free tech conference possible.",
   path: "/sponsors",
   image: "/images/pages/sponsors.jpg",
 });
@@ -75,9 +75,8 @@ export default async function SponsorsPage() {
               Sponsors
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the amazing sponsors that make SINFO shine. Their commitment
-              help us deliver an unforgettable, free tech conference to over
-              5,000 attendees every year.
+              Meet the companies supporting SINFO. Their sponsorship makes it
+              possible to keep this event free for everyone.
             </p>
           </div>
         </div>

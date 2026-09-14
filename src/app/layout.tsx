@@ -14,11 +14,11 @@ const siteUrl = "https://sinfo.org";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SINFO — Portugal's Biggest Free Tech Conference",
+    default: "SINFO | Portugal's Biggest Free Tech Conference",
     template: "%s | SINFO",
   },
   description:
-    "SINFO is Portugal's biggest free technology conference, held annually at Instituto Superior Técnico in Lisbon. Join thousands of tech enthusiasts, industry leaders, and innovators.",
+    "SINFO is Portugal's biggest free technology conference, organized by students at Instituto Superior Técnico in Lisbon. Talks, workshops, and networking for everyone.",
   keywords: [
     "SINFO",
     "tech conference",
@@ -37,19 +37,19 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "SINFO",
-    title: "SINFO — Portugal's Biggest Free Tech Conference",
+    title: "SINFO | Portugal's Biggest Free Tech Conference",
     description:
-      "SINFO is Portugal's biggest free technology conference, held annually at Instituto Superior Técnico in Lisbon. Join thousands of tech enthusiasts, industry leaders, and innovators.",
+      "SINFO is Portugal's biggest free technology conference, organized by students at Instituto Superior Técnico in Lisbon. Talks, workshops, and networking for everyone.",
     images: [
       {
         url: "/images/pages/home.jpg",
-        alt: "SINFO — Portugal's Biggest Free Tech Conference",
+        alt: "SINFO | Portugal's Biggest Free Tech Conference",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SINFO — Portugal's Biggest Free Tech Conference",
+    title: "SINFO | Portugal's Biggest Free Tech Conference",
     description:
       "SINFO is Portugal's biggest free technology conference, held annually at Instituto Superior Técnico in Lisbon.",
     images: ["/images/pages/home.jpg"],

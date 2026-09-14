@@ -4,7 +4,7 @@ import { CompanyService } from "@/services/CompanyService";
 export const metadata = createMetadata({
   title: "Partners",
   description:
-    "Meet the organisations and partners that collaborate with SINFO to deliver an unforgettable tech conference experience.",
+    "Meet the organizations, media outlets, and institutions that partner with SINFO.",
   path: "/partners",
   image: "/images/pages/parners.jpg",
 });
@@ -104,9 +104,8 @@ export default async function PartnersPage() {
               Partners
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the fantastic partners and organisations that collaborate
-              with SINFO. Their support through partnerships helps us deliver an
-              unforgettable experience year after year.
+              Meet the organizations, media outlets, and institutions that
+              collaborate with us to bring SINFO to life.
             </p>
           </div>
         </div>

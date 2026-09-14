@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const description = speaker.description
     ? speaker.description.slice(0, 160)
-    : `${speaker.name} — speaker at SINFO, Portugal's biggest free tech conference.`;
+    : `${speaker.name}, speaker at SINFO, Portugal's biggest free tech conference.`;
 
   const seoImageUrl = `https://static.sinfo.org/website/33-sinfo/seo/speakers/${params.id}.jpg`;
   const seoImageExists = await fetch(seoImageUrl, { method: "HEAD" })
@@ -73,7 +73,7 @@ export default async function Page({ params }: Props) {
               Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the global voices that are shaping SINFO&apos;s excellence.
+              Discover the speakers joining us at SINFO.
             </p>
           </div>
         </div>

@@ -171,9 +171,8 @@ export default function SpeakersHighlight({
         </h2>
 
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-          From global tech leaders to industry innovators, they came to inspire
-          the next generation. Meet the minds that powered the last edition of
-          SINFO.
+          Highlights from previous SINFO keynotes and talks. Take a look at some
+          of the speakers who joined us in past editions.
         </p>
       </div>
 
