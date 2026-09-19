@@ -40,9 +40,8 @@ export default async function TeamPage() {
               Meet Our Team
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              SINFO is organized by university students, especially from
-              Instituto Superior Técnico. Meet the team putting together this
-              year&apos;s edition.
+              SINFO is organized by students, especially from Instituto Superior
+              Técnico. Meet the team putting together this year&apos;s edition.
             </p>
           </div>
         </div>

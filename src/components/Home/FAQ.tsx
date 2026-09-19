@@ -56,10 +56,10 @@ export default function FAQ({ backgroundClass }: FAQProps) {
           <>
             We&apos;d love to partner with you! Feel free to reach out to us at{" "}
             <Link
-              href="mailto:sponsor@sinfo.org"
+              href="mailto:geral@sinfo.org"
               className="text-sinfo-primary font-semibold hover:underline"
             >
-              sponsor@sinfo.org
+              geral@sinfo.org
             </Link>{" "}
             and our team will be happy to share all the details.
           </>
