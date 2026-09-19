@@ -45,8 +45,8 @@ export default async function SchedulePage() {
               Schedule
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Explore the talks, workshops, and panel discussions scheduled
-              throughout the event.
+              Explore the talks, workshops, presentations, and panel discussions
+              scheduled.
             </p>
           </div>
         </div>

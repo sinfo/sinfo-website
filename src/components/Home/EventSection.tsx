@@ -50,9 +50,9 @@ export default function EventSection({ backgroundClass }: EventSectionProps) {
         </h2>
 
         <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-6 sm:mb-7 md:mb-8 px-2">
-          Here is what you can look forward to at{" "}
-          <span className="font-semibold">{event?.name}</span>, Portugal&apos;s
-          biggest free tech conference:
+          Not sure why you should attend{" "}
+          <span className="font-semibold">{event?.name}</span>? We&apos;ll give
+          you six great reasons not to miss out:
         </p>
 
         {/* Grid */}

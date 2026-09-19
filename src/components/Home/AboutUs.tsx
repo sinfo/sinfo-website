@@ -30,17 +30,17 @@ export default function AboutUs({ backgroundClass }: AboutUsProps) {
           {/* Text Content */}
           <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 md:order-1">
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              SINFO is a non-profit, <b>student-led organization</b> responsible
-              for Portugal&apos;s <b>largest free tech conference</b>. We bring
-              together students, developers, and technology leaders to share
-              knowledge and spark new ideas.
+              SINFO is a <b>student-led nonprofit</b> that organizes
+              Portugal&apos;s <b>largest free tech conference</b>. Our mission
+              is to connect students, professionals, and industry leaders around
+              computer science and technology.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-              Every year, we host a <b>week-long event</b> at the{" "}
-              <b>Técnico Innovation Center</b> in Lisbon featuring keynote talks
-              from world-renowned speakers, practical workshops, panel
-              discussions, and a company exhibition space, all <b>100% free</b>.
+              Each year, we host a <b>week-long event</b> at the{" "}
+              <b>Técnico Innovation Center</b> in Lisbon. Attendees can enjoy
+              international speakers, practical workshops, a job fair, and panel
+              discussions on a range of topics, all <b>100% free</b>.
             </p>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">

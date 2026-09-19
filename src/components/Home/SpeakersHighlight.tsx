@@ -172,7 +172,7 @@ export default function SpeakersHighlight({
 
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-8">
           Highlights from previous SINFO keynotes and talks. Take a look at some
-          of the speakers who joined us in past editions.
+          of the speakers who have taken the SINFO stage in past editions.
         </p>
       </div>
 

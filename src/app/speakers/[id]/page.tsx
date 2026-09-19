@@ -73,7 +73,7 @@ export default async function Page({ params }: Props) {
               Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Discover the speakers joining us at SINFO.
+              Meet the speakers shaping SINFO.
             </p>
           </div>
         </div>

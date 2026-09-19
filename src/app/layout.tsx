@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | SINFO",
   },
   description:
-    "SINFO is Portugal's biggest free technology conference, organized by students at Instituto Superior Técnico in Lisbon. Talks, workshops, and networking for everyone.",
+    "SINFO is Portugal's biggest free technology conference, held annually at Técnico Innovation Center in Lisbon. Join thousands of tech enthusiasts, industry leaders, and innovators.",
   keywords: [
     "SINFO",
     "tech conference",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "SINFO",
     title: "SINFO | Portugal's Biggest Free Tech Conference",
     description:
-      "SINFO is Portugal's biggest free technology conference, organized by students at Instituto Superior Técnico in Lisbon. Talks, workshops, and networking for everyone.",
+      "SINFO is Portugal's biggest free technology conference, held annually at Técnico Innovation Center in Lisbon. Join thousands of tech enthusiasts, industry leaders, and innovators.",
     images: [
       {
         url: "/images/pages/home.jpg",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SINFO | Portugal's Biggest Free Tech Conference",
     description:
-      "SINFO is Portugal's biggest free technology conference, held annually at Instituto Superior Técnico in Lisbon.",
+      "SINFO is Portugal's biggest free technology conference, held annually at Técnico Innovation Center in Lisbon.",
     images: ["/images/pages/home.jpg"],
     creator: "@sinfosl",
   },

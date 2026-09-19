@@ -89,9 +89,9 @@ export default function SponsorsPartners({
                 Become a Sponsor
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-5 sm:mb-6 leading-relaxed">
-                Showcase your company, connect directly with university students
-                and tech professionals, and present your tech challenges.
-                Partner with SINFO for our upcoming edition.
+                SINFO isn&apos;t just a tech event, it&apos;s a prime networking
+                hub! Showcase your company, connect directly with students and
+                tech professionals, and present your tech challenges.
               </p>
               <div className="inline-block bg-white/95 backdrop-blur-sm rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 shadow-lg">
                 <Link
@@ -134,9 +134,9 @@ export default function SponsorsPartners({
                 Become a Partner
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-5 sm:mb-6 leading-relaxed">
-                We partner with media outlets, university organizations, and
-                tech communities to share SINFO with a wider audience. Reach out
-                to collaborate with us.
+                Gain visibility among 5,000+ attendees, showcase your brand, and
+                connect with top talent. Let&apos;s discuss how we can create a
+                partnership that works for you.
               </p>
               <div className="inline-block bg-white/95 backdrop-blur-sm rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 shadow-lg">
                 <Link

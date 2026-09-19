@@ -5,7 +5,7 @@ import BlankPageMessage from "@/components/BlankPageMessage";
 export const metadata = createMetadata({
   title: "Speakers",
   description:
-    "Discover the speakers joining us at SINFO to share their experience, projects, and tech insights.",
+    "Discover the speakers at SINFO sharing their experience, projects, and insights.",
   path: "/speakers",
   image: "/images/pages/current-speakers.jpg",
 });
@@ -147,8 +147,8 @@ export default async function CurrentSpeakersPage() {
               Meet our Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Discover the speakers joining us at SINFO to share their
-              experience, projects, and insights with our community.
+              Discover the speakers at SINFO sharing their experience, projects,
+              and insights.
             </p>
           </div>
         </div>

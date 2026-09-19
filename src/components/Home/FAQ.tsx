@@ -27,13 +27,13 @@ export default function FAQ({ backgroundClass }: FAQProps) {
       {
         question: "Is SINFO really free?",
         answer:
-          "Yes! SINFO is and always will be completely free to attend. We believe in making technology accessible to everyone.",
+          "Yes! SINFO is and always will be completely free to attend. We believe in making knowledge accessible to everyone.",
       },
       {
         question: `Where does ${event?.name} take place?`,
         answer: (
           <>
-            Join us at{" "}
+            Visit us at{" "}
             <Link
               href={TIC_LOCATION}
               target="_blank"
@@ -46,9 +46,9 @@ export default function FAQ({ backgroundClass }: FAQProps) {
         ),
       },
       {
-        question: "I'm not a student, can I still attend?",
+        question: "I'm not a student, can I still attend the event?",
         answer:
-          "Absolutely! Although SINFO is organized by university students, anyone curious about technology is welcome to drop by.",
+          "Absolutely! Although SINFO is organized by students, anyone curious about technology is welcome to drop by.",
       },
       {
         question: "How can my company become a sponsor?",
@@ -69,8 +69,8 @@ export default function FAQ({ backgroundClass }: FAQProps) {
         question: "How can I join the SINFO team?",
         answer: (
           <>
-            If you&apos;re a university student and want to get involved in
-            organizing the conference, send an email to{" "}
+            If you&apos;re a student and want to get involved in organizing the
+            conference, send an email to{" "}
             <Link
               href="mailto:rh@sinfo.org"
               className="text-sinfo-primary font-semibold hover:underline"

@@ -75,8 +75,9 @@ export default async function SponsorsPage() {
               Sponsors
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Meet the companies supporting SINFO. Their sponsorship makes it
-              possible to keep this event free for everyone.
+              Meet the amazing sponsors that make SINFO possible. Their
+              invaluable support and partnership are essential to keeping this
+              event free and accessible to everyone.
             </p>
           </div>
         </div>
