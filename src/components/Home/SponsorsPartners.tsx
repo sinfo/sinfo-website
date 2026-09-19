@@ -91,9 +91,8 @@ export default function SponsorsPartners({
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-5 sm:mb-6 leading-relaxed">
                 SINFO isn&apos;t just a tech event, it&apos;s a prime networking
-                hub! Whether you&apos;re seeking career opportunities, industry
-                insights, or simply want to make valuable connections, this is
-                the place to be.
+                hub! Showcase your company, connect directly with students and
+                tech professionals, and present your tech challenges.
               </p>
               <div className="inline-block bg-white/95 backdrop-blur-sm rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 shadow-lg">
                 <Link

@@ -52,11 +52,7 @@ export default function EventSection({ backgroundClass }: EventSectionProps) {
         <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-6 sm:mb-7 md:mb-8 px-2">
           Not sure why you should attend{" "}
           <span className="font-semibold">{event?.name}</span>? We&apos;ll give
-          you six great reasons to not miss out on the{" "}
-          <span className="font-bold">
-            biggest free tech conference in Portugal
-          </span>
-          :
+          you six great reasons not to miss out:
         </p>
 
         {/* Grid */}

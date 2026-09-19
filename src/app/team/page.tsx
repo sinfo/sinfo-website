@@ -4,7 +4,7 @@ import { MemberService } from "@/services/MemberService";
 export const metadata = createMetadata({
   title: "Team",
   description:
-    "Meet the passionate students behind SINFO — the team that organises Portugal's biggest free tech conference.",
+    "Meet the team of passionate students organizing Portugal's biggest free tech conference.",
   path: "/team",
   image: "/images/pages/team.jpg",
 });
@@ -40,9 +40,9 @@ export default async function TeamPage() {
               Meet Our Team
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              The passionate students behind SINFO, Portugal&apos;s biggest free
-              tech conference. We work together to bring innovation and
-              knowledge to the tech community.
+              SINFO is organized by university students, especially from
+              Instituto Superior Técnico. Meet the team putting together this
+              year&apos;s edition.
             </p>
           </div>
         </div>
