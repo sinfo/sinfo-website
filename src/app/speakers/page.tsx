@@ -5,7 +5,7 @@ import BlankPageMessage from "@/components/BlankPageMessage";
 export const metadata = createMetadata({
   title: "Speakers",
   description:
-    "Meet the world-class speakers at SINFO — influential minds in technology and innovation shaping the future.",
+    "Discover the speakers at SINFO sharing their experience, projects, and insights.",
   path: "/speakers",
   image: "/images/pages/current-speakers.jpg",
 });
@@ -147,9 +147,8 @@ export default async function CurrentSpeakersPage() {
               Meet our Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              This year, SINFO brings together some of the most influential
-              minds in technology and innovation. Meet the global voices that
-              are shaping SINFO&apos;s excellence.
+              Discover the speakers at SINFO sharing their experience, projects,
+              and insights.
             </p>
           </div>
         </div>

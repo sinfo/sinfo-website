@@ -5,7 +5,7 @@ import BlankPageMessage from "@/components/BlankPageMessage";
 export const metadata = createMetadata({
   title: "Past Speakers",
   description:
-    "Explore the past speakers of SINFO — global voices that helped shape Portugal's biggest free tech conference.",
+    "Explore past SINFO speakers who have taken our stage in previous editions.",
   path: "/speakers/previous",
   image: "/images/pages/past-speakers.jpg",
 });
@@ -46,9 +46,8 @@ export default async function SpeakersPage() {
               Meet our Past Speakers
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              Every year, SINFO brings together some of the most influential
-              minds in technology and innovation. Meet some of the global voices
-              that helped shape SINFO&apos;s excellence.
+              A look back at the keynotes, presenters, and leaders who have
+              taken the SINFO stage in past editions.
             </p>
           </div>
         </div>

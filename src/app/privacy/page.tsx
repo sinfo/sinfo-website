@@ -143,13 +143,11 @@ export default function PrivacyPage() {
 
           <h2>Sharing your personal information with sponsors</h2>
           <p>
-            We may provide the event sponsors the personal information the User
-            explicitly grant us to share with them — specifically, the
-            User&apos;s submitted curriculum and its contents; and name, e-mail,
-            and/or phone number, in case it has been explicitly authorized its
-            sharing with sponsors companies amid the event. The User can ask at
-            any time for a copy of the collected information, as well as its
-            removal from the database.
+            We may provide event sponsors with the personal information that
+            Users explicitly grant us permission to share: specifically, the
+            User&apos;s submitted CV/resume; and name, email, and/or phone
+            number, if authorized during the event. The User can request a copy
+            of their collected information or its removal at any time.
           </p>
 
           <br />
