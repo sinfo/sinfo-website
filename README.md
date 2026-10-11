@@ -8,6 +8,20 @@ New SINFO website, made with Next.js.
 - `yarn install` to install all dependencies
 - `yarn dev` to run server (runs on port 3000 by default)
 
+## Simulate no Current Speakers
+
+Current mock speakers are shown by default when MOCK_SHOW_CURRENT_SPEAKERS is unset:
+
+`yarn dev`
+
+To test an edition with no current speakers, run:
+
+`MOCK_SHOW_CURRENT_SPEAKERS=false yarn dev`
+
+To enable current speakers again, run:
+
+`MOCK_SHOW_CURRENT_SPEAKERS=true yarn dev`
+
 ## Project Folder Structure
 
 The following takes you through all the directories in the "src" directory and their intended usage:
