@@ -80,7 +80,7 @@ export const MOCK_SPEAKER: Speaker = {
       speakers: [MOCK_SPEAKERS[4]],
       date: "2025-02-18T08:00:00Z",
       duration: 120,
-      event: "31",
+      event: "34",
       tickets: {
         needed: true,
         start: "2024-04-08T07:50:00Z",
