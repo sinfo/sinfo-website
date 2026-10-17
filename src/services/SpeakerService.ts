@@ -24,7 +24,18 @@ export const SpeakerService = (() => {
       },
     );
     if (resp.ok) {
-      const { speakers }: { speakers: Speaker[] } = await resp.json();
+      const {
+        speakers,
+        previousEdition,
+      }: {
+        speakers: Speaker[];
+        previousEdition?: boolean;
+      } = await resp.json();
+
+      if (previousEdition === true && !params?.previousEdition) {
+        return [];
+      }
+
       return speakers;
     }
     return null;
