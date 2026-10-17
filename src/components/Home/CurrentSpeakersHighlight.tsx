@@ -47,8 +47,8 @@ export default async function CurrentSpeakersHighlight({
         </h2>
         <p className="mt-2 md:mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
           {hasSpeakers
-            ? "Discover the visionaries joining us for this edition."
-            : "Discover the visionaries who have shared their ideas at previous editions of SINFO."}
+            ? <>Discover the visionaries joining us for <span className="font-semibold">this edition</span>.</>
+            : <>Discover the visionaries who have shared their ideas at <span className="font-semibold">previous editions</span>.</>}
         </p>
       </div>
       <Carousel speakers={speakers} speakerColors={speakerColors} />
