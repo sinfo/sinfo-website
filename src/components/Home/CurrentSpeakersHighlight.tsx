@@ -46,9 +46,17 @@ export default async function CurrentSpeakersHighlight({
           {hasSpeakers ? "Meet the Speakers" : "Meet the Past Speakers"}
         </h2>
         <p className="mt-2 md:mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-          {hasSpeakers
-            ? <>Discover the visionaries joining us for <span className="font-semibold">this edition</span>.</>
-            : <>Discover the visionaries who have shared their ideas at <span className="font-semibold">previous editions</span>.</>}
+          {hasSpeakers ? (
+            <>
+              Discover the visionaries joining us for{" "}
+              <span className="font-semibold">this edition</span>.
+            </>
+          ) : (
+            <>
+              Discover the visionaries who have shared their ideas at{" "}
+              <span className="font-semibold">previous editions</span>.
+            </>
+          )}
         </p>
       </div>
       <Carousel speakers={speakers} speakerColors={speakerColors} />
@@ -60,12 +68,14 @@ export default async function CurrentSpeakersHighlight({
           Previous speakers
         </Link>
 
-        <Link
-          href="/speakers"
-          className={`px-6 py-3 rounded-md font-semibold transition ${hasSpeakers ? "bg-sinfo-primary text-white hover:opacity-95" : "border border-sinfo-primary text-sinfo-primary hover:bg-sinfo-primary/10"}"`}
-        >
-          Current speakers
-        </Link>
+        {hasSpeakers && (
+          <Link
+            href="/speakers"
+            className="px-6 py-3 rounded-md font-semibold transition bg-sinfo-primary text-white hover:opacity-95"
+          >
+            Current speakers
+          </Link>
+        )}
       </div>
     </section>
   );
