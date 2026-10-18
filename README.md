@@ -8,6 +8,8 @@ New SINFO website, made with Next.js.
 - `yarn install` to install all dependencies
 - `yarn dev` to run server (runs on port 3000 by default)
 
+Run `ENABLE_API_MOCKS=true yarn dev` to use mock API data, or `ENABLE_API_MOCKS=false yarn dev` to connect to cannon-api.
+
 ## Project Folder Structure
 
 The following takes you through all the directories in the "src" directory and their intended usage:
