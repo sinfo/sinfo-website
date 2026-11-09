@@ -4,34 +4,8 @@ import { SessionService } from "@/services/SessionService";
 export const SINFO_PRIMARY_COLOR = sinfoColors.primary;
 
 function resolveDayColors(): string[] {
-  const days = sinfoColors.days;
-
-  let dayColors: string[] = [];
-  if (days) {
-    dayColors = [days.mon, days.tue, days.wed, days.thu, days.fri].filter(
-      Boolean,
-    );
-  } else {
-    dayColors = [
-      sinfoColors.secondary,
-      sinfoColors.tertiary,
-      sinfoColors.quinary,
-      sinfoColors.septenary,
-      sinfoColors.senary,
-    ].filter(Boolean);
-  }
-
-  if (dayColors.length === 0) {
-    dayColors = [
-      sinfoColors.days.mon,
-      sinfoColors.days.tue,
-      sinfoColors.days.wed,
-      sinfoColors.days.thu,
-      sinfoColors.days.fri,
-    ];
-  }
-
-  return dayColors;
+  const { mon, tue, wed, thu, fri } = sinfoColors.days;
+  return [mon, tue, wed, thu, fri];
 }
 
 export function getDayColorForDate(
@@ -127,12 +101,9 @@ export async function buildEditionColorMap(
 ): Promise<{ [id: string]: string }> {
   const map: { [id: string]: string } = {};
 
-  const editions = (sinfoColors.editions as any) || {};
+  const editions = sinfoColors.editions as Record<string, string>;
   const editionKey = edition != null ? String(edition) : undefined;
-
-  const editionColor = editionKey ? editions[editionKey] : undefined;
-  const fallback = SINFO_PRIMARY_COLOR;
-  const color = editionColor || fallback;
+  const color = (editionKey && editions[editionKey]) || SINFO_PRIMARY_COLOR;
 
   speakers.forEach((s) => {
     map[s.id] = color;
