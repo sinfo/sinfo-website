@@ -51,3 +51,85 @@ export const sinfoColors = {
   },
 };
 
+export interface ColorGradient {
+  start: string;
+  middle?: string;
+  end: string;
+}
+
+export const BLOB_GRADIENTS: Record<string, ColorGradient> = {
+  // Crimson (Software Engineering / Monday)
+  [PALETTE.crimson.toLowerCase()]: {
+    start: "#c82a58",
+    middle: PALETTE.crimson,
+    end: "#73112e",
+  },
+  // Peach (Games / Tuesday)
+  [PALETTE.peach.toLowerCase()]: {
+    start: "#ffd199",
+    middle: PALETTE.peach,
+    end: "#d9782d",
+  },
+  // Teal (Cybersecurity / Wednesday)
+  [PALETTE.teal.toLowerCase()]: {
+    start: "#6ee0be",
+    middle: PALETTE.teal,
+    end: "#276b56",
+  },
+  // Blue (Multimedia / Thursday)
+  [PALETTE.blue.toLowerCase()]: {
+    start: "#4faee8",
+    middle: PALETTE.blue,
+    end: "#16537e",
+  },
+  // Purple (AI / Friday / Edition 32)
+  [PALETTE.purple.toLowerCase()]: {
+    start: "#835bb2",
+    middle: PALETTE.purple,
+    end: "#3d2358",
+  },
+  // Navy (Brand primary)
+  [PALETTE.navy.toLowerCase()]: {
+    start: "#122066",
+    middle: PALETTE.navy,
+    end: "#00001a",
+  },
+};
+
+function adjustHexBrightness(hex: string, percent: number): string {
+  const cleanHex = hex.replace("#", "");
+  if (cleanHex.length !== 6) return hex;
+  const num = parseInt(cleanHex, 16);
+  if (isNaN(num)) return hex;
+  const r = Math.min(
+    255,
+    Math.max(0, (num >> 16) + Math.round((percent / 100) * 255)),
+  );
+  const g = Math.min(
+    255,
+    Math.max(0, ((num >> 8) & 0x00ff) + Math.round((percent / 100) * 255)),
+  );
+  const b = Math.min(
+    255,
+    Math.max(0, (num & 0x0000ff) + Math.round((percent / 100) * 255)),
+  );
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
+export function getBlobGradient(color: string): ColorGradient {
+  if (!color) {
+    return {
+      start: PALETTE.navy,
+      end: PALETTE.navy,
+    };
+  }
+  const normalized = color.toLowerCase();
+  if (BLOB_GRADIENTS[normalized]) {
+    return BLOB_GRADIENTS[normalized];
+  }
+  return {
+    start: adjustHexBrightness(color, 12),
+    middle: color,
+    end: adjustHexBrightness(color, -20),
+  };
+}
