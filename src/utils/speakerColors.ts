@@ -1,11 +1,10 @@
-import config from "../../tailwind.config";
+import { sinfoColors } from "@/constants/colors";
 import { SessionService } from "@/services/SessionService";
 
-const sinfoThemeColors = (config.theme?.extend?.colors?.sinfo as any) || {};
-export const SINFO_PRIMARY_COLOR = sinfoThemeColors?.primary || "#1c2b70";
+export const SINFO_PRIMARY_COLOR = sinfoColors.primary;
 
 function resolveDayColors(): string[] {
-  const days = (sinfoThemeColors?.days as any) || null;
+  const days = sinfoColors.days;
 
   let dayColors: string[] = [];
   if (days) {
@@ -14,16 +13,22 @@ function resolveDayColors(): string[] {
     );
   } else {
     dayColors = [
-      sinfoThemeColors.secondary,
-      sinfoThemeColors.tertiary,
-      sinfoThemeColors.quinary,
-      sinfoThemeColors.septenary,
-      sinfoThemeColors.senary,
+      sinfoColors.secondary,
+      sinfoColors.tertiary,
+      sinfoColors.quinary,
+      sinfoColors.septenary,
+      sinfoColors.senary,
     ].filter(Boolean);
   }
 
   if (dayColors.length === 0) {
-    dayColors = ["#bf2c21", "#f1853a", "#fcbd14", "#48c6e4", "#c465a2"];
+    dayColors = [
+      sinfoColors.days.mon,
+      sinfoColors.days.tue,
+      sinfoColors.days.wed,
+      sinfoColors.days.thu,
+      sinfoColors.days.fri,
+    ];
   }
 
   return dayColors;
@@ -122,7 +127,7 @@ export async function buildEditionColorMap(
 ): Promise<{ [id: string]: string }> {
   const map: { [id: string]: string } = {};
 
-  const editions = (sinfoThemeColors?.editions as any) || {};
+  const editions = (sinfoColors.editions as any) || {};
   const editionKey = edition != null ? String(edition) : undefined;
 
   const editionColor = editionKey ? editions[editionKey] : undefined;

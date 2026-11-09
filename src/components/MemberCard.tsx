@@ -5,18 +5,18 @@ import Link from "next/link";
 interface MemberCardProps {
   name: string;
   img: string;
-  team: string;
-  socials: {
+  team?: string;
+  socials?: {
     linkedin?: string;
     github?: string;
     twitter?: string;
     facebook?: string;
   };
-  sinfo_email: string;
+  sinfo_email?: string;
 }
 
-const getTeamColor = (team: string) => {
-  const teamLower = team.toLowerCase();
+const getTeamColor = (team?: string) => {
+  const teamLower = team?.toLowerCase() ?? "";
 
   if (teamLower.includes("dev")) return "bg-sinfo-septenary";
   if (teamLower.includes("multimedia")) return "bg-sinfo-senary";
@@ -28,7 +28,8 @@ const getTeamColor = (team: string) => {
   return "bg-sinfo-primary";
 };
 
-const getTeamName = (team: string) => {
+const getTeamName = (team?: string) => {
+  if (!team) return "";
   const teamLower = team.toLowerCase();
 
   if (teamLower.includes("dev")) return "Dev Team";
@@ -77,9 +78,11 @@ export default function MemberCard({
         </h3>
 
         {/* Team */}
-        <p className="text-xs sm:text-sm text-gray-600 text-center mb-3">
-          {getTeamName(team)}
-        </p>
+        {getTeamName(team) && (
+          <p className="text-xs sm:text-sm text-gray-600 text-center mb-3">
+            {getTeamName(team)}
+          </p>
+        )}
 
         {/* Social Links & Email */}
         <div className="flex justify-center items-center gap-2">
@@ -93,7 +96,7 @@ export default function MemberCard({
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+              className="text-gray-600 hover:text-sinfo-septenary transition-colors duration-200"
               title="LinkedIn"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -125,7 +128,7 @@ export default function MemberCard({
           {sinfo_email && (
             <Link
               href={`mailto:${sinfo_email}`}
-              className="text-gray-600 hover:text-red-600 transition-colors duration-200"
+              className="text-gray-600 hover:text-sinfo-secondary transition-colors duration-200"
               title="Email"
             >
               <svg
