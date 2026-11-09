@@ -30,11 +30,16 @@ export const handlers = [
     return HttpResponse.json(MOCK_SPEAKER);
   }),
   // get all speakers for the edition
-  http.get(`${CANNON_URL}/speaker`, () => {
+  http.get(`${CANNON_URL}/speaker`, ({ request }) => {
+    const previousEdition =
+      new URL(request.url).searchParams.get("previousEdition") === "true";
+    const showCurrentSpeakers =
+      process.env.MOCK_SHOW_CURRENT_SPEAKERS !== "false";
+
     return HttpResponse.json({
       eventId: MOCK_EVENT,
-      speakers: MOCK_SPEAKERS,
-      previousEdition: false,
+      speakers: previousEdition || showCurrentSpeakers ? MOCK_SPEAKERS : [],
+      previousEdition,
     });
   }),
   // get all members for the edition

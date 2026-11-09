@@ -1,6 +1,9 @@
 import React from "react";
 import { createMetadata } from "@/lib/seo";
 import BlankPageMessage from "@/components/BlankPageMessage";
+import ImageWithFallback from "@/components/ImageWithFallback";
+import Link from "next/link";
+import TBAPlaceholder from "@/components/TBAPlaceholder";
 
 export const metadata = createMetadata({
   title: "Speakers",
@@ -14,6 +17,7 @@ import { EventService } from "@/services/EventService";
 import { SessionService } from "@/services/SessionService";
 import { buildSpeakerColorMap } from "@/utils/speakerColors";
 import SpeakersFilterGrid from "@/components/Speakers/SpeakersFilterGrid";
+import { workHacky } from "@/assets/images";
 
 export const dynamic = "force-dynamic";
 
@@ -66,7 +70,31 @@ export default async function CurrentSpeakersPage() {
   const sessions = event ? await SessionService.getSessions() : [];
 
   if (!speakers || speakers.length === 0) {
-    return <BlankPageMessage message="No current speakers found." />;
+    return (
+      <main className="min-h-screen bg-white">
+        <section className="bg-gradient-to-br from-sinfo-primary via-sinfo-primary to-sinfo-secondary py-16 sm:py-20 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+                Meet our Speakers
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+                Discover the speakers at SINFO sharing their experience,
+                projects, and insights.
+              </p>
+            </div>
+          </div>
+        </section>
+        <TBAPlaceholder
+          title="This edition’s speakers are yet to be announced."
+          message="In the meantime, discover the voices that have taken the SINFO stage in past editions."
+          action={{
+            href: "/speakers/previous",
+            label: "View previous speakers",
+          }}
+        />
+      </main>
+    );
   }
 
   const eventSessions = (sessions ?? []).filter(

@@ -13,7 +13,7 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     company: MOCK_COMPANIES[11],
     date: "2024-12-01T12:00:00Z",
     duration: 90,
-    event: "31",
+    event: "34",
     tickets: {
       needed: true,
       start: "2024-03-25T12:00:00Z",
@@ -30,9 +30,9 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     description:
       "Discover what makes Noesis a leader in technology consulting and innovation.",
     company: MOCK_COMPANIES[11],
-    date: "2025-02-17T08:00:00Z",
+    date: "2027-02-17T08:00:00Z",
     duration: 20,
-    event: "31",
+    event: "34",
     tickets: {},
   },
   {
@@ -44,13 +44,13 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     description:
       "Hands-on session to learn how to deploy a scalable Node.js application using Cloudflare Workers.",
     company: MOCK_COMPANIES[9],
-    date: "2025-02-18T09:00:00Z",
+    date: "2027-02-18T09:00:00Z",
     duration: 90,
-    event: "31",
+    event: "34",
     tickets: {
       needed: true,
-      start: "2024-04-07T22:00:00Z",
-      end: "2024-04-08T10:00:00Z",
+      start: "2027-04-07T22:00:00Z",
+      end: "2027-04-08T10:00:00Z",
       max: 31,
     },
   },
@@ -63,13 +63,13 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     description:
       "A deep dive into crafting effective and powerful prompts to unlock AI&apos;s potential in creative workflows.",
     speakers: [MOCK_SPEAKERS[4]],
-    date: "2025-02-18T08:00:00Z",
+    date: "2027-02-18T08:00:00Z",
     duration: 120,
-    event: "31",
+    event: "34",
     tickets: {
       needed: true,
-      start: "2024-04-08T07:50:00Z",
-      end: "2024-04-08T10:00:00Z",
+      start: "2027-04-08T07:50:00Z",
+      end: "2027-04-08T10:00:00Z",
       max: 20,
     },
   },
@@ -82,9 +82,9 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     description:
       "Master the fundamentals of Git version control to improve your collaboration and code management.",
     company: MOCK_COMPANIES[6],
-    date: "2025-02-18T10:00:00Z",
+    date: "2027-02-18T10:00:00Z",
     duration: 90,
-    event: "31",
+    event: "34",
     tickets: {
       needed: true,
       start: "2024-04-09T07:10:00Z",
@@ -101,9 +101,9 @@ export const MOCK_SESSIONS: SINFOSession[] = [
     description:
       "Learn about Cloudflare&apos;s mission, services, and how it&apos;s shaping the future of the internet.",
     company: MOCK_COMPANIES[9],
-    date: "2025-02-19T11:00:00Z",
+    date: "2027-02-19T11:00:00Z",
     duration: 20,
-    event: "31",
+    event: "34",
     tickets: {},
   },
 ];
@@ -116,9 +116,9 @@ export const MOCK_SESSION_WORKSHOP: SINFOSession = {
   description:
     "Hands-on session to learn how to deploy a scalable Node.js application using Cloudflare Workers.",
   company: MOCK_COMPANIES[9],
-  date: "2025-02-18T09:00:00Z",
+  date: "2027-02-18T09:00:00Z",
   duration: 90,
-  event: "31",
+  event: "34",
   tickets: {
     needed: true,
     start: "2024-04-07T22:00:00Z",
@@ -149,9 +149,9 @@ export const MOCK_SESSION_KEYNOTE: SINFOSession = {
   description:
     "A deep dive into crafting effective and powerful prompts to unlock AI&apos;s potential in creative workflows.",
   speakers: [MOCK_SPEAKERS[4]],
-  date: "2025-02-18T08:00:00Z",
+  date: "2027-02-18T08:00:00Z",
   duration: 120,
-  event: "31",
+  event: "34",
   tickets: {
     needed: true,
     start: "2024-04-08T07:50:00Z",
