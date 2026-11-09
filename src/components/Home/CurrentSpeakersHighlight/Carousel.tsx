@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import SpeakerCard from "./SpeakerCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { sinfoColors } from "@/constants/colors";
 
 interface CarouselProps {
   speakers: Speaker[];
@@ -140,7 +141,7 @@ export default function Carousel({
             >
               <SpeakerCard
                 speaker={speaker}
-                color={speakerColors[speaker.id] || "#1c2b70"}
+                color={speakerColors[speaker.id] || sinfoColors.primary}
               />
             </div>
           ))}

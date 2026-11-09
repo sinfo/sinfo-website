@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { sinfoColors } from "@/constants/colors";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -8,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "SINFO is Portugal's biggest free technology conference, held annually at Técnico Innovation Center in Lisbon.",
     start_url: "/",
     display: "standalone",
-    background_color: "#1c2b70", // SINFO Primary
-    theme_color: "#1c2b70", // SINFO Primary
+    background_color: sinfoColors.primary,
+    theme_color: sinfoColors.primary,
     icons: [
       {
         src: "/web-app-manifest-192x192.png",

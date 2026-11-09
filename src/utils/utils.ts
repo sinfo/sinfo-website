@@ -1,4 +1,4 @@
-import config from "../../tailwind.config";
+import { sinfoColors } from "@/constants/colors";
 
 export function generateTimeInterval(
   timestamp: string,
@@ -87,15 +87,15 @@ export function getEventEndDateString(
 export function getSessionColor(sessionKind: string) {
   switch (sessionKind) {
     case "Presentation":
-      return config.theme.extend.colors.sinfo.tertiary;
+      return sinfoColors.tertiary;
     case "Open Workshop":
-      return config.theme.extend.colors.sinfo.quaternary;
+      return sinfoColors.quaternary;
     case "Workshop":
-      return config.theme.extend.colors.sinfo.tertiary;
+      return sinfoColors.tertiary;
     case "Keynote":
-      return config.theme.extend.colors.sinfo.secondary;
+      return sinfoColors.secondary;
     default:
-      return "#000";
+      return sinfoColors.primary;
   }
 }
 

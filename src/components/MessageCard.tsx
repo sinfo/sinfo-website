@@ -22,19 +22,19 @@ interface MessageCustomization {
 
 const customizationByType: Record<MessageType, MessageCustomization> = {
   success: {
-    class: "border-green-500 text-green-500",
+    class: "border-sinfo-teal text-sinfo-teal",
     icon: Check,
   },
   info: {
-    class: "border-blue-500 text-blue-500",
+    class: "border-sinfo-septenary text-sinfo-septenary",
     icon: Info,
   },
   warning: {
-    class: "border-yellow-500 text-yellow-500",
+    class: "border-sinfo-tertiary text-sinfo-tertiary",
     icon: TriangleAlert,
   },
   danger: {
-    class: "border-red-500 text-red-500",
+    class: "border-sinfo-secondary text-sinfo-secondary",
     icon: OctagonAlert,
   },
 };

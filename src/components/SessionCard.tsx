@@ -11,7 +11,7 @@ const KIND_CHIP: Record<string, string> = {
   keynote: "bg-sinfo-secondary/15 text-sinfo-secondary",
   "connect stage": "bg-sinfo-secondary/15 text-sinfo-secondary",
   presentation: "bg-sinfo-tertiary/15 text-sinfo-tertiary",
-  workshop: "bg-sinfo-quinary/25 text-amber-600",
+  workshop: "bg-sinfo-quinary/15 text-sinfo-quinary",
   panel: "bg-sinfo-senary/15 text-sinfo-senary",
 };
 
@@ -222,7 +222,7 @@ export default function SessionCard({
 
           {/* Tickets Warning */}
           {session.tickets?.needed && (
-            <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
+            <div className="mt-2 p-2 bg-sinfo-tertiary/10 border border-sinfo-tertiary/40 rounded text-xs text-sinfo-primary">
               Tickets required
               {session.tickets.max && ` (Max: ${session.tickets.max})`}
             </div>

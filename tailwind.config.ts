@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { sinfoColors } from "./src/constants/colors";
 
 const config = {
   content: [
@@ -15,26 +16,7 @@ const config = {
         navbar: "70px",
       },
       colors: {
-        sinfo: {
-          primary: "#1c2b70",
-          secondary: "#bf2c21",
-          tertiary: "#f1853a",
-          quaternary: "#E0B485",
-          light: "#F2F5FC",
-          quinary: "#fcbd14",
-          senary: "#c465a2",
-          septenary: "#48c6e4",
-          days: {
-            mon: "#bf2c21",
-            tue: "#f1853a",
-            wed: "#fcbd14",
-            thu: "#48c6e4",
-            fri: "#c465a2",
-          },
-          editions: {
-            "32": "#323363",
-          },
-        },
+        sinfo: sinfoColors,
       },
     },
   },
